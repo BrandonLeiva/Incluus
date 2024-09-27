@@ -1,0 +1,25 @@
+
+.bar{
+    background-color: white;
+    color: grey; 
+    /* height: 100px;  */
+    border-bottom: 2px solid grey;
+} /* Estilo general para las columnas */
+.row div {
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 5px solid transparent; /* Borde inferior invisible por defecto */
+  cursor: pointer;
+}
+
+/* Estilo cuando está en la sección activa (MISION) */
+.row .mision.active {
+  color: #5a67d8;
+  border-bottom: 5px solid #5a67d8; /* Borde inferior rojo solo cuando está activo */
+}
+ /* Efecto hover: cambia color y borde */
+ .row div:hover {
+    color: #5a67d8; /* Cambia el color de las letras a rojo */
+    border-bottom: 5px solid #5a67d8; /* Cambia el borde inferior a rojo */
+  }
