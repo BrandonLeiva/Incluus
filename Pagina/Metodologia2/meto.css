@@ -81,6 +81,7 @@ transition: transform 0.3s;
 }
 
 .step p {
+    line-height: 1.2;
     font-size: 1rem; /*16 pixeles*/
     color: #666;
     margin-left: 30px;
