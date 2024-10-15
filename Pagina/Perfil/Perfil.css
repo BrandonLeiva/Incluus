@@ -63,8 +63,8 @@ body {
 
 .seccion-perfil-usuario .perfil-usuario-avatar {
     display: flex;
-    width: 180px;
-    height: 180px;
+    width: 280px;
+    height: 280px;
     align-items: center;
     justify-content: center;
     border: 7px solid #FFFFFF;
@@ -72,8 +72,8 @@ body {
     border-radius: 50%;
     box-shadow: 0 0 12px rgba(0, 0, 0, .2);
     position: absolute;
-    bottom: -40px;
-    left: calc(50% - 90px);
+    bottom: -70px;
+    left: calc(47% - 90px);
     z-index: 1;
 }
 
@@ -85,18 +85,19 @@ body {
 
 .seccion-perfil-usuario .perfil-usuario-avatar .boton-avatar {
     position: absolute;
-    left: -2px;
-    top: -2px;
+    left: 10px;
+    top: 4px;
     border: 0;
     background-color: #fff;
     box-shadow: 0 0 12px rgba(0, 0, 0, .2);
-    width: 45px;
-    height: 45px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     cursor: pointer;
 }
 
 .seccion-perfil-usuario .perfil-usuario-body {
+    margin-top: 20px;
     width: 70%;
     position: relative;
     max-width: 750px;
@@ -106,6 +107,7 @@ body {
     display: block;
     width: 100%;
     font-size: 1.75em;
+    margin-top: 0.3rem;
     margin-bottom: 0.5rem;
 }
 
@@ -130,6 +132,7 @@ body {
 }
 
 .botonPerfil button{
+    margin-top: 10px;
     background-color: #28a745; /* Color verde principal */
     color: white; /* Color del texto */
     border: none; /* Sin borde */
@@ -180,31 +183,15 @@ body {
 
 /* adactacion a dispositivos */
 @media (max-width: 750px) {
-    .seccion-perfil-usuario .lista-datos {
-        width: 100%;
-    }
-
     .seccion-perfil-usuario .perfil-usuario-portada,
     .seccion-perfil-usuario .perfil-usuario-body {
         width: 95%;
     }
 
-    .seccion-perfil-usuario .redes-sociales {
-        position: relative;
-        flex-direction: row;
-        width: 100%;
-        left: 0;
-        text-align: center;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        align-items: center;
-        justify-content: center
+    .seccion-perfil-usuario .perfil-usuario-avatar {
+        left: calc(38% - 90px);
     }
 
-    .seccion-perfil-usuario .redes-sociales .boton-redes+.boton-redes {
-        margin-left: 1rem;
-        margin-top: 0;
-    }
 }
 
 footer {
