@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+/* =============MENU============/ */
+
+#menu a {
+    font-size: 18px;
+    font-weight: bold;
+    color: #3f3f3f;
+
+}
+#menu button {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgb(255, 174, 0);
+
+}
+
+/* /==========IMAGENES=========/ */
+.carousel-inner{
+    max-height: 39rem;
+
+}
+
+
+/* /MEDIA QUERIES PANTALLA  SM/ */
+
+@media (max-width: 768px){
+    #intro {
+        width: 90%;
+    }
+    .servicio-fila{
+        width: 100%;
+        text-align:center;
+
+    }
+}
+
+
+/* /pantallas super chicas/ */
+
+@media(max-width: 576){
+    .icono-wrap{
+        flex-wrap: wrap;
+        justify-content: center;
+
+    }
+
+}
