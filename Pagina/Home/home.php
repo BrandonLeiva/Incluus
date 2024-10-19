@@ -9,7 +9,7 @@
     <title>Home</title>
 </head>
 <body>
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <!-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
     
             <div class="carousel-item active" data-bs-interval="3000">
@@ -33,12 +33,18 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
-    </div>
+    </div> -->
     
     <!--=========================================-->
     <!--INTRO-->
     <!--=========================================-->
-    
+    <header>
+      <h1><strong>Inicio</strong></h1>
+      <p></p>
+        <p>Equipo de colaboradores que hacen posible este proyecto</p>
+        
+    </header>
+
     <section class="w-50 mx-auto text-center pt-5" id="intro">
         <h1 class="p-3 fs-2 border-top border-3 pt-5">Aprende a tu ritmo, mejora cada  <span style="color: #5a67d8;">día.</span></h1>
         <p class="p-3 fs-4">Domina nuevas habilidades con cursos interactivos y divertidos. Aprende desde cualquier lugar y avanza con lecciones personalizadas para ti. 
@@ -70,7 +76,7 @@
     
         <div class="row w-100 mx-auto servicio-fila">
             <div class="col-lg-6 col-md-12 col-sm-12 my-5 d-flex justify-content-start icono-wrap">
-                <img src="img/certificado.png" alt="padlock" width="40%">
+                <img src="img/certificado.png" alt="padlock" width="50%">
                 <div>
                     <h3 class="fs-5 mt-4 px-4 pb-1">Certificación al completar cursos</h3>
                     <p class="px-4">Acredita tus logros con certificados reconocidos.</p>
