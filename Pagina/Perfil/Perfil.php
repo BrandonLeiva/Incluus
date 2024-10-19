@@ -1,3 +1,36 @@
+<?php
+require "../database.php";
+session_start();  // Iniciar la sesión para obtener el estado del usuario
+
+// Verificar si el usuario está logueado
+if (!isset($_SESSION['user_id'])) {
+    // Si no está logueado, redirigir al login
+    header("Location: login.html");
+    exit;
+}
+
+try {
+    // Preparar la consulta SQL para obtener más información del usuario
+    $stmt = $conn->prepare("SELECT correo, nombre, edad, rut, apellido FROM usuario WHERE id_usuario = :id");
+    $stmt->bindParam(':id', $_SESSION['user_id']);
+    $stmt->execute();
+
+    // Obtener los datos del usuario
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Verificar si se encontraron los datos del usuario
+    if (!$user) {
+        echo "No se encontraron los datos del usuario.";
+        exit;
+    }
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+
+// Cerrar la conexión
+$conn = null;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,11 +60,13 @@
         </div>
         <div class="perfil-usuario-body">
             <div class="perfil-usuario-bio">
-                <h3 class="titulo">Brandon Leiva Soto</h3>
-                <p class="texto">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua.</p>
+                <h3 class="titulo"><?php echo htmlspecialchars($_SESSION['nombre']); ?></h3>
+                <h3 class="titulo"><?php echo htmlspecialchars($_SESSION['apellido']); ?></h3>
+                <p class="texto"><?php echo htmlspecialchars($_SESSION['edad']); ?></p>
+                <hr>
+                <p class="texto"><?php echo htmlspecialchars($_SESSION['email']); ?></p>
                 <div class="botonPerfil">
-                    <button>Editar Perfil</button>
+                    <a href="../EditarPerfil/editarPerfil.php"><button>Editar Perfil</button></a>
                 </div>
             </div>
             <h1>Continua con tu progreso</h1>   

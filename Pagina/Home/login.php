@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Preparar la consulta SQL para obtener el usuario
-        $stmt = $conn->prepare("SELECT id_usuario, nombre, password FROM usuario WHERE correo = :email");
+        $stmt = $conn->prepare("SELECT id_usuario, nombre, edad, correo, apellido, password FROM usuario WHERE correo = :email");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
 
@@ -26,9 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Guardar información del usuario en la sesión
             $_SESSION['user_id'] = $user['id_usuario'];
             $_SESSION['nombre'] = $user['nombre'];
+            $_SESSION['apellido'] = $user['apellido'];
+            $_SESSION['edad'] = $user['edad'];
+            $_SESSION['email'] = $user['correo'];
 
             // Redirigir a la página de bienvenida
-            header("Location: perfil.html");
+            header("Location: welcome.php");
             exit();
         } else {
             echo "Email o contraseña incorrectos.";

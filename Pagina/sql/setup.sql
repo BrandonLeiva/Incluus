@@ -126,7 +126,7 @@ ALTER TABLE resultado_ev
     ADD CONSTRAINT resultado_ev_ejercicio_fk FOREIGN KEY ( ejercicio_id_juego )
         REFERENCES ejercicio ( id_juego );
 
-
+ALTER TABLE `usuario` ADD COLUMN `password` VARCHAR(255) NOT NULL;
 
 -- Informe de Resumen de Oracle SQL Developer Data Modeler: 
 -- 
