@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['nombre'] = $user['nombre'];
 
             // Redirigir a la página de bienvenida
-            header("Location: welcome.php");
+            header("Location: perfil.html");
             exit();
         } else {
             echo "Email o contraseña incorrectos.";
