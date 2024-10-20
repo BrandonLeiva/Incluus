@@ -67,26 +67,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Perfil</title>
+
+    <link rel="stylesheet" type="text/css" href="editarPerfil.css">
 </head>
 <body>
-    <h1>Editar Perfil</h1>
-
+    <div class="main">
+    <div class="signup">
     <form action="editarPerfil.php" method="POST">
-        <label for="nombre">Nombre:</label>
+    <label for="chk" aria-hidden="true">Editar Perfil</label>
+    <br>
         <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($user['nombre']); ?>" required><br>
 
-        <label for="apellido">Apellido:</label>
         <input type="text" id="apellido" name="apellido" value="<?php echo htmlspecialchars($user['apellido']); ?>" required><br>
 
-        <label for="correo">Correo:</label>
         <input type="email" id="correo" name="correo" value="<?php echo htmlspecialchars($user['correo']); ?>" required><br>
 
-        <label for="edad">Edad:</label>
         <input type="number" id="edad" name="edad" value="<?php echo htmlspecialchars($user['edad']); ?>" required><br>
 
         <button type="submit">Guardar cambios</button>
+        <button><a class="volver" href="../Perfil/Perfil.php">Volver al perfil</a></button>
     </form>
-
-    <a href="../Perfil/">Volver al perfil</a>
+    </div>
+    </div>
 </body>
 </html>

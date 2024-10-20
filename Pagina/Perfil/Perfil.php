@@ -60,11 +60,11 @@ $conn = null;
         </div>
         <div class="perfil-usuario-body">
             <div class="perfil-usuario-bio">
-                <h3 class="titulo"><?php echo htmlspecialchars($_SESSION['nombre']); ?></h3>
-                <h3 class="titulo"><?php echo htmlspecialchars($_SESSION['apellido']); ?></h3>
-                <p class="texto"><?php echo htmlspecialchars($_SESSION['edad']); ?></p>
-                <hr>
-                <p class="texto"><?php echo htmlspecialchars($_SESSION['email']); ?></p>
+                <h3 class="titulo"><?php echo htmlspecialchars($_SESSION['nombre'] . ' ' . $_SESSION['apellido']); ?></h3>
+                <div class="info">
+                <h5>Edad: </h5><p class="texto"><?php echo htmlspecialchars($_SESSION['edad']); ?></p>
+                <h5>Correo: </h5><p class="texto"><?php echo htmlspecialchars($_SESSION['email']); ?></p>
+                </div>
                 <div class="botonPerfil">
                     <a href="../EditarPerfil/editarPerfil.php"><button>Editar Perfil</button></a>
                 </div>
