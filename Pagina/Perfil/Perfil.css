@@ -117,7 +117,6 @@ body {
 }
 
 .seccion-perfil-usuario .perfil-usuario-bio {
-    display: flex;
     flex-wrap: wrap;
     padding: 1.5rem 2rem 0.8rem 1rem;
     box-shadow: 0 0 12px rgba(0, 0, 0, .2);
@@ -201,3 +200,4 @@ footer {
     text-align: center;
     padding: 10px 0;
 }
+

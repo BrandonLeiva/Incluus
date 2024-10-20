@@ -11,7 +11,7 @@
 		<input type="checkbox" id="chk" aria-hidden="true">
 
 			<div class="signup" >
-				<form action="register.php" method="POST">
+				<form id="registrationForm" action="register.php" method="POST">
 					<label for="chk" aria-hidden="true">Registrar</label>
 
 					<input type="text"id="rut" name="rut" placeholder="Rut: 11111111-1" required>
@@ -27,7 +27,9 @@
 					<input type="password" id="password" name="password" placeholder="Contra :D" required>
 
 					<button>Sign up</button>
+
 				</form>
+				
 			</div>
 
 			<div class="login">
@@ -37,6 +39,7 @@
 					<input type="password" id="password" name="password" placeholder="Contra :D" required>
 					<button>Login</button>
 				</form>
+				
 
 				<div class="eyes-container">
 					<div class="eye">
@@ -53,6 +56,18 @@
 			</div>
 			
 	</div>
+	<div style="margin: 50px;
+    color: #f71b1b;
+    border: 1px solid #c0392b;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    max-width: 300px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+	display: none;" 
+	id="messageContainer" class="error-message"></div> <!-- Contenedor para mensajes de error -->
+
+	<script src="login-register.js"></script>
 
 </body>
 </html>
