@@ -59,3 +59,59 @@ header {
     text-align: center;
     /* box-shadow: 0 5px 9px rgba(32, 31, 31, 0.1); */
 }
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+#intro {
+    padding: 40px;
+   background-color: white;
+   box-shadow: 0 30px 900px rgba(32, 31, 31, 0.1);
+   margin-bottom: 20px;
+   border-radius: 25px;
+   text-align: center;
+
+}
+
+/* Estilo del h1 con animación de rebote */
+#h1 {
+    display: inline-block;
+    animation: bounce 2s; /* La animación se repite infinitamente cada 2 segundos */
+}
+
+/* Keyframes para la animación de rebote */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0); /* Posición inicial y final */
+    }
+    1% {
+        transform: translateY(-30px); /* Rebote hacia arriba */
+    }
+}
+
+.texto-final {
+    padding: 40px;
+    background-color: white;
+    box-shadow: 0 30px 900px rgba(32, 31, 31, 0.1);
+    margin-bottom: 20px;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.texto-final h1, .texto-final h3 {
+    color: #000000; /* Color del texto */
+    text-align: center;
+}
+
+.texto-final p {
+    color: #000000; /* Color más suave para el texto */
+    text-align: center;
+}
