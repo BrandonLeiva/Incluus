@@ -20,6 +20,7 @@ body {
     font-family: "Arial", Segoe UI, Tahoma, sans-serifl, Helvetica Neue, Helvetica;
 }
 
+
 .seccion-perfil-usuario .perfil-usuario-body,
 .seccion-perfil-usuario {
     display: flex;
@@ -113,7 +114,8 @@ body {
 
 .seccion-perfil-usuario .perfil-usuario-body .texto {
     color: #848484;
-    font-size: 0.95em;
+    font-size: 1.1em;
+    margin-bottom: 0;
 }
 
 .seccion-perfil-usuario .perfil-usuario-bio {
@@ -160,6 +162,8 @@ body {
 
 .encabezado .ramo{
     padding: 0.7rem 2rem;
+    font-size: 25px;
+    font-family: "Arial", Segoe UI, Tahoma, sans-serifl, Helvetica Neue, Helvetica;
 }
 
 .baner img{
