@@ -30,6 +30,7 @@ try {
 // Cerrar la conexión
 $conn = null;
 ?>
+
 <link href="subir.css" rel="stylesheet">
 <div class="perfil-usuario-body">
     <div class="perfil-usuario-bio">
@@ -42,26 +43,33 @@ $conn = null;
         </div>
     </div>
     <br>
-    <h2>Subir un nuevo curso</h2>
-    
-    <form action="subir_curso.php" method="POST">
-        <label for="nivel">Nivel:</label>
-        <input type="text" id="nivel" name="nivel" required>
-        
-        <label for="materia">Materia:</label>
-        <select id="materia" name="id_materia" required>
-            <!-- Suponiendo que tienes una tabla de materias en tu base de datos -->
-            <?php
-            $conexion = new mysqli("localhost", "root", "", "incluus");
-            $consultaMaterias = "SELECT id_materia, nombre_materia FROM materia";
-            $resultadoMaterias = $conexion->query($consultaMaterias);
-            
-            while ($materia = $resultadoMaterias->fetch_assoc()) {
-                echo '<option value="' . $materia['id_materia'] . '">' . htmlspecialchars($materia['nombre_materia']) . '</option>';
-            }
-            ?>
-        </select>
+    <h2>Subir un nuevo curso (ADMIN)</h2>
+<?php
 
-        <button type="submit">Subir Curso</button>
-    </form>
+//conexión a la base de datos
+$sql = "SELECT id_materia, nombre_materia FROM materia";
+$stmt = $conn->prepare("SELECT id_materia, nombre_materia FROM materia");
+$stmt->execute();
+$materia = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+<form action="subircurso2.php" method="POST">
+    <label for="materia">Selecciona una materia:</label>
+    <select name="id_materia" id="id_materia">
+        <?php foreach ($materia as $materia): ?>
+            <option value="<?php echo $materia['id_materia']; ?>">
+                <?php echo htmlspecialchars($materia['nombre_materia']); ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+
+    <label for="nivel">Nivel del curso:</label>
+    <input type="number" name="nivel" id="nivel" required>
+
+    <input type="submit" value="Subir curso">
+</form>
+
 </div>
+
+</div>
+
