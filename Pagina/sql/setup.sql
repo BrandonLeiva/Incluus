@@ -14,72 +14,61 @@ CREATE DATABASE incluus_app;
 USE incluus_app;
 
 CREATE TABLE curso (
-    id_curso            INTEGER NOT NULL,
+    id_curso            INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nivel               INTEGER NOT NULL,
-    usuario_id_usuario  INTEGER,
-    materia_id_materia  INTEGER NOT NULL
+    id_usuario  INTEGER,
+    id_materia  INTEGER NOT NULL
 );
 
-ALTER TABLE curso ADD CONSTRAINT curso_pk PRIMARY KEY ( id_curso );
-
-CREATE TABLE ejercicio (
-    id_juego            INTEGER NOT NULL,
+CREATE TABLE ejercicio (    
+    id_juego            INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre_juego        VARCHAR(50) NOT NULL,
     dificultad          VARCHAR(50) NOT NULL,
     categoria           VARCHAR(50) NOT NULL,
-    id_usuario          INTEGER NOT NULL,
-    leccion_id_leccion  INTEGER NOT NULL
+    id_leccion  INTEGER NOT NULL
 );
 
-ALTER TABLE ejercicio ADD CONSTRAINT juego_pk PRIMARY KEY ( id_juego );
-
 CREATE TABLE leccion (
-    id_leccion      INTEGER NOT NULL,
+    id_leccion      INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     numero_leccion  INTEGER NOT NULL,
     progreso        INTEGER NOT NULL,
     estado          CHAR(1) NOT NULL,
-    curso_id_curso  INTEGER NOT NULL
+    id_curso  INTEGER NOT NULL
 );
 
-ALTER TABLE leccion ADD CONSTRAINT leccion_pk PRIMARY KEY ( id_leccion );
 
 CREATE TABLE materia (
-    id_materia      INTEGER NOT NULL,
-    nombre_materia  VARCHAR(50) NOT NULL,
-    id_juego        INTEGER NOT NULL
+    id_materia      INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nombre_materia  VARCHAR(50) NOT NULL
 );
 
-ALTER TABLE materia ADD CONSTRAINT materia_pk PRIMARY KEY ( id_materia );
 
 CREATE TABLE premio (
-    id_premio           INTEGER NOT NULL,
+    id_premio           INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     descripcion         VARCHAR(50) NOT NULL,
-    leccion_id_leccion  INTEGER NOT NULL,
-    puntos_premio       INTEGER NOT NULL
+    puntos_premio       INTEGER NOT NULL,
+    id_leccion          INTEGER NOT NULL
 );
 
-ALTER TABLE premio ADD CONSTRAINT premiov1_pk PRIMARY KEY ( id_premio );
 
 CREATE TABLE progreso (
-    id_progreso                INTEGER NOT NULL,
-    descripcion                VARCHAR(50) NOT NULL,
-    resultado_ev_id_resultado  INTEGER NOT NULL
+    id_progreso          INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    descripcion          VARCHAR(50) NOT NULL,
+    id_resultado         INTEGER NOT NULL
 );
 
-ALTER TABLE progreso ADD CONSTRAINT premio_pk PRIMARY KEY ( id_progreso );
 
 CREATE TABLE resultado_ev (
-    id_resultado        INTEGER NOT NULL,
+    id_resultado        INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     materia             VARCHAR(15) NOT NULL,
     nombre_alumno       VARCHAR(20) NOT NULL,
     puntos_resultado    INTEGER NOT NULL,
-    ejercicio_id_juego  INTEGER NOT NULL
+    id_juego            INTEGER NOT NULL
 );
 
-ALTER TABLE resultado_ev ADD CONSTRAINT resultado_ev_pk PRIMARY KEY ( id_resultado );
 
 CREATE TABLE usuario (
-    id_usuario  INTEGER NOT NULL,
+    id_usuario  INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     rut         VARCHAR(15) NOT NULL,
     nombre      VARCHAR(50) NOT NULL,
     apellido    VARCHAR(50) NOT NULL,
@@ -88,45 +77,44 @@ CREATE TABLE usuario (
     rol         VARCHAR(20) NOT NULL
 );
 
-ALTER TABLE usuario ADD CONSTRAINT usuario_pk PRIMARY KEY ( id_usuario );
-
 ALTER TABLE curso
-    ADD CONSTRAINT curso_materia_fk FOREIGN KEY ( materia_id_materia )
+    ADD CONSTRAINT curso_materia_fk FOREIGN KEY ( id_materia )
         REFERENCES materia ( id_materia );
-
 ALTER TABLE curso
-    ADD CONSTRAINT curso_usuario_fk FOREIGN KEY ( usuario_id_usuario )
+    ADD CONSTRAINT curso_usuario_fk FOREIGN KEY ( id_usuario )
         REFERENCES usuario ( id_usuario );
 
 ALTER TABLE ejercicio
-    ADD CONSTRAINT ejercicio_leccion_fk FOREIGN KEY ( leccion_id_leccion )
+    ADD CONSTRAINT ejercicio_leccion_fk FOREIGN KEY ( id_leccion )
         REFERENCES leccion ( id_leccion );
 
-ALTER TABLE ejercicio
-    ADD CONSTRAINT juego_usuario_fk FOREIGN KEY ( id_usuario )
-        REFERENCES usuario ( id_usuario );
-
 ALTER TABLE leccion
-    ADD CONSTRAINT leccion_curso_fk FOREIGN KEY ( curso_id_curso )
+    ADD CONSTRAINT leccion_curso_fk FOREIGN KEY ( id_curso )
         REFERENCES curso ( id_curso );
 
-ALTER TABLE materia
-    ADD CONSTRAINT materia_juego_fk FOREIGN KEY ( id_juego )
-        REFERENCES ejercicio ( id_juego );
-
 ALTER TABLE premio
-    ADD CONSTRAINT premiov1_leccion_fk FOREIGN KEY ( leccion_id_leccion )
+    ADD CONSTRAINT premiov1_leccion_fk FOREIGN KEY ( id_leccion )
         REFERENCES leccion ( id_leccion );
 
 ALTER TABLE progreso
-    ADD CONSTRAINT progreso_resultado_ev_fk FOREIGN KEY ( resultado_ev_id_resultado )
+    ADD CONSTRAINT progreso_resultado_ev_fk FOREIGN KEY ( id_resultado )
         REFERENCES resultado_ev ( id_resultado );
 
 ALTER TABLE resultado_ev
-    ADD CONSTRAINT resultado_ev_ejercicio_fk FOREIGN KEY ( ejercicio_id_juego )
+    ADD CONSTRAINT resultado_ev_ejercicio_fk FOREIGN KEY ( id_juego )
         REFERENCES ejercicio ( id_juego );
 
 ALTER TABLE `usuario` ADD COLUMN `password` VARCHAR(255) NOT NULL;
+
+----------------------------------------------------------------------------------------------------------------------
+
+-- CONSULTAS SQL --
+
+SELECT * from usuario;
+SELECT * FROM materia;
+
+INSERT INTO materia (nombre_materia) VALUES ('Matemáticas'), ('Lenguaje'), ('Ciencias'), ('Historia');
+
 
 -- Informe de Resumen de Oracle SQL Developer Data Modeler: 
 -- 

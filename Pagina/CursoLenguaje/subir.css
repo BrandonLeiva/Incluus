@@ -1,0 +1,141 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.perfil-usuario-body {
+    max-width: 800px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-usuario-bio {
+    text-align: center;
+}
+
+.titulo {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.info h5 {
+    font-size: 18px;
+    color: #666;
+    margin: 10px 0;
+}
+
+.texto {
+    font-size: 16px;
+    color: #555;
+}
+
+.botonPerfil {
+    margin-top: 15px;
+}
+
+.botonPerfil button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.botonPerfil button:hover {
+    background-color: #45a049;
+}
+
+h2 {
+    font-size: 28px;
+    color: #444;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+form {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 8px;
+}
+
+form input[type="text"], 
+form select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: #f4f4f9;
+}
+
+form button {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #3b82f6;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #2563eb;
+}
+
+.perfil-usuario-cursos {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.encabezado h1 {
+    font-size: 22px;
+    color: #333;
+}
+
+.baner img {
+    width: 100px;
+    height: auto;
+}
+
+.boton button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #ff5722;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.boton button:hover {
+    background-color: #e64a19;
+}
