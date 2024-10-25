@@ -94,6 +94,11 @@ $conn = null;
                 </div>
             </div>
             <br>
+            <form action="upload.php" method="POST" enctype="multipart/form-data">
+        <input type="file" name="profile_image" accept="image/*" required><br><br>
+        <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>"> <!-- Cambiar al ID del usuario -->
+        <input type="submit" value="Subir Imagen">
+    </form>
             <h2>Continua con tu progreso</h2>
             <a href="">Más cursos</a>
             <br>
