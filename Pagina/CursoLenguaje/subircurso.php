@@ -44,8 +44,8 @@ $conn = null;
     </div>
     <br>
     <h2>Subir un nuevo curso (ADMIN)</h2>
-<?php
 
+<?php
 //conexión a la base de datos
 $sql = "SELECT id_materia, nombre_materia FROM materia";
 $stmt = $conn->prepare("SELECT id_materia, nombre_materia FROM materia");
@@ -55,8 +55,8 @@ $materia = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <form action="subircurso2.php" method="POST">
     <label for="materia">Selecciona una materia:</label>
-    <select name="id_materia" id="id_materia">
-        <?php foreach ($materia as $materia): ?>
+    <select name="id_materia" id="materia">
+        <?php foreach ($materias as $materia): ?>
             <option value="<?php echo $materia['id_materia']; ?>">
                 <?php echo htmlspecialchars($materia['nombre_materia']); ?>
             </option>
