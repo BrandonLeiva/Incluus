@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 
 try {
     // Preparar la consulta SQL para obtener más información del usuario
-    $stmt = $conn->prepare("SELECT correo, nombre, edad, rut, apellido FROM usuario WHERE id_usuario = :id");
+    $stmt = $conn->prepare("SELECT correo, nombre, edad, rut, apellido, foto_perfil FROM usuario WHERE id_usuario = :id");
     $stmt->bindParam(':id', $_SESSION['user_id']);
     $stmt->execute();
 
@@ -42,8 +42,8 @@ $conn = null;
 
     <link rel="stylesheet" href="Perfil.css">
 
-     <!-- Bootstrap CSS -->
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -51,8 +51,8 @@ $conn = null;
         <div class="perfil-usuario-header">
             <div class="perfil-usuario-portada">
                 <div class="perfil-usuario-avatar">
-                    <img src="" alt="">
-                    <button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="boton-avatar">
+                    <img src="<?php echo htmlspecialchars($user['foto_perfil']); ?>" alt="Imagen de perfil del usuario">
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="boton-avatar">
                         <i class="far fa-image"></i>
                     </button>
                 </div>
@@ -65,16 +65,20 @@ $conn = null;
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar foto de perfil</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                Contenido del modal...
+                                <form action="upload.php" method="POST" enctype="multipart/form-data">
+                                    <input type="file" name="profile_image" accept="image/*" required><br><br>
+                                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>"> <!-- Cambiar al ID del usuario -->
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Guardar cambios</button>
+                                <input type="button" class="btn btn-primary" type="submit" value="Subir Imagen">
+                                </form>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -94,11 +98,6 @@ $conn = null;
                 </div>
             </div>
             <br>
-            <form action="upload.php" method="POST" enctype="multipart/form-data">
-        <input type="file" name="profile_image" accept="image/*" required><br><br>
-        <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>"> <!-- Cambiar al ID del usuario -->
-        <input type="submit" value="Subir Imagen">
-    </form>
             <h2>Continua con tu progreso</h2>
             <a href="">Más cursos</a>
             <br>
