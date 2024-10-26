@@ -75,15 +75,27 @@ $conn = null;
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <input type="button" class="btn btn-primary" type="submit" value="Subir Imagen">
+                                <input class="btn btn-primary" type="submit" value="Subir Imagen">
                                 </form>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Mostrar mensaje de éxito o error dentro de un h1 en un div -->
+        <?php if (isset($_SESSION['success_message'])): ?>
+            <div class="mensaje-contenedor exito">
+                <h1><?= $_SESSION['success_message']; ?></h1>
+            </div>
+            <?php unset($_SESSION['success_message']); ?>
+        <?php elseif (isset($_SESSION['error_message'])): ?>
+            <div class="mensaje-contenedor error">
+                <h1><?= $_SESSION['error_message']; ?></h1>
+            </div>
+            <?php unset($_SESSION['error_message']); ?>
+        <?php endif; ?>
+
         <div class="perfil-usuario-body">
             <div class="perfil-usuario-bio">
                 <h3 class="titulo"><?php echo htmlspecialchars($_SESSION['nombre'] . ' ' . $_SESSION['apellido']); ?></h3>

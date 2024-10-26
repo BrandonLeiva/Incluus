@@ -33,14 +33,15 @@ if (isset($_FILES['profile_image'])) {
         $stmt->bindParam(':id', $userId);
 
         if ($stmt->execute()) {
-            echo "Foto de perfil actualizada exitosamente.";
+            $_SESSION['success_message'] = "Foto de perfil actualizada exitosamente.";
         } else {
-            echo "Error al actualizar la foto en la base de datos.";
+            $_SESSION['error_message'] = "Error al actualizar la foto en la base de datos.";
         }
     } else {
-        echo "Error al subir la imagen.";
+        $_SESSION['error_message'] = "Error al subir la imagen.";
     }
-} else {
-    echo "No se ha enviado ninguna imagen.";
+
+    header("Location: Perfil.php");  
+    exit;  
 }
 ?>
