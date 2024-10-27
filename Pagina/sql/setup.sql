@@ -16,7 +16,6 @@ USE incluus_app;
 CREATE TABLE curso (
     id_curso            INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nivel               INTEGER NOT NULL,
-    id_usuario  INTEGER,
     id_materia  INTEGER NOT NULL
 );
 
@@ -25,6 +24,11 @@ CREATE TABLE ejercicio (
     nombre_juego        VARCHAR(50) NOT NULL,
     dificultad          VARCHAR(50) NOT NULL,
     categoria           VARCHAR(50) NOT NULL,
+    pregunta_a           VARCHAR(50) NOT NULL,
+    pregunta_b           VARCHAR(50) NOT NULL,
+    pregunta_c           VARCHAR(50) NOT NULL,
+    pregunta_d           VARCHAR(50) NOT NULL,
+    correcta           VARCHAR(50) NOT NULL,
     id_leccion  INTEGER NOT NULL
 );
 
