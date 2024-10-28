@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,400;0,500;0,600;0,900;1,100;1,200&display=swap');
+* {
+    box-sizing: border-box;
+    font-family: 'Barlow';
+}
+
+body {
+    background-color: #573b8a;
+    padding: 50px;
+    color: #573b8a;
+}
+
+
+
+
+/* ESTILOS GENERALES */
+
+hr {
+    border: none;
+    border-bottom: 1px solid #d6d6d6;
+}
+
+.contenedor {
+    max-width: 1000px;
+    width: 100%;
+    margin: auto;
+    background-color: #f1f2f8;
+    padding: 20px;
+    border-radius: 30px;
+}
+
+.contenedor .contenedor-info {
+    display: flex;
+}
+
+.contenedor .contenedor-info .nav {
+    width: 250px;
+    border-right: 1px solid #d6d6d6;
+}
+
+.contenedor .contenedor-info .nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.contenedor .contenedor-info .nav ul li {
+    margin: 15px 0;
+}
+
+.contenedor .contenedor-info .nav ul li .icono {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    color: #314056;
+    border-radius: 15px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.contenedor .contenedor-info .nav ul li .icono i {
+    line-height: 40px;
+}
+
+.contenedor .contenedor-info .nav ul li a {
+    text-decoration: none;
+    color: #31415a;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.contenedor .contenedor-info .nav ul li .selected {
+    background-color: #5a67d8;
+    color: #d6d6d6;
+}
+
+.contenedor .contenedor-info .panel {
+    background-color: #fff;
+    width: 100%;
+    border-radius: 30px;
+    margin-left: 20px;
+    padding: 25px;
+}
+
+
+
+/* SECCION LISTADO DE PREGUNTAS */
+
+#listadoPreguntas .contenedor-pregunta {
+    border: 1px solid #c0c0c0;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+#listadoPreguntas .contenedor-pregunta header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#listadoPreguntas .contenedor-pregunta header .tema {
+    display: block;
+    background: #7cafe9;
+    color: #fff;
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 10px;
+}
+
+#listadoPreguntas .contenedor-pregunta header .opciones i {
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#listadoPreguntas .contenedor-pregunta .pregunta {
+    font-size: 20px;
+    font-style: italic;
+}
+
+#listadoPreguntas .contenedor-pregunta .opcion {
+    margin-bottom: 10px;
+}
+
+#listadoPreguntas .contenedor-pregunta .caja {
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #888;
+    font-weight: bold;
+}
+
+.pintarVerde {
+    background-color: greenyellow;
+}
+
+
+
+/* FORMULARIOS */
+
+label {
+    display: block; /* Cada etiqueta en una nueva línea */
+    margin-bottom: 8px; /* Espacio inferior */
+    font-weight: 500; /* Negrita */
+}
+
+select, input[type="number"], input[type="text"] {
+    width: 100%; /* Ancho completo */
+    padding: 7px; /* Espaciado interno */
+    margin-bottom: 15px; /* Espacio entre campos */
+    border: 1px solid #ccc; /* Borde sutil */
+    border-radius: 4px; /* Bordes redondeados */
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho */
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+textarea {
+    width: 600px;
+}
+
+button {
+    background-color: #28a745; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    padding: 10px 15px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    font-size: 16px; /* Tamaño de fuente */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+button:hover {
+    background-color: #218838; /* Color del botón al pasar el cursor */
+}
+
+select:focus, input[type="number"]:focus, input[type="text"]:focus {
+    border-color: black; /* Color de borde en foco */
+    outline: none; /* Sin contorno */
+}
+
+@media (max-width: 600px) {
+    textarea {
+        width: 100%; /* Ocupa el 100% del ancho de su contenedor en pantallas pequeñas */
+        max-width: none; /* Elimina el ancho máximo */
+    }
+}

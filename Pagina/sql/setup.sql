@@ -24,10 +24,10 @@ CREATE TABLE ejercicio (
     nombre_juego        VARCHAR(50) NOT NULL,
     dificultad          VARCHAR(50) NOT NULL,
     categoria           VARCHAR(50) NOT NULL,
-    pregunta_a           VARCHAR(50) NOT NULL,
-    pregunta_b           VARCHAR(50) NOT NULL,
-    pregunta_c           VARCHAR(50) NOT NULL,
-    pregunta_d           VARCHAR(50) NOT NULL,
+    respuesta_a           VARCHAR(50) NOT NULL,
+    respuesta_b           VARCHAR(50) NOT NULL,
+    respuesta_c           VARCHAR(50) NOT NULL,
+    respuesta_d           VARCHAR(50) NOT NULL,
     correcta           VARCHAR(50) NOT NULL,
     id_leccion  INTEGER NOT NULL
 );

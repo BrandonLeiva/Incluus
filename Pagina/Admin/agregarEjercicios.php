@@ -17,26 +17,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $dificultad = $_POST['dificultad'];
     $categoria = $_POST['categoria'];
     $id_leccion = $_POST['id_leccion'];
-    $pregunta_a = $_POST['pregunta_a'];
-    $pregunta_b = $_POST['pregunta_b'];
-    $pregunta_c = $_POST['pregunta_c'];
-    $pregunta_d = $_POST['pregunta_d'];
+    $respuesta_a = $_POST['respuesta_a'];
+    $respuesta_b = $_POST['respuesta_b'];
+    $respuesta_c = $_POST['respuesta_c'];
+    $respuesta_d = $_POST['respuesta_d'];
     $correcta = $_POST['correcta'];
 
 
     // Insertar el ejercicio en la base de datos
-    $sql = "INSERT INTO ejercicio (nombre_juego, dificultad, categoria, id_leccion, pregunta_a, pregunta_b, pregunta_c, pregunta_d, correcta) VALUES (:nombre_juego, :dificultad, :categoria, :id_leccion, :pregunta_a, :pregunta_b
-    , :pregunta_c, :pregunta_d, :correcta)";
+    $sql = "INSERT INTO ejercicio (nombre_juego, dificultad, categoria, id_leccion, respuesta_a, respuesta_b, respuesta_c, respuesta_d, correcta) VALUES (:nombre_juego, :dificultad, :categoria, :id_leccion, :respuesta_a, :respuesta_b
+    , :respuesta_c, :respuesta_d, :correcta)";
     $stmt = $conn->prepare($sql);
     $stmt->execute([
         'nombre_juego' => $nombre_juego,
         'dificultad' => $dificultad,
         'categoria' => $categoria,
         'id_leccion' => $id_leccion,
-        'pregunta_a' => $pregunta_a,
-        'pregunta_b' => $pregunta_b,
-        'pregunta_c' => $pregunta_c,
-        'pregunta_d' => $pregunta_d,
+        'respuesta_a' => $respuesta_a,
+        'respuesta_b' => $respuesta_b,
+        'respuesta_c' => $respuesta_c,
+        'respuesta_d' => $respuesta_d,
         'correcta' => $correcta,
     ]);
 
@@ -117,16 +117,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <h1>Respuestas</h1>
 
                         <label for="Respuesta A">Respuesta A:</label>
-                        <input type="text" name="pregunta_a" required>
+                        <input type="text" name="respuesta_a" required>
 
                         <label for="Respuesta B">Respuesta B:</label>
-                        <input type="text" name="pregunta_b" required>
+                        <input type="text" name="respuesta_b" required>
 
                         <label for="Respuesta C">Respuesta C:</label>
-                        <input type="text" name="pregunta_c" required>
+                        <input type="text" name="respuesta_c" required>
 
                         <label for="Respuesta D">Respuesta D:</label>
-                        <input type="text" name="pregunta_d" required>
+                        <input type="text" name="respuesta_d" required>
 
                         <label for="correcta">Seleccione la respuesta correcta:</label>
                         <select style="width: 50px;" name="correcta" id="correcta" required>
