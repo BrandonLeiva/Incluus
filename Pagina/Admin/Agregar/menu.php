@@ -34,7 +34,7 @@
         </li>
         <li>
 
-            <a href="Modificar/editarMaterias.php">
+            <a href="../Modificar/editarMaterias.php">
                 <div class="icono" id="4">
                     <i class="fa-solid fa-globe"></i>
                 </div>
@@ -42,7 +42,7 @@
             </a>
         </li>
         <li>
-            <a href="cerrar-sesion.php">
+            <a href="../../Home/home.php">
                 <div class="icono" id="5">
                     <i class="fa-solid fa-right-from-bracket"></i>
                 </div>

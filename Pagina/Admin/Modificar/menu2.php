@@ -33,7 +33,7 @@
             </a>
         </li>
         <li>
-            <a href="../agregarMateria.php">
+            <a href="../Agregar/agregarMateria.php">
                 <div class="icono" id="5">
                     <i class="fa-solid fa-right-from-bracket"></i>
                 </div>
