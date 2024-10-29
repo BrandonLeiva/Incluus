@@ -114,8 +114,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </select>
                     </form>
 
-                    <!-- Formulario para seleccionar Curso (si se ha seleccionado una materia) -->
-                    <?php if (isset($cursos)): ?>
+                    <!-- Formulario para seleccionar Curso (solo se muestra si se ha seleccionado una Materia) -->
+                    <?php if (isset($id_materia) && isset($cursos)): ?>
                         <form method="POST" action="">
                             <input type="hidden" name="id_materia" value="<?php echo $id_materia; ?>">
                             <label for="id_curso">Seleccione un Curso:</label>
@@ -130,8 +130,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </form>
                     <?php endif; ?>
 
-                    <!-- Formulario para seleccionar Lección (si se ha seleccionado un curso) -->
-                    <?php if (isset($lecciones)): ?>
+                    <!-- Formulario para seleccionar Lección (solo se muestra si se ha seleccionado un Curso) -->
+                    <?php if (isset($id_curso) && isset($lecciones)): ?>
                         <form method="POST" action="">
                             <input type="hidden" name="id_materia" value="<?php echo $id_materia; ?>">
                             <input type="hidden" name="id_curso" value="<?php echo $id_curso; ?>">
@@ -147,9 +147,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </form>
                     <?php endif; ?>
 
-                    <!-- Formulario para seleccionar Ejercicio y modificarlo (si se ha seleccionado una lección) -->
-                    <?php if (isset($ejercicios)): ?>
+                    <!-- Formulario para seleccionar Ejercicio (solo se muestra si se ha seleccionado una Lección) -->
+                    <?php if (isset($id_leccion) && isset($ejercicios)): ?>
                         <form method="POST" action="">
+                            <input type="hidden" name="id_materia" value="<?php echo $id_materia; ?>">
+                            <input type="hidden" name="id_curso" value="<?php echo $id_curso; ?>">
                             <input type="hidden" name="id_leccion" value="<?php echo $id_leccion; ?>">
 
                             <label for="id_ejercicio">Seleccione un Ejercicio:</label>
@@ -166,6 +168,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     <!-- Formulario para modificar Ejercicio (si se ha seleccionado un ejercicio) -->
                     <?php if ($ejercicio_actual): ?>
+
+                            
+                            <h1>Ejercicio</h1>
                         <form method="POST" action="">
                             <input type="hidden" name="id_ejercicio" value="<?php echo $ejercicio_actual['id_juego']; ?>">
                             <label for="nuevo_nombre_juego">Nuevo nombre del juego:</label>
@@ -176,6 +181,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                             <label for="nueva_categoria">Nueva categoría:</label>
                             <input type="text" name="nueva_categoria" value="<?php echo $ejercicio_actual['categoria']; ?>" required>
+
+                            
+                            <h1>Respuestas</h1>
 
                             <label for="respuesta_a">Respuesta A:</label>
                             <input type="text" name="respuesta_a" value="<?php echo $ejercicio_actual['respuesta_a']; ?>" required>

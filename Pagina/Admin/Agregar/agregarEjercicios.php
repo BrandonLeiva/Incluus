@@ -104,6 +104,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </select>
 
                         <!-- Otros campos -->
+
+                        
+                        <h1>Ejercicio</h1>
+
                         <label for="nombre_juego">Pregunta:</label>
                         <textarea  name="nombre_juego" id="" cols="30" rows="10" required ></textarea>
 
@@ -113,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="categoria">Categoría:</label>
                         <input type="text" name="categoria" required>
 
-                        <hr>
+                        
                         <h1>Respuestas</h1>
 
                         <label for="Respuesta A">Respuesta A:</label>
