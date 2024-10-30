@@ -119,9 +119,9 @@ SELECT * FROM materia;
 
 INSERT INTO materia (nombre_materia) VALUES ('Matemáticas'), ('Lenguaje'), ('Ciencias'), ('Historia');
 
-SELECT m.id_materia, c.nivel, m.nombre_materia, c.id_usuario, c.id_materia
-FROM materia m
-JOIN curso c ON c.id_materia = m.id_materia;
+select * from materia;
+
+
 
 -- Informe de Resumen de Oracle SQL Developer Data Modeler: 
 -- 

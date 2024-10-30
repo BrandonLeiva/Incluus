@@ -42,6 +42,14 @@
             </a>
         </li>
         <li>
+            <a href="../eliminar/verlistado.php">
+                <div class="icono" id="5">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </div>
+                Ver Materia
+            </a>
+        </li>
+        <li>
             <a href="../../Home/home.php">
                 <div class="icono" id="5">
                     <i class="fa-solid fa-right-from-bracket"></i>
