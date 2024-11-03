@@ -1,0 +1,52 @@
+/* Archivo: styles.css */
+
+.lesson-circle {
+    background-color: #4CAF50;
+    color: #fff;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lesson-circle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.lesson-number {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.lesson-title {
+    font-size: 14px;
+}
+
+.offset-row-1 .lesson-circle {
+    margin-left: 0; /* Primer círculo sin desplazamiento */
+}
+
+.offset-row-2 .lesson-circle {
+    margin-left: 80px; /* Segundo círculo un poco más a la izquierda */
+}
+
+.offset-row-3 .lesson-circle {
+    margin-left: 160px; /* Tercer círculo aún más a la izquierda */
+}
+.offset-row-4 .lesson-circle {
+    margin-left: 95px; /* Tercer círculo aún más a la izquierda */
+}
+
+.offset-row-5 .lesson-circle {
+    margin-left: 40px; /* Tercer círculo aún más a la izquierda */
+}
+
+

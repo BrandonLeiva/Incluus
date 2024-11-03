@@ -110,6 +110,7 @@ ALTER TABLE resultado_ev
 
 ALTER TABLE `usuario` ADD COLUMN `password` VARCHAR(255) NOT NULL;
 
+ALTER TABLE `usuario` ADD COLUMN `foto_perfil` VARCHAR(255)
 ----------------------------------------------------------------------------------------------------------------------
 
 -- CONSULTAS SQL --
