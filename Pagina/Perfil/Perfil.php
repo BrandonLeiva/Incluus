@@ -23,6 +23,13 @@ try {
         echo "No se encontraron los datos del usuario.";
         exit;
     }
+     // Consulta para obtener los cursos (ajusta la tabla y campos según tu estructura)
+     $stmtCursos = $conn->prepare("SELECT nombre_materia FROM materia"); // Ajusta 'cursos' y 'nombre_curso' según tu base de datos
+     $stmtCursos->execute();
+ 
+     // Obtener todos los cursos
+     $cursos = $stmtCursos->fetchAll(PDO::FETCH_ASSOC);
+ 
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
@@ -113,7 +120,7 @@ $conn = null;
             <h2>Continua con tu progreso</h2>
             <a href="">Más cursos</a>
             <br>
-            <div class="perfil-usuario-cursos">
+            <!-- <div class="perfil-usuario-cursos">
                 <div class="encabezado">
                     <h1 class="ramo">Matematicas</h1>
                 </div>
@@ -137,6 +144,7 @@ $conn = null;
                 </div>
             </div>
             <br>
+            
             <div class="perfil-usuario-cursos">
                 <div class="encabezado">
                     <h1 class="ramo">Ciencias Sociales</h1>
@@ -147,8 +155,22 @@ $conn = null;
                 <div class="boton">
                     <button>Continuar</button>
                 </div>
+            </div> -->
+            <?php foreach ($cursos as $curso): ?>
+        <div class="perfil-usuario-cursos">
+            <div class="encabezado">
+                <h1 class="ramo"><?php echo htmlspecialchars($curso['nombre_materia']); ?></h1>
+            </div>
+            <div class="baner">
+                <img class="banner" src="img/BannerAzul.png" alt="">
+            </div>
+            <div class="boton">
+                <button>Continuar</button>
             </div>
         </div>
+    <?php endforeach; ?>
+        </div>
+        
     </section>
     <br><br><br><br><br>
     <footer>

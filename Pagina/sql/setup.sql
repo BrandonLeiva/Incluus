@@ -123,7 +123,12 @@ INSERT INTO materia (nombre_materia) VALUES ('Matemáticas'), ('Lenguaje'), ('Ci
 select * from materia;
 
 
+SELECT leccion.id_leccion FROM leccion JOIN curso 
 
+SELECT leccion.id_leccion, curso.nivel, materia.nombre_materia
+FROM leccion
+JOIN curso ON leccion.id_curso = curso.id_curso
+JOIN materia ON curso.id_materia = materia.id_materia;
 -- Informe de Resumen de Oracle SQL Developer Data Modeler: 
 -- 
 -- CREATE TABLE                             8
