@@ -1,0 +1,102 @@
+/* Estilos generales */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:#212121;
+    
+}
+
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.pregunta h2 {
+    font-size: 2rem;
+    margin-bottom: 55px;
+    color: #fafafa;
+}
+
+
+.respuestas {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.respuestas button {
+    width: 500px;
+    height: 56px;
+    margin: 8px;
+    font-size: 1rem;
+    color: #fafafa;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #fafafa;
+    background: #212121;
+    box-shadow: 0.5px 1px #fafafa;
+    cursor: pointer;
+}
+
+
+.respuestas button:hover {
+    background: #333333; 
+    box-shadow: 0.5px 1px #ddd;  
+}
+
+
+.respuestas button:active {
+    background: #212121; 
+    box-shadow: none;
+    transform: translate(2px, 2px);  
+}
+
+.respuestas button:focus {
+    color: aqua;
+    outline: none; 
+}
+
+
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    border-top: 2px solid #ffffff;
+}
+
+.footer button {
+    font-size: 1.2rem;
+    color: #fafafa;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #fafafa;
+    background:#212121;
+    box-shadow: 3px 3px #fafafa;
+    cursor: pointer;
+    margin: 35px 0;
+  }
+  
+.footer button:active {
+    box-shadow: none;
+    transform: translate(3px, 3px);
+}
+  
