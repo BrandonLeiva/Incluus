@@ -26,6 +26,15 @@ try {
     $stmt_lecciones->execute();
     $lecciones = $stmt_lecciones->fetchAll(PDO::FETCH_ASSOC);
 
+    // Consulta para lecciones dependiendo que curso elegimos
+    $stmt_lecciones2 = $conn->prepare("SELECT leccion.id_leccion, curso.nivel, materia.nombre_materia
+                                        FROM leccion
+                                        JOIN curso ON leccion.id_curso = curso.id_curso
+                                        JOIN materia ON curso.id_materia = materia.id_materia;");
+    $stmt_lecciones2->execute();
+    $lecciones2 = $stmt_lecciones2->fetchAll(PDO::FETCH_ASSOC);
+
+
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
     exit;
@@ -44,6 +53,7 @@ try {
 </head>
 
 <body class="bg-light d-flex justify-content-center align-items-center vh-100">
+    <h1><?= $lecciones2['id_leccion'] ?></h1>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col" style="max-width: 30rem;">
