@@ -9,6 +9,16 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 try {
+    // Obtén el valor del filtro desde la URL
+    $filtro = isset($_GET['materia']) ? $_GET['materia'] : '';
+
+    // Validar que el filtro sea uno de los valores permitidos
+    $valoresPermitidos = ['Matemáticas', 'Ciencias', 'Lenguaje'];
+    if (!in_array($filtro, $valoresPermitidos)) {
+        echo "Filtro no válido.";
+        exit;
+    }
+
     // Consulta para obtener los datos del usuario
     $stmt = $conn->prepare("SELECT correo, nombre, edad, rut, apellido, foto_perfil FROM usuario WHERE id_usuario = :id");
     $stmt->bindParam(':id', $_SESSION['user_id'], PDO::PARAM_INT);
@@ -22,24 +32,32 @@ try {
     }
 
     // Consulta para obtener las lecciones
-    $stmt_lecciones = $conn->prepare("SELECT id_leccion FROM leccion");
+    $stmt_lecciones = $conn->prepare("SELECT leccion.id_leccion, curso.nivel, materia.nombre_materia
+                                      FROM leccion
+                                      JOIN curso ON leccion.id_curso = curso.id_curso
+                                      JOIN materia ON curso.id_materia = materia.id_materia
+                                      WHERE materia.nombre_materia = :filtro");
+    $stmt_lecciones->bindParam(':filtro', $filtro, PDO::PARAM_STR);
     $stmt_lecciones->execute();
     $lecciones = $stmt_lecciones->fetchAll(PDO::FETCH_ASSOC);
 
-    // Consulta para lecciones dependiendo que curso elegimos
-    $stmt_lecciones2 = $conn->prepare("SELECT leccion.id_leccion, curso.nivel, materia.nombre_materia
-                                        FROM leccion
-                                        JOIN curso ON leccion.id_curso = curso.id_curso
-                                        JOIN materia ON curso.id_materia = materia.id_materia;");
-    $stmt_lecciones2->execute();
-    $lecciones2 = $stmt_lecciones2->fetchAll(PDO::FETCH_ASSOC);
+    // Consulta para obtener los cursos
+    $stmtCursos = $conn->prepare("SELECT leccion.id_leccion, curso.nivel, materia.nombre_materia
+                                  FROM leccion
+                                  JOIN curso ON leccion.id_curso = curso.id_curso
+                                  JOIN materia ON curso.id_materia = materia.id_materia;");
+    $stmtCursos->execute();
 
+    // Obtener todos los cursos
+    $cursos = $stmtCursos->fetchAll(PDO::FETCH_ASSOC);
 
 } catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+    error_log("Database error: " . $e->getMessage()); // Registrar el error en un log
+    echo "Error en la base de datos. Por favor, inténtelo más tarde.";
     exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -53,7 +71,7 @@ try {
 </head>
 
 <body class="bg-light d-flex justify-content-center align-items-center vh-100">
-    <h1><?= $lecciones2['id_leccion'] ?></h1>
+    
     <div class="container">
         <div class="row justify-content-center">
             <div class="col" style="max-width: 30rem;">
@@ -65,7 +83,7 @@ try {
                         ?>
                         <div class="row" style="margin-left: <?= $offset ?>px;">
                             <div class="col">
-                                <div class="lesson-circle" onclick="startLesson('Lección <?= $leccion['id_leccion'] ?>')">
+                                <div class="lesson-circle" onclick="startLesson('Lección <?= $leccion['nombre_materia'] ?>')">
                                     <span class="lesson-number"><?= $leccion['id_leccion'] ?></span>
                                     <span class="lesson-title">Lección <?= $leccion['id_leccion'] ?></span>
                                 </div>

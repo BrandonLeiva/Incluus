@@ -128,7 +128,8 @@ SELECT leccion.id_leccion FROM leccion JOIN curso
 SELECT leccion.id_leccion, curso.nivel, materia.nombre_materia
 FROM leccion
 JOIN curso ON leccion.id_curso = curso.id_curso
-JOIN materia ON curso.id_materia = materia.id_materia;
+JOIN materia ON curso.id_materia = materia.id_materia 
+ where materia.nombre_materia = "matemáticas" ;
 -- Informe de Resumen de Oracle SQL Developer Data Modeler: 
 -- 
 -- CREATE TABLE                             8

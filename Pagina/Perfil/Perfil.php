@@ -119,6 +119,7 @@ $conn = null;
             <br>
             <h2>Continua con tu progreso</h2>
             <a href="">Más cursos</a>
+            
             <br>
             <!-- <div class="perfil-usuario-cursos">
                 <div class="encabezado">
@@ -164,9 +165,12 @@ $conn = null;
             <div class="baner">
                 <img class="banner" src="img/BannerAzul.png" alt="">
             </div>
+            <form action="../interfaz/interfaz.php" method="GET">
             <div class="boton">
-                <button>Continuar</button>
+            <input type="hidden" name="materia" value="<?php echo htmlspecialchars($curso['nombre_materia']); ?>">
+                <button type="submit">Continuar</button>
             </div>
+            </form>
         </div>
     <?php endforeach; ?>
         </div>
