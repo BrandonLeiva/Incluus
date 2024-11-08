@@ -153,6 +153,7 @@ body {
     background-color: #fff;
     border-radius: 15px;
     width: 100%;
+    margin-bottom: 30px;
 }
 
 .perfil-usuario-cursos{
@@ -172,7 +173,7 @@ body {
 .boton{
     display: flex;
     justify-content: end;  
-    padding: 3px 30px 10px;
+    padding: 7px 30px 10px;
 }
 
 .boton button{

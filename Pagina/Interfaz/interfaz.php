@@ -85,7 +85,7 @@ try {
                         ?>
                         <div class="row" style="margin-left: <?= $offset ?>px;">
                             <div class="col">
-                                <div class="lesson-circle btn" onclick="startLesson('Lección <?= $leccion['nombre_materia'] ?>')">
+                                <div class="lesson-circle btn" onclick="startLesson(<?= $leccion['id_leccion'] ?>)">
                                     <span class="lesson-number text"><?= $leccion['id_leccion'] ?></span>
                                     <span class="lesson-title text ">Lección <?= $leccion['id_leccion'] ?></span>
                                 </div>

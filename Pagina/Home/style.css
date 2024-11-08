@@ -3,7 +3,46 @@
 body {
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
+
+
 }
+
+.bar{
+    color: grey; 
+    width: 70rem;
+    border-bottom: 2px solid grey;
+
+} /* Estilo general para las columnas */
+.bar div {
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 5px solid transparent; 
+  cursor: pointer;
+  transition: color 0.1s ease, border-bottom-color 0.1s ease, transform 0.1s ease; /* Transiciones suaves */
+
+}
+
+/* Estilo cuando está en la sección activa (MISION) */
+.bar .mision.active {
+  color: #5a67d8;
+  border-bottom: 5px solid #5a67d8; /* Borde inferior rojo solo cuando está activo */
+  transition: color 0.3s ease, border-bottom-color 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
+  transform: scale(1.05);
+}
+ /* Efecto hover: cambia color y borde */
+ .bar div:hover {
+    color: #5a67d8; /* Cambia el color de las letras a rojo */
+    border-bottom: 5px solid #5a67d8; /* Cambia el borde inferior a rojo */
+     /* Agranda ligeramente el texto al hacer hover */
+
+  }
+
+#nav{
+    text-decoration: none;
+    color: grey;
+}
+
 
 /* =============MENU============/ */
 

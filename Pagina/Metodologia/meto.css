@@ -14,13 +14,58 @@ header {
     box-shadow: 0 5px 9px rgba(32, 31, 31, 0.1);
 }
 
+
+/************************************MENU************************************/
+.bar{
+    justify-content: center;
+    font-family: sans-serif;
+    color: grey; 
+    width: 70rem;
+    border-bottom: 2px solid grey;
+
+} /* Estilo general para las columnas */
+.bar div {
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 5px solid transparent; 
+  cursor: pointer;
+  transition: color 0.1s ease, border-bottom-color 0.1s ease, transform 0.1s ease; /* Transiciones suaves */
+
+}
+
+/* Estilo cuando está en la sección activa (MISION) */
+.bar .mision.active {
+  color: #5a67d8;
+  border-bottom: 5px solid #5a67d8; /* Borde inferior rojo solo cuando está activo */
+  transition: color 0.3s ease, border-bottom-color 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
+  transform: scale(1.05);
+}
+ /* Efecto hover: cambia color y borde */
+ .bar div:hover {
+    color: #5a67d8; /* Cambia el color de las letras a rojo */
+    border-bottom: 5px solid #5a67d8; /* Cambia el borde inferior a rojo */
+     /* Agranda ligeramente el texto al hacer hover */
+
+}
+
+#nav{
+    text-decoration: none;
+    color: inherit;         /* Usa el color del texto del elemento padre */
+    cursor: pointer;
+}
+#nav:hover, #nav:active {
+    text-decoration: none; /* Mantén el estilo sin subrayado en hover o active */
+    color: inherit;        /* Evita que el color cambie al hacer hover o clic */
+}
+
 h1 {
     margin: 0;
     font-size: 2.5rem;
 }
 
 section {
-    padding: 40px 20px;
+    padding: 0px 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -65,7 +110,6 @@ transition: transform 0.3s;
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    padding: 20px;
 }
 
 /*Efecto */
