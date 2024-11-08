@@ -70,8 +70,10 @@ try {
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="bg-light d-flex justify-content-center align-items-center vh-100">
+<body class=" d-flex justify-content-center align-items-center vh-100">
     
+
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col" style="max-width: 30rem;">
@@ -83,9 +85,9 @@ try {
                         ?>
                         <div class="row" style="margin-left: <?= $offset ?>px;">
                             <div class="col">
-                                <div class="lesson-circle" onclick="startLesson('Lección <?= $leccion['nombre_materia'] ?>')">
-                                    <span class="lesson-number"><?= $leccion['id_leccion'] ?></span>
-                                    <span class="lesson-title">Lección <?= $leccion['id_leccion'] ?></span>
+                                <div class="lesson-circle btn" onclick="startLesson('Lección <?= $leccion['nombre_materia'] ?>')">
+                                    <span class="lesson-number text"><?= $leccion['id_leccion'] ?></span>
+                                    <span class="lesson-title text ">Lección <?= $leccion['id_leccion'] ?></span>
                                 </div>
                             </div>
                         </div>
