@@ -52,10 +52,14 @@ try {
 </head>
 
 <body>
+    <div class="barra-progreso">
+        <label for="progress-bar"></label>
+        <progress id="progress-bar" value="0" max="100"></progress>
+    </div>
     <div class="container">
         <?php if (count($ejercicios) > 0): ?>
             <?php foreach ($ejercicios as $index => $ejercicio): ?>
-                <div class="pregunta" id="pregunta-<?= $index ?>" style="<?= $index === 0 ? '' : 'display: none;' ?>">
+                <div class="pregunta" id="pregunta-<?= $index ?>" style="<?= $index === 0 ? '' : 'display: none;' ?>" data-correcta="<?= htmlspecialchars($ejercicio['correcta']) ?>">
                     <h2><?= htmlspecialchars($ejercicio['nombre_juego']) ?></h2>
                     <div class="respuestas">
                         <button onclick="seleccionarRespuesta('A')">A. <?= htmlspecialchars($ejercicio['respuesta_a']) ?></button>
@@ -68,30 +72,104 @@ try {
         <?php else: ?>
             <h1 style="color: #fafafa;">No hay ejercicios disponibles para esta lección.</h1>
         <?php endif; ?>
+
     </div>
 
     <div class="footer">
-        <button onclick="siguienteEjercicio()">Saltar</button>
-        <button onclick="siguienteEjercicio()">Comprobar</button>
+        <button id="boton-saltar" disabled onclick="siguienteEjercicio()">Siguiente</button>
+        <div id="mensaje-respuesta" style="color: #f00; font-weight: bold;"></div> <!-- Contenedor para el mensaje -->
+        <button id="boton-comprobar" onclick="comprobarRespuesta()">Comprobar</button>
     </div>
 
     <script>
         let ejercicioActual = 0;
         const totalEjercicios = <?= count($ejercicios) ?>;
+        const barraProgreso = document.getElementById('progress-bar');
+        let respuestaCorrectaSeleccionada = false;
 
-        function siguienteEjercicio() {
-            document.getElementById(`pregunta-${ejercicioActual}`).style.display = "none";
-            ejercicioActual++;
+        function seleccionarRespuesta(opcion) {
+            respuestaSeleccionada = opcion; // Guarda la opción seleccionada
+            console.log("Opción seleccionada: " + opcion);
 
-            if (ejercicioActual < totalEjercicios) {
-                document.getElementById(`pregunta-${ejercicioActual}`).style.display = "block";
+            // Deshabilita el botón "Saltar" inicialmente
+            const botonSaltar = document.getElementById("boton-saltar");
+            botonSaltar.disabled = true;
+        }
+
+        function comprobarRespuesta() {
+            const mensajeContenedor = document.getElementById("mensaje-respuesta");
+            const botonSaltar = document.getElementById("boton-saltar");
+
+            const sonidoCorrecto = new Audio('sonidos/correcto.mp3');
+            const sonidoIncorrecto = new Audio('sonidos/incorrecto.mp3');
+
+            if (respuestaSeleccionada === null) {
+                mensajeContenedor.textContent = "Por favor, selecciona una respuesta antes de comprobar.";
+                return;
+            }
+
+            const preguntaActual = document.getElementById(`pregunta-${ejercicioActual}`);
+            const respuestaCorrecta = preguntaActual.getAttribute("data-correcta");
+
+            if (respuestaSeleccionada === respuestaCorrecta) {
+                mensajeContenedor.style.color = "#28a745"; // Verde para correcto
+                mensajeContenedor.textContent = "¡Respuesta correcta!";
+
+                sonidoCorrecto.play();
+
+                // Habilitar el botón "Saltar" y restaurar su color verdadero
+                respuestaCorrectaSeleccionada = true;
+                botonSaltar.disabled = false;
+                botonSaltar.style.backgroundColor = "#28a745"; // Color verdadero al habilitar
+                botonSaltar.style.color = "white"; // Color de texto verdadero al habilitar
             } else {
-                alert("¡Has completado todos los ejercicios!");
+                mensajeContenedor.style.color = "#f00"; // Rojo para incorrecto
+                mensajeContenedor.textContent = "Respuesta incorrecta. Inténtalo de nuevo.";
+
+                sonidoIncorrecto.play();
+
+                // Limpiar el mensaje después de un tiempo solo si la respuesta es incorrecta
+                setTimeout(() => {
+                    mensajeContenedor.textContent = ""; // Limpia el mensaje después de 3 segundos
+                }, 3000);
             }
         }
 
-        function seleccionarRespuesta(opcion) {
-            console.log("Opción seleccionada: " + opcion);
+        function siguienteEjercicio() {
+            // Solo avanzar si la respuesta correcta ha sido seleccionada y el botón "Saltar" está habilitado
+            if (!respuestaCorrectaSeleccionada) return;
+
+            // Ocultar la pregunta actual
+            document.getElementById(`pregunta-${ejercicioActual}`).style.display = "none";
+            ejercicioActual++;
+            respuestaCorrectaSeleccionada = false; // Restablece para la siguiente pregunta
+
+            // Limpiar el mensaje de respuesta
+            const mensajeContenedor = document.getElementById("mensaje-respuesta");
+            mensajeContenedor.textContent = "";
+
+            if (ejercicioActual < totalEjercicios) {
+                // Mostrar la siguiente pregunta
+                document.getElementById(`pregunta-${ejercicioActual}`).style.display = "block";
+
+                // Actualizar la barra de progreso
+                const progreso = (ejercicioActual / totalEjercicios) * 100;
+                barraProgreso.value = progreso;
+
+                // Deshabilitar el botón "Saltar" para la nueva pregunta
+                const botonSaltar = document.getElementById("boton-saltar");
+                botonSaltar.disabled = true;
+                botonSaltar.style.backgroundColor = "#212121"; // Color oscuro al deshabilitar nuevamente
+                botonSaltar.style.color = "#666"; // Color del texto al deshabilitar nuevamente
+            } else {
+                // Rellenar la barra de progreso al 100% y mostrar el mensaje "Lección completada"
+                barraProgreso.value = 100;
+                document.querySelector(".container").innerHTML = "<h1 style='color: #28a745;'>¡Lección completada!</h1>";
+
+                // Ocultar el botón "Comprobar" y "Saltar" al finalizar
+                document.getElementById("boton-comprobar").style.display = "none";
+                document.getElementById("boton-saltar").style.display = "none";
+            }
         }
     </script>
 </body>

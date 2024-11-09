@@ -52,7 +52,7 @@
             <div class="col-3 mision "><a id="nav" href="../Perfil/Perfil.php">PERFIL</a></div>
             <div class="col-3 mision"><a id="nav" href="">MATERIAS</a></div>
             <div class="col-3 mision"><a id="nav" href="../Admin/Agregar/agregarCurso.php">ADMIN</a></div>
-            <div class="col-3 mision">PROXIMAMENTE</div>
+            <div class="col-3 mision"><a id="nav" href="login-register.html">INICIAR SESIÓN</a></div>
         </div>
     </div>
 

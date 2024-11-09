@@ -68,7 +68,7 @@ $conn = null;
                     </button>
                 </div>
                 <button type="button" class="boton-portada">
-                    <i class="far fa-image"></i> Cambiar fondo
+                    <i class="far fa-image"></i> Volver
                 </button>
 
                 <!-- Modal -->

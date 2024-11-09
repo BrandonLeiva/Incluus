@@ -78,7 +78,7 @@ CREATE TABLE usuario (
     apellido    VARCHAR(50) NOT NULL,
     edad        INTEGER NOT NULL,
     correo      VARCHAR(100) NOT NULL,
-    rol         VARCHAR(20) NOT NULL
+    rol         VARCHAR(20) NOT NULL,
 );
 
 ALTER TABLE curso
@@ -110,7 +110,9 @@ ALTER TABLE resultado_ev
 
 ALTER TABLE `usuario` ADD COLUMN `password` VARCHAR(255) NOT NULL;
 
-ALTER TABLE `usuario` ADD COLUMN `foto_perfil` VARCHAR(255)
+ALTER TABLE `materia` ADD COLUMN `banner` BLOB NOT NULL
+
+ALTER TABLE `usuario` ADD COLUMN `foto_perfil` BLOB;
 ----------------------------------------------------------------------------------------------------------------------
 
 -- CONSULTAS SQL --
