@@ -82,6 +82,13 @@ body {
     width: 100%;
     position: relative;
     border-radius: 50%;
+    width: 280px;
+    height: 267px;
+    
+}
+
+.imagen-default {
+    opacity: 0.6;              
 }
 
 .seccion-perfil-usuario .perfil-usuario-avatar .boton-avatar {
@@ -168,7 +175,7 @@ body {
 }
 
 .baner img{
-    width: 100%;
+    width: 750px;
 }
 .boton{
     display: flex;

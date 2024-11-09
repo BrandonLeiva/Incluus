@@ -9,6 +9,8 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+
+
 try {
     // Preparar la consulta SQL para obtener más información del usuario
     $stmt = $conn->prepare("SELECT correo, nombre, edad, rut, apellido, foto_perfil FROM usuario WHERE id_usuario = :id");
@@ -23,13 +25,15 @@ try {
         echo "No se encontraron los datos del usuario.";
         exit;
     }
-     // Consulta para obtener los cursos (ajusta la tabla y campos según tu estructura)
-     $stmtCursos = $conn->prepare("SELECT nombre_materia FROM materia"); // Ajusta 'cursos' y 'nombre_curso' según tu base de datos
-     $stmtCursos->execute();
- 
-     // Obtener todos los cursos
-     $cursos = $stmtCursos->fetchAll(PDO::FETCH_ASSOC);
- 
+    // Consulta para obtener los cursos (ajusta la tabla y campos según tu estructura)
+    $stmtCursos = $conn->prepare("SELECT nombre_materia FROM materia"); // Ajusta 'cursos' y 'nombre_curso' según tu base de datos
+    $stmtCursos->execute();
+
+    // Obtener todos los cursos
+    $cursos = $stmtCursos->fetchAll(PDO::FETCH_ASSOC);
+
+    // Verifica si 'foto_perfil' es NULL o está vacía
+    $fotoPerfil = !empty($user['foto_perfil']) ? $user['foto_perfil'] : 'img/1053244.png';
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
@@ -58,7 +62,7 @@ $conn = null;
         <div class="perfil-usuario-header">
             <div class="perfil-usuario-portada">
                 <div class="perfil-usuario-avatar">
-                    <img src="<?php echo htmlspecialchars($user['foto_perfil']); ?>" alt="Imagen de perfil del usuario">
+                    <img src="<?php echo htmlspecialchars($fotoPerfil); ?>" alt="Imagen de perfil del usuario">
                     <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="boton-avatar">
                         <i class="far fa-image"></i>
                     </button>
@@ -119,62 +123,26 @@ $conn = null;
             <br>
             <h2>Continua con tu progreso</h2>
             <a href="">Más cursos</a>
-            
+
             <br>
-            <!-- <div class="perfil-usuario-cursos">
-                <div class="encabezado">
-                    <h1 class="ramo">Matematicas</h1>
-                </div>
-                <div class="baner">
-                    <img class="banner" src="img/BannerAzul.png" alt="">
-                </div>
-                <div class="boton">
-                    <button>Continuar</button>
-                </div>
-            </div>
-            <br>
-            <div class="perfil-usuario-cursos">
-                <div class="encabezado">
-                    <h1 class="ramo">Lenguaje</h1>
-                </div>
-                <div class="baner">
-                    <img class="banner" src="img/BannerRojo.png" alt="">
-                </div>
-                <div class="boton">
-                    <button>Continuar</button>
-                </div>
-            </div>
-            <br>
-            
-            <div class="perfil-usuario-cursos">
-                <div class="encabezado">
-                    <h1 class="ramo">Ciencias Sociales</h1>
-                </div>
-                <div class="baner">
-                    <img class="banner" src="img/BannerVerde.png" alt="">
-                </div>
-                <div class="boton">
-                    <button>Continuar</button>
-                </div>
-            </div> -->
             <?php foreach ($cursos as $curso): ?>
-        <div class="perfil-usuario-cursos">
-            <div class="encabezado">
-                <h1 class="ramo"><?php echo htmlspecialchars($curso['nombre_materia']); ?></h1>
-            </div>
-            <div class="baner">
-                <img class="banner" src="img/BannerAzul.png" alt="">
-            </div>
-            <form action="../interfaz/interfaz.php" method="GET">
-            <div class="boton">
-            <input type="hidden" name="materia" value="<?php echo htmlspecialchars($curso['nombre_materia']); ?>">
-                <button type="submit">Continuar</button>
-            </div>
-            </form>
+                <div class="perfil-usuario-cursos">
+                    <div class="encabezado">
+                        <h1 class="ramo"><?php echo htmlspecialchars($curso['nombre_materia']); ?></h1>
+                    </div>
+                    <div class="baner">
+                        <img class="banner" src="img/matematicas.png" alt="">
+                    </div>
+                    <form action="../interfaz/interfaz.php" method="GET">
+                        <div class="boton">
+                            <input type="hidden" name="materia" value="<?php echo htmlspecialchars($curso['nombre_materia']); ?>">
+                            <button type="submit">Continuar</button>
+                        </div>
+                    </form>
+                </div>
+            <?php endforeach; ?>
         </div>
-    <?php endforeach; ?>
-        </div>
-        
+
     </section>
     <br><br><br><br><br>
     <footer>
