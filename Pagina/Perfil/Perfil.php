@@ -74,7 +74,7 @@ $conn = null;
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content">
+                        <div class="modal-content modal-shadow" id="modal-shadow">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar foto de perfil</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -133,10 +133,10 @@ $conn = null;
                     <div class="baner">
                         <img class="banner" src="img/matematicas.png" alt="">
                     </div>
-                    <form action="../interfaz/interfaz.php" method="GET">
+                    <form action="../cursos/obtener_c.php" method="GET">
                         <div class="boton">
                             <input type="hidden" name="materia" value="<?php echo htmlspecialchars($curso['nombre_materia']); ?>">
-                            <button type="submit">Continuar</button>
+                            <button type="submit" onclick="obtener_c('<?php echo htmlspecialchars($curso['nombre_materia']); ?>')">Continuar</button>
                         </div>
                     </form>
                 </div>

@@ -1,0 +1,66 @@
+body {
+    background-color: #E6F7FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+.course-circle {
+    display: inline-block;
+    margin: 15px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #FFDD59, #FFA000);
+    border: 5px dashed #FFF5B1;
+    box-shadow: 
+        0px 8px 15px rgba(0, 0, 0, 0.2),
+        0px 0px 20px rgba(255, 223, 87, 0.4);
+    transition: all 0.4s ease;
+    color: #5A1E00;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 140px;
+    cursor: pointer;
+    position: relative;
+}
+
+.course-circle:hover {
+    transform: scale(1.1) rotate(5deg);
+    background: radial-gradient(circle, #FFDD59, #FFAB00);
+    box-shadow: 
+        0px 8px 25px rgba(0, 0, 0, 0.3),
+        0px 0px 25px rgba(255, 223, 87, 0.6);
+    border-color: #FFE085;
+}
+
+.course-number {
+    display: block;
+    font-size: 30px;
+    font-weight: bold;
+    color: #663B00;
+}
+
+.course-title {
+    display: block;
+    font-size: 14px;
+    color: #804000;
+    font-weight: normal;
+    margin-top: -10px;
+}
+
+p {
+    font-size: 18px;
+    color: #444;
+    padding: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
