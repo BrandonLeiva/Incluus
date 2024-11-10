@@ -131,7 +131,7 @@ SELECT leccion.id_leccion, curso.nivel, materia.nombre_materia
 FROM leccion
 JOIN curso ON leccion.id_curso = curso.id_curso
 JOIN materia ON curso.id_materia = materia.id_materia 
- where materia.nombre_materia = "matemáticas" ;
+ where materia.nombre_materia = "matemáticas" and curso.nivel="4" ;
 
 SELECT nivel, nombre_materia 
  FROM curso 

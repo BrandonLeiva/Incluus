@@ -11,6 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 try {
     // Obtén el valor del filtro desde la URL
     $filtro = isset($_GET['materia']) ? $_GET['materia'] : '';
+    $filtroc = isset($_GET['nivel']) ? $_GET['nivel'] : '';
 
     // Validar que el filtro sea uno de los valores permitidos
     $valoresPermitidos = ['Matemáticas', 'Ciencias', 'Lenguaje'];
@@ -36,20 +37,13 @@ try {
                                       FROM leccion
                                       JOIN curso ON leccion.id_curso = curso.id_curso
                                       JOIN materia ON curso.id_materia = materia.id_materia
-                                      WHERE materia.nombre_materia = :filtro");
+                                      WHERE materia.nombre_materia = :filtro and curso.nivel= :filtroc ");
     $stmt_lecciones->bindParam(':filtro', $filtro, PDO::PARAM_STR);
+    $stmt_lecciones->bindParam(':filtroc', $filtroc, PDO::PARAM_STR);
     $stmt_lecciones->execute();
     $lecciones = $stmt_lecciones->fetchAll(PDO::FETCH_ASSOC);
 
-    // Consulta para obtener los cursos
-    $stmtCursos = $conn->prepare("SELECT leccion.id_leccion, curso.nivel, materia.nombre_materia
-                                  FROM leccion
-                                  JOIN curso ON leccion.id_curso = curso.id_curso
-                                  JOIN materia ON curso.id_materia = materia.id_materia;");
-    $stmtCursos->execute();
-
-    // Obtener todos los cursos
-    $cursos = $stmtCursos->fetchAll(PDO::FETCH_ASSOC);
+   
 
 } catch (PDOException $e) {
     error_log("Database error: " . $e->getMessage()); // Registrar el error en un log

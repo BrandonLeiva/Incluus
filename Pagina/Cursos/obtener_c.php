@@ -32,7 +32,7 @@ try {
     }
 
     // Consulta para obtener los cursos según la materia seleccionada
-    $stmtCursos = $conn->prepare("SELECT curso.id_curso, curso.nivel
+    $stmtCursos = $conn->prepare("SELECT curso.id_curso, curso.nivel, materia.nombre_materia
                                   FROM curso
                                   JOIN materia ON curso.id_materia = materia.id_materia
                                   WHERE materia.nombre_materia = :filtro");
@@ -71,10 +71,15 @@ try {
                         ?>
                         <div class="row" style="margin-left: <?= $offset ?>px;">
                             <div class="col">
-                                <div class="course-circle btn" onclick="startCourse(<?= $curso['id_curso'] ?>)">
+                            <form action="../interfaz/interfaz.php" method="GET">
+                            <input type="hidden" name="materia" value="<?php echo htmlspecialchars($curso['nombre_materia']); ?>">
+                            <input type="hidden" name="nivel" value="<?php echo htmlspecialchars($curso['nivel']); ?>">
+                                <button class="course-circle btn" onclick="startCourse(<?= $curso['id_curso'] ?>)">
                     
                                     <span class="course-title text">Curso Nivel <?= $curso['nivel'] ?></span>
-                                </div>
+                                </button>
+                
+                            </form>
                             </div>
                         </div>
                         <?php
