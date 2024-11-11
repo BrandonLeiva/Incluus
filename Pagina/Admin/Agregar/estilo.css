@@ -157,7 +157,7 @@ select, input[type="number"], input[type="text"] {
 }
 
 textarea {
-    width: 600px;
+    width: 544px;
 }
 
 button {
@@ -180,7 +180,14 @@ select:focus, input[type="number"]:focus, input[type="text"]:focus {
     outline: none; /* Sin contorno */
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+    textarea {
+        width: 100%; /* Ocupa el 100% del ancho de su contenedor en pantallas pequeñas */
+        max-width: none; /* Elimina el ancho máximo */
+    }
+}
+
+@media (max-width: 850px) {
     textarea {
         width: 100%; /* Ocupa el 100% del ancho de su contenedor en pantallas pequeñas */
         max-width: none; /* Elimina el ancho máximo */

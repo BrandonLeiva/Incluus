@@ -23,10 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $respuesta_d = $_POST['respuesta_d'];
     $correcta = $_POST['correcta'];
 
-
     // Insertar el ejercicio en la base de datos
-    $sql = "INSERT INTO ejercicio (nombre_juego, dificultad, categoria, id_leccion, respuesta_a, respuesta_b, respuesta_c, respuesta_d, correcta) VALUES (:nombre_juego, :dificultad, :categoria, :id_leccion, :respuesta_a, :respuesta_b
-    , :respuesta_c, :respuesta_d, :correcta)";
+    $sql = "INSERT INTO ejercicio (nombre_juego, dificultad, categoria, id_leccion, respuesta_a, respuesta_b, respuesta_c, respuesta_d, correcta) VALUES (:nombre_juego, :dificultad, :categoria, :id_leccion, :respuesta_a, :respuesta_b, :respuesta_c, :respuesta_d, :correcta)";
     $stmt = $conn->prepare($sql);
     $stmt->execute([
         'nombre_juego' => $nombre_juego,
@@ -44,8 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -56,6 +52,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="estilo.css">
     <title>QUIZ GAME</title>
+    <script>
+        // Función para filtrar los cursos según la materia seleccionada
+        function filtrarCursos() {
+            var materiaSeleccionada = document.getElementById("id_materia").value;
+            var cursos = document.getElementById("id_curso").getElementsByTagName("option");
+
+            // Mostrar solo los cursos correspondientes a la materia seleccionada
+            for (var i = 0; i < cursos.length; i++) {
+                if (cursos[i].getAttribute("data-materia") === materiaSeleccionada || cursos[i].value === "") {
+                    cursos[i].style.display = "block";
+                } else {
+                    cursos[i].style.display = "none";
+                }
+            }
+
+            // Habilitar el select de cursos
+            document.getElementById("id_curso").disabled = false;
+            // Limpiar la selección de cursos y lecciones
+            document.getElementById("id_curso").value = "";
+            document.getElementById("id_leccion").value = "";
+            document.getElementById("id_leccion").disabled = true;
+        }
+
+        // Función para filtrar las lecciones según el curso seleccionado
+        function filtrarLecciones() {
+            var cursoSeleccionado = document.getElementById("id_curso").value;
+            var lecciones = document.getElementById("id_leccion").getElementsByTagName("option");
+
+            // Mostrar solo las lecciones correspondientes al curso seleccionado
+            for (var i = 0; i < lecciones.length; i++) {
+                if (lecciones[i].getAttribute("data-curso") === cursoSeleccionado || lecciones[i].value === "") {
+                    lecciones[i].style.display = "block";
+                } else {
+                    lecciones[i].style.display = "none";
+                }
+            }
+
+            // Habilitar el select de lecciones
+            document.getElementById("id_leccion").disabled = false;
+        }
+    </script>
 </head>
 
 <body>
@@ -83,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                         <!-- Selección de Curso -->
                         <label for="id_curso">Seleccione un curso:</label>
-                        <select name="id_curso" id="id_curso" onchange="filtrarLecciones()" required>
+                        <select name="id_curso" id="id_curso" onchange="filtrarLecciones()" disabled required>
                             <option value="">-- Seleccione un curso --</option>
                             <?php foreach ($cursos as $curso) : ?>
                                 <option value="<?php echo $curso['id_curso']; ?>" data-materia="<?php echo $curso['id_materia']; ?>">
@@ -94,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                         <!-- Selección de Lección -->
                         <label for="id_leccion">Seleccione una lección:</label>
-                        <select name="id_leccion" id="id_leccion" required>
+                        <select name="id_leccion" id="id_leccion" disabled required>
                             <option value="">-- Seleccione una lección --</option>
                             <?php foreach ($lecciones as $leccion) : ?>
                                 <option value="<?php echo $leccion['id_leccion']; ?>" data-curso="<?php echo $leccion['id_curso']; ?>">
@@ -105,11 +142,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                         <!-- Otros campos -->
 
-                        
                         <h1>Ejercicio</h1>
 
                         <label for="nombre_juego">Pregunta:</label>
-                        <textarea  name="nombre_juego" id="" cols="30" rows="10" required ></textarea>
+                        <textarea name="nombre_juego" id="" cols="30" rows="10" required></textarea>
 
                         <label for="dificultad">Dificultad:</label>
                         <input type="text" name="dificultad" required>
@@ -117,7 +153,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="categoria">Categoría:</label>
                         <input type="text" name="categoria" required>
 
-                        
                         <h1>Respuestas</h1>
 
                         <label for="Respuesta A">Respuesta A:</label>

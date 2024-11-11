@@ -61,24 +61,25 @@ try {
             <?php foreach ($ejercicios as $index => $ejercicio): ?>
                 <div class="pregunta" id="pregunta-<?= $index ?>" style="<?= $index === 0 ? '' : 'display: none;' ?>" data-correcta="<?= htmlspecialchars($ejercicio['correcta']) ?>">
                     <h2><?= htmlspecialchars($ejercicio['nombre_juego']) ?></h2>
-                    <div class="respuestas">
-                        <button onclick="seleccionarRespuesta('A')">A. <?= htmlspecialchars($ejercicio['respuesta_a']) ?></button>
-                        <button onclick="seleccionarRespuesta('B')">B. <?= htmlspecialchars($ejercicio['respuesta_b']) ?></button>
-                        <button onclick="seleccionarRespuesta('C')">C. <?= htmlspecialchars($ejercicio['respuesta_c']) ?></button>
-                        <button onclick="seleccionarRespuesta('D')">D. <?= htmlspecialchars($ejercicio['respuesta_d']) ?></button>
+                    <div class="container">
+                        <div class="respuestas">
+                            <button onclick="seleccionarRespuesta('A')">A. <?= htmlspecialchars($ejercicio['respuesta_a']) ?></button>
+                            <button onclick="seleccionarRespuesta('B')">B. <?= htmlspecialchars($ejercicio['respuesta_b']) ?></button>
+                            <button onclick="seleccionarRespuesta('C')">C. <?= htmlspecialchars($ejercicio['respuesta_c']) ?></button>
+                            <button onclick="seleccionarRespuesta('D')">D. <?= htmlspecialchars($ejercicio['respuesta_d']) ?></button>
+                        </div>
                     </div>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
             <h1 style="color: #fafafa;">No hay ejercicios disponibles para esta lección.</h1>
         <?php endif; ?>
-
     </div>
 
     <div class="footer">
-        <button id="boton-saltar" disabled onclick="siguienteEjercicio()">Siguiente</button>
-        <div id="mensaje-respuesta" style="color: #f00; font-weight: bold;"></div> <!-- Contenedor para el mensaje -->
         <button id="boton-comprobar" onclick="comprobarRespuesta()">Comprobar</button>
+        <div id="mensaje-respuesta" style="color: #f00; font-weight: bold;"></div> <!-- Contenedor para el mensaje -->
+        <button id="boton-saltar" disabled onclick="siguienteEjercicio()">Siguiente</button>
     </div>
 
     <script>

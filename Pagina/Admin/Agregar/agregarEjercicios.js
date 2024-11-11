@@ -1,3 +1,7 @@
+// Llama a esta función cuando se cargue la página
+window.onload = function() {
+    filtrarCursos();
+};
 
 // Filtrar los cursos según la materia seleccionada
 function filtrarCursos() {
@@ -16,7 +20,7 @@ function filtrarCursos() {
     // Reiniciar la selección de cursos y lecciones al cambiar la materia
     document.getElementById('id_curso').value = '';
     document.getElementById('id_leccion').value = '';
-    filtrarLecciones(); // Para reiniciar las lecciones
+    filtrarLecciones(); // Reinicia las lecciones
 }
 
 // Filtrar las lecciones según el curso seleccionado

@@ -1,7 +1,7 @@
 <nav class="nav" id="nav">
     <ul>
         <li>
-            <a href="agregarMateria.php">
+            <a href="../Agregar/agregarMateria.php">
                 <div class="icono" id="0">
                     <i class="fa-solid fa-plus"></i>
                 </div>
@@ -9,7 +9,7 @@
             </a>
         </li>
         <li>
-            <a href="agregarCurso.php">
+            <a href="../Agregar/agregarCurso.php">
                 <div class="icono" id="1">
                     <i class="fa-solid fa-graduation-cap"></i>
                 </div>
@@ -17,7 +17,7 @@
             </a>
         </li>
         <li>
-            <a href="agregarLeccion.php">
+            <a href="../Agregar/agregarLeccion.php">
                 <div class="icono" id="2">
                     <i class="fa-solid fa-award"></i>
                 </div>
@@ -25,7 +25,7 @@
             </a>
         </li>
         <li>
-            <a href="agregarEjercicios.php">
+            <a href="../Agregar/agregarEjercicios.php">
                 <div class="icono" id="3">
                     <i class="fa-solid fa-list"></i>
                 </div>
