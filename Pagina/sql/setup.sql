@@ -93,7 +93,7 @@ ALTER TABLE progreso
 -- CONSULTAS SQL --
 
 SELECT * from usuario;
-SELECT * FROM materia;
+SELECT * FROM leccion;
 
 INSERT INTO materia (nombre_materia) VALUES ('Matemáticas'), ('Lenguaje'), ('Ciencias'), ('Historia');
 
