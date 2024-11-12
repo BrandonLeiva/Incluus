@@ -39,6 +39,28 @@ try {
     echo "Error en la base de datos. Por favor, inténtelo más tarde.";
     exit;
 }
+
+?>
+<?php
+function actualizarPuntosUsuario($conn, $userId, $idLeccion) {
+    try {
+        // Obtener puntos de la lección
+        $stmt = $conn->prepare("SELECT puntos_leccion FROM leccion WHERE id_leccion = 1");
+        $stmt->bindParam(':id_leccion', $idLeccion, PDO::PARAM_INT);
+        $stmt->execute();
+        $leccion = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if ($leccion) {
+            // Sumar puntos de la lección a los puntos totales del usuario
+            $stmt = $conn->prepare("UPDATE usuario SET puntos_totales = puntos_totales + :puntos_leccion WHERE id_usuario = :id_usuario");
+            $stmt->bindParam(':puntos_leccion', $leccion['puntos_leccion'], PDO::PARAM_INT);
+            $stmt->bindParam(':id_usuario', $userId, PDO::PARAM_INT);
+            $stmt->execute();
+        }
+    } catch (PDOException $e) {
+        error_log("Error al actualizar puntos del usuario: " . $e->getMessage());
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -137,41 +159,39 @@ try {
         }
 
         function siguienteEjercicio() {
-            // Solo avanzar si la respuesta correcta ha sido seleccionada y el botón "Saltar" está habilitado
-            if (!respuestaCorrectaSeleccionada) return;
+    if (!respuestaCorrectaSeleccionada) return;
 
-            // Ocultar la pregunta actual
-            document.getElementById(`pregunta-${ejercicioActual}`).style.display = "none";
-            ejercicioActual++;
-            respuestaCorrectaSeleccionada = false; // Restablece para la siguiente pregunta
+    document.getElementById(`pregunta-${ejercicioActual}`).style.display = "none";
+    ejercicioActual++;
 
-            // Limpiar el mensaje de respuesta
-            const mensajeContenedor = document.getElementById("mensaje-respuesta");
-            mensajeContenedor.textContent = "";
+    if (ejercicioActual < totalEjercicios) {
+        document.getElementById(`pregunta-${ejercicioActual}`).style.display = "block";
+        barraProgreso.value = (ejercicioActual / totalEjercicios) * 100;
+        document.getElementById("boton-saltar").disabled = true;
+    } else {
+        barraProgreso.value = 100;
+        document.querySelector(".container").innerHTML = "<h1 style='color: #28a745;'>¡Lección completada!</h1>";
+        document.getElementById("boton-comprobar").style.display = "none";
+        document.getElementById("boton-saltar").style.display = "none";
 
-            if (ejercicioActual < totalEjercicios) {
-                // Mostrar la siguiente pregunta
-                document.getElementById(`pregunta-${ejercicioActual}`).style.display = "block";
-
-                // Actualizar la barra de progreso
-                const progreso = (ejercicioActual / totalEjercicios) * 100;
-                barraProgreso.value = progreso;
-
-                // Deshabilitar el botón "Saltar" para la nueva pregunta
-                const botonSaltar = document.getElementById("boton-saltar");
-                botonSaltar.disabled = true;
-                botonSaltar.style.backgroundColor = "#212121"; // Color oscuro al deshabilitar nuevamente
-                botonSaltar.style.color = "#666"; // Color del texto al deshabilitar nuevamente
-            } else {
-                // Rellenar la barra de progreso al 100% y mostrar el mensaje "Lección completada"
-                barraProgreso.value = 100;
-                document.querySelector(".container").innerHTML = "<h1 style='color: #28a745;'>¡Lección completada!</h1>";
-
-                // Ocultar el botón "Comprobar" y "Saltar" al finalizar
-                document.getElementById("boton-comprobar").style.display = "none";
-                document.getElementById("boton-saltar").style.display = "none";
+        // Solicitud AJAX para actualizar puntos en la base de datos
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "actualizarPuntos.php", true);  // Ruta relativa aquí
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log("Respuesta del servidor:", xhr.responseText);
+            } else if (xhr.readyState === 4) {
+                console.error("Error en la solicitud AJAX:", xhr.status, xhr.statusText);
             }
-        }
+        };
+
+        // Enviar los datos necesarios (id_leccion y id_usuario)
+        xhr.send(`id_leccion=${<?= $id_leccion ?>}&id_usuario=${<?= $_SESSION['user_id'] ?>}`);
+    }
+}
+
+
     </script>
 </body>
 

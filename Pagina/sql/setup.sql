@@ -72,9 +72,6 @@ CREATE TABLE usuario (
 ALTER TABLE curso
     ADD CONSTRAINT curso_materia_fk FOREIGN KEY ( id_materia )
         REFERENCES materia ( id_materia );
-ALTER TABLE curso
-    ADD CONSTRAINT curso_usuario_fk FOREIGN KEY ( id_usuario )
-        REFERENCES usuario ( id_usuario );
 
 ALTER TABLE ejercicio
     ADD CONSTRAINT ejercicio_leccion_fk FOREIGN KEY ( id_leccion )
@@ -113,6 +110,9 @@ SELECT nivel, nombre_materia
  WHERE nombre_materia = "Lenguaje";
 
 SELECT nombre_materia FROM materia;
+
+UPDATE usuario SET puntos_totales = puntos_totales + 10 WHERE id_usuario = 1;
+
  
 -- Informe de Resumen de Oracle SQL Developer Data Modeler: 
 -- 
