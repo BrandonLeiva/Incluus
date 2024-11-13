@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+body {
+    /* Fondo degradado */
+    background: radial-gradient(circle at center, #1b1b2f, #212121);
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  /* Agregar un patrón de puntos */
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(#ffffff20 1px, transparent 1px);
+    background-size: 36px 36px;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+header {
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+
+.bar{
+    color: #ffffff; 
+    width: 70rem;
+    border-bottom: 2px solid grey;
+
+} 
+
+/* Estilo general para las columnas */
+.bar div {
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 5px solid transparent; 
+  cursor: pointer;
+  transition: color 0.1s ease, border-bottom-color 0.1s ease, transform 0.1s ease; /* Transiciones suaves */
+
+}
+
+/* Estilo cuando está en la sección activa (MISION) */
+.bar .mision.active {
+    color: #5a67d8;
+    border-bottom: 5px solid #5a67d8; /* Borde inferior rojo solo cuando está activo */
+    transition: color 0.3s ease, border-bottom-color 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
+    transform: scale(1.05);
+  }
+   /* Efecto hover: cambia color y borde */
+   .bar div:hover {
+      color: #5a67d8; /* Cambia el color de las letras a rojo */
+      border-bottom: 5px solid #5a67d8; /* Cambia el borde inferior a rojo */
+       /* Agranda ligeramente el texto al hacer hover */
+  
+  }
+
+
+#nav{
+    text-decoration: none;
+    color: #ffffff93;
+}
+
+
+
+/* /MEDIA QUERIES PANTALLA  SM/ */
+
+@media (max-width: 768px){
+    #intro {
+        width: 90%;
+    }
+    .servicio-fila{
+        width: 100%;
+        text-align:center;
+
+    }
+}
+
+
+/* /pantallas super chicas/ */
+
+@media(max-width: 576){
+    .icono-wrap{
+        flex-wrap: wrap;
+        justify-content: center;
+
+    }
+
+}
+
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* Estilo del h1 con animación de rebote */
+#h1 {
+    display: inline-block;
+    animation: bounce 2s; /* La animación se repite infinitamente cada 2 segundos */
+}
+
+/* Keyframes para la animación de rebote */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0); /* Posición inicial y final */
+    }
+    1% {
+        transform: translateY(-30px); /* Rebote hacia arriba */
+    }
+}
+
+
+
+/* TABLA DE RANKING*/
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 5px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos de las pestañas */
+.tabs {
+    font-size: 20px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.tab {
+    padding: 10px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    border-bottom: 2px solid transparent;
+    color: #cccccc;
+}
+.tab.active {
+    color: #ffffff;
+    border-bottom: 2px solid #683FEA;
+}
+
+/* Estilos de la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+th, td {
+    padding: 12px;
+    text-align: center;
+    color: #ffffff;
+}
+th {
+    color: #683FEA;
+    font-size: 17px;
+    font-weight: 600;
+}
+td {
+    border-top: 1px solid #212121;
+}
+
+.company-info {
+    gap: 20px;
+}
+.company-logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Estilos para el ícono de corona dorada */
+.gold-icon {
+    color: #FFD700; /* Color dorado */
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.8), 0 0 12px rgba(255, 215, 0, 0.6); /* Efecto de luminosidad */
+}
+
+/* Estilos para el ícono de medalla plateada */
+.silver-icon {
+    color: #C0C0C0; /* Color plateado */
+}
+
+/* Estilos para el ícono de medalla de bronce */
+.bronze-icon {
+    color: #CD7F32; /* Color bronce */
+}
+
+.lugar{
+    text-align: center;
+    font-size: 1.8em;
+}
+
+
+  h1 {
+    font-size: 2em;
+    color: #e0e0e0;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+}
+
+footer {
+    color: #fff;
+    padding: 50px;
+    text-align: center;
+    font-size: 0.9em;
+}
+  

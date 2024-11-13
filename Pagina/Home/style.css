@@ -36,7 +36,7 @@ body {
     border-bottom: 5px solid #5a67d8; /* Cambia el borde inferior a rojo */
      /* Agranda ligeramente el texto al hacer hover */
 
-  }
+}
 
 #nav{
     text-decoration: none;
@@ -92,7 +92,11 @@ body {
 }
 
 header {
-    background-color: #5a67d8;
+    background: linear-gradient(0deg,#A47CF3,#683FEA);
+    box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4),
+    inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2),
+    0px 0px 0px 4px rgba(255, 255, 255, 0.2),
+    0px 0px 180px 0px #9917FF;
     color: white;
     padding: 30px;
     text-align: center;
