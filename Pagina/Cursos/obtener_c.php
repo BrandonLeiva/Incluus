@@ -60,6 +60,19 @@ try {
 </head>
 <body class="d-flex justify-content-center align-items-center vh-100">
 
+        <!-- Fondo de estrellas -->
+        <div class="stars"></div>
+    <div class="moving-stars"></div>
+    <div class="stars"></div>   
+
+    <div class="moving-stars"></div>
+    <div class="stars-2"></div>
+    <div class="moving-stars-2"></div>
+  
+    <div class="stars"></div>
+    <div class="moving-stars"></div>
+    <div class="stars"></div>  
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col" style="max-width: 30rem;">
