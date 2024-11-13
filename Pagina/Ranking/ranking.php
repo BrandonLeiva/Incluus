@@ -45,7 +45,19 @@ $stmt->execute();
         </section>
     </div>
 
-    <BR></BR>
+    <BR></BR>   
+        <!-- Fondo de estrellas -->
+    <div class="stars"></div>
+    <div class="moving-stars"></div>
+    <div class="stars"></div>   
+
+    <div class="moving-stars"></div>
+    <div class="stars-2"></div>
+    <div class="moving-stars-2"></div>
+  
+    <div class="stars"></div>
+    <div class="moving-stars"></div>
+    <div class="stars"></div>   
 
     <!--=========================================-->
     <!--CONTENIDO-->
@@ -113,6 +125,8 @@ $stmt->execute();
             </table>
         </div>
 
+        
+
         <div id="lenguaje" class="content" style="display: none">
             <table>
                 <thead>
@@ -156,7 +170,6 @@ $stmt->execute();
         </div>
     </div>
 
-    <br><br><br>
     <footer>
         <p>© 2024 - Incluus. Todos los derechos reservados.</p>
     </footer>
