@@ -15,11 +15,12 @@ html {
     box-sizing: border-box;
 }
 
-body {
-    color: #404040;
-    font-family: "Arial", Segoe UI, Tahoma, sans-serifl, Helvetica Neue, Helvetica;
-}
 
+
+body {
+    background: radial-gradient(circle at bottom, #18375d,#70266a, #8d1983, #18375d);
+    
+}
 
 .seccion-perfil-usuario .perfil-usuario-body,
 .seccion-perfil-usuario {
@@ -207,14 +208,15 @@ body {
 
 }
 
-#modal-shadow {
-    background: linear-gradient(0deg, #A47CF3, #683FEA, transparent);
-    box-shadow: 
-        inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4),
-        inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2),
-        0px 0px 0px 4px rgba(255, 255, 255, 0.2),
-        0px 0px 180px 0px #9917FF;
-    transform: translateY(-2px);
+.modal-shadow {
+    background: linear-gradient(0deg, #B399F5, #9883eb, transparent);
+box-shadow: 
+    inset 0px 1px 0px 0px rgba(255, 255, 255, 0.2),
+    inset 0px -3px 0px 0px rgba(0, 0, 0, 0.1),
+    0px 0px 0px 3px rgba(255, 255, 255, 0.15),
+    0px 0px 80px 0px rgba(156, 75, 218, 0.5);
+transform: translateY(-1px);
+
 }
 
 
@@ -226,4 +228,119 @@ footer {
 }
 
 
+/************************************ EFECTOS ******************************/
+
+.stars, .stars-2, .moving-stars, .moving-stars-2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    background: transparent;
+    z-index: -1;
+}
+
+.stars-2, .moving-stars-2 {
+    animation: animate-stars 90s linear infinite; /* Cambia la duración para que se muevan a diferentes velocidades */
+    opacity: 0.5; /* Hazlas un poco más tenues para variar */
+}
+
+.stars::before,
+.stars::after,
+.stars-2::before,
+.stars-2::after,
+.moving-stars::before,
+.moving-stars::after,
+.moving-stars-2::before,
+.moving-stars-2::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    background: white;
+    box-shadow:
+        50px 50px white, 150px 200px white, 300px 150px white, 
+        400px 300px white, 550px 50px white, 600px 400px white, 
+        700px 200px white, 800px 300px white, 900px 100px white,
+        /* Agrega más puntos de luz aquí para mayor densidad */
+        1000px 200px white, 1100px 400px white;
+}
+
+.stars::before, .stars-2::before, .moving-stars::before, .moving-stars-2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    background: white;
+    box-shadow:
+        50px 50px white, 150px 200px white, 300px 150px white, 
+        400px 300px white, 550px 50px white, 600px 400px white, 
+        700px 200px white, 800px 300px white, 900px 100px white,
+        100px 500px white, 250px 700px white, 400px 800px white, 
+        /* Añade más puntos aquí para hacerlas más densas */
+        1200px 500px white, 1300px 600px white, 1400px 700px white;
+}
+
+.stars { opacity: 0.6; }
+.moving-stars { opacity: 0.4; }
+.stars-2 { opacity: 0.5; }
+.moving-stars-2 { opacity: 0.3; }
+
+@keyframes animate-stars {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100vh); }
+}
+
+@keyframes animate-stars-reverse {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100vh); }
+}
+
+.stars-2 { animation: animate-stars-reverse 120s linear infinite; }
+.moving-stars-2 { animation: animate-stars 150s linear infinite; }
+
+
+/* Fondo de estrellas estáticas */
+.stars {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    box-shadow: 
+        100px 100px #ffffff, 150px 200px #ffffff, 250px 150px #ffffff, 300px 250px #ffffff,
+        400px 50px #ffffff, 450px 300px #ffffff, 550px 200px #ffffff, 600px 100px #ffffff,
+        700px 250px #ffffff, 750px 150px #ffffff, 850px 100px #ffffff, 900px 300px #ffffff;
+    animation: twinkling 5s infinite alternate;
+}
+
+/* Estrellas en movimiento */
+.moving-stars {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    box-shadow: 
+        80px 200px #ffffff, 130px 80px #ffffff, 210px 300px #ffffff, 310px 120px #ffffff,
+        420px 250px #ffffff, 480px 400px #ffffff, 620px 50px #ffffff, 700px 200px #ffffff;
+    animation: moveStars 20s linear infinite;
+}
+
+/* Animaciones */
+@keyframes twinkling {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes moveStars {
+    from { transform: translateX(0px); }
+    to { transform: translateX(-1000px); }
+}
+
+#gb{
+    color: rgb(255, 255, 247);
+}
 

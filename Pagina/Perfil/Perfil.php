@@ -58,9 +58,13 @@ $conn = null;
 </head>
 
 <body>
-    <section class="seccion-perfil-usuario">
+    
+
+
+
+    <section class="seccion-perfil-usuario ">
         <div class="perfil-usuario-header">
-            <div class="perfil-usuario-portada">
+            <div class="perfil-usuario-portada modal-shadow">
                 <div class="perfil-usuario-avatar">
                     <img src="<?php echo htmlspecialchars($fotoPerfil); ?>" alt="Imagen de perfil del usuario">
                     <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="boton-avatar">
@@ -74,7 +78,7 @@ $conn = null;
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content modal-shadow" id="modal-shadow">
+                        <div class="modal-content" id="modal-shadow">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar foto de perfil</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -108,7 +112,7 @@ $conn = null;
         <?php endif; ?>
 
         <div class="perfil-usuario-body">
-            <div class="perfil-usuario-bio">
+            <div class="perfil-usuario-bio ">
                 <h3 class="titulo"><?php echo htmlspecialchars($_SESSION['nombre'] . ' ' . $_SESSION['apellido']); ?></h3>
                 <div class="info">
                     <h5>Edad: </h5>
@@ -121,7 +125,7 @@ $conn = null;
                 </div>
             </div>
             <br>
-            <h2>Continua con tu progreso</h2>
+            <h2 id="gb">Continua con tu progreso</h2>
             <a href="">Más cursos</a>
 
             <br>
@@ -142,6 +146,14 @@ $conn = null;
                 </div>
             <?php endforeach; ?>
         </div>
+
+        <!-- Fondo de estrellas -->
+    <div class="stars"></div>
+    <div class="moving-stars"></div>
+    <div class="stars"></div>   
+    <div class="moving-stars"></div>
+    <div class="stars-2"></div>
+    <div class="moving-stars-2"></div>
 
     </section>
     <br><br><br><br><br>
