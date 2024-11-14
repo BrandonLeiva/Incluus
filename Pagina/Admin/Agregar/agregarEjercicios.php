@@ -96,6 +96,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
+<?php include '../MenuPrincipal.html'; ?>
+    <!-- Fondo de estrellas -->
+    <div class="stars"></div>
+    <div class="moving-stars"></div>
+    <div class="stars"></div>   
+
+    <div class="moving-stars"></div>
+    <div class="stars-2"></div>
+    <div class="moving-stars-2"></div>
+  
+    <div class="stars"></div>
+    <div class="moving-stars"></div>
+    <div class="stars"></div> 
+    
     <div class="contenedor">
         <header>
             <h1>ADMINISTRADOR</h1>
@@ -145,8 +159,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <h1>Ejercicio</h1>
 
                         <label for="nombre_juego">Pregunta:</label>
+                        <br>
                         <textarea name="nombre_juego" id="" cols="30" rows="10" required></textarea>
-
+                        <br>
                         <label for="dificultad">Dificultad:</label>
                         <input type="text" name="dificultad" required>
 
@@ -175,7 +190,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <option value="D">D</option>
                         </select>
                         <br>
-                        <button type="submit">Crear Ejercicio</button>
+                        <button style="border-radius: 10px;" type="submit">Crear Ejercicio</button>
                         <?php if (!empty($mensaje)): ?>
                             <p style="color: #28a745;"><?php echo $mensaje; ?></p>
                         <?php endif; ?>
@@ -185,5 +200,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 </body>
+
+<footer>
+        <p>© 2024 - Incluus. Todos los derechos reservados.</p>
+    </footer>
 
 </html>

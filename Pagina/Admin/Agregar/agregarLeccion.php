@@ -40,8 +40,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="estilo.css">
     <title>QUIZ GAME</title>
 </head>
-
 <body>
+<?php include '../MenuPrincipal.html'; ?>
+
+<!-- Fondo de estrellas -->
+    <div class="stars"></div>
+    <div class="moving-stars"></div>
+    <div class="stars"></div>   
+
+    <div class="moving-stars"></div>
+    <div class="stars-2"></div>
+    <div class="moving-stars-2"></div>
+  
+    <div class="stars"></div>
+    <div class="moving-stars"></div>
+    <div class="stars"></div>   
     <div class="contenedor">
         <header>
             <h1>ADMINISTRADOR</h1>
@@ -81,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="puntos_leccion">Puntos de la lección:</label>
                         <input type="number" name="puntos_leccion" required>
 
-                        <button type="submit">Crear Lección</button>
+                        <button style="border-radius: 10px;" type="submit">Crear Lección</button>
                         <?php if (!empty($mensaje)): ?>
                         <p style="color: #28a745;"><?php echo $mensaje; ?></p>
                     <?php endif; ?>
@@ -92,6 +105,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 </body>
+
+<footer>
+        <p>© 2024 - Incluus. Todos los derechos reservados.</p>
+    </footer>
 
 <script src="agregarLeccion.js"></script>
 

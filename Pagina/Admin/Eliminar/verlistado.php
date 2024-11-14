@@ -20,6 +20,20 @@ $materias = $conn->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
+<?php include '../MenuPrincipal.html'; ?>
+
+<!-- Fondo de estrellas -->
+<div class="stars"></div>
+<div class="moving-stars"></div>
+<div class="stars"></div>   
+
+<div class="moving-stars"></div>
+<div class="stars-2"></div>
+<div class="moving-stars-2"></div>
+
+<div class="stars"></div>
+<div class="moving-stars"></div>
+<div class="stars"></div>   
     <div class="contenedor">
         <header>
             <h1>ADMINISTRADOR</h1>
@@ -85,4 +99,7 @@ $materias = $conn->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         }
     </script>
 </body>
+<footer>
+        <p>© 2024 - Incluus. Todos los derechos reservados.</p>
+    </footer>
 </html>

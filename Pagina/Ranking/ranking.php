@@ -103,13 +103,7 @@ $stmt->execute();
                             }
                             echo "</td>";
 
-                            // Mostrar la foto de perfil solo si está registrada
-                            if (!empty($row['foto_perfil'])) {
-                                echo "<td class='company-info'><img src='" . htmlspecialchars($row['foto_perfil']) . "' alt='Foto' class='company-logo' /> " . htmlspecialchars($row['nombre']) . "</td>";
-                            } else {
-                                echo "<td class='company-info'>" . htmlspecialchars($row['nombre']) . "</td>";
-                            }
-
+                            echo "<td>" . htmlspecialchars($row['nombre']) . " " . htmlspecialchars($row['apellido']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['correo']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['edad']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['puntos_totales']) . "</td>";
@@ -134,7 +128,7 @@ $stmt->execute();
                 <thead>
                     <tr>
                         <th style="width: 120px;">Posición</th>
-                        <th>Usuario</th>
+                        <th>Estudiante</th>
                         <th>Correo</th>
                         <th>Edad</th>
                         <th>Puntos</th>
@@ -155,7 +149,7 @@ $stmt->execute();
                 <thead>
                     <tr>
                         <th style="width: 120px;">Posición</th>
-                        <th>Usuario</th>
+                        <th>Estudiante</th>
                         <th>Correo</th>
                         <th>Edad</th>
                         <th>Puntos</th>

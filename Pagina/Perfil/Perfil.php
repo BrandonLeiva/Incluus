@@ -58,10 +58,6 @@ $conn = null;
 </head>
 
 <body>
-    
-
-
-
     <section class="seccion-perfil-usuario ">
         <div class="perfil-usuario-header">
             <div class="perfil-usuario-portada modal-shadow">
@@ -71,8 +67,7 @@ $conn = null;
                         <i class="far fa-image"></i>
                     </button>
                 </div>
-                <button type="button" class="boton-portada">
-                    <i class="far fa-image"></i> Volver
+                <button type="button" class="boton-portada" onclick="window.location.href='../Home/logout.php'"></i> Cerrar Sesión
                 </button>
 
                 <!-- Modal -->

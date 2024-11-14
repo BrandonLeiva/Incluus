@@ -20,6 +20,20 @@ $materias = $conn->query("SELECT * FROM materia")->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
+<?php include '../MenuPrincipal.html'; ?>
+
+<!-- Fondo de estrellas -->
+<div class="stars"></div>
+<div class="moving-stars"></div>
+<div class="stars"></div>   
+
+<div class="moving-stars"></div>
+<div class="stars-2"></div>
+<div class="moving-stars-2"></div>
+
+<div class="stars"></div>
+<div class="moving-stars"></div>
+<div class="stars"></div>
     <div class="contenedor">
         <header>
             <h1>ADMINISTRADOR (Modificar)</h1>
@@ -67,7 +81,7 @@ $materias = $conn->query("SELECT * FROM materia")->fetchAll(PDO::FETCH_ASSOC);
                             <label for="nuevo_nivel">Nuevo curso:</label>
                             <input type="number" name="nuevo_nivel" required>
 
-                            <button type="submit">Modificar Curso</button>
+                            <button style="border-radius: 10px;" type="submit">Modificar Curso</button>
                         </form>
 
                     <?php
@@ -91,5 +105,8 @@ $materias = $conn->query("SELECT * FROM materia")->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 </body>
+<footer>
+        <p>© 2024 - Incluus. Todos los derechos reservados.</p>
+    </footer>
 
 </html>

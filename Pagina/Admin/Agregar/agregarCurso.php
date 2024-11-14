@@ -28,11 +28,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <link rel="stylesheet" href="estilo.css">
     <title>QUIZ GAME</title>
 </head>
 
 <body>
+<?php include '../MenuPrincipal.html'; ?>
+
+    <!-- Fondo de estrellas -->
+    <div class="stars"></div>
+    <div class="moving-stars"></div>
+    <div class="stars"></div>   
+
+    <div class="moving-stars"></div>
+    <div class="stars-2"></div>
+    <div class="moving-stars-2"></div>
+  
+    <div class="stars"></div>
+    <div class="moving-stars"></div>
+    <div class="stars"></div>   
     <div class="contenedor">
         <header>
             <h1>ADMINISTRADOR</h1>
@@ -57,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="nivel">Nivel del curso:</label>
                         <input type="number" name="nivel" required>
 
-                        <button type="submit">Crear Curso</button>
+                        <button style="border-radius: 10px;" type="submit">Crear Curso</button>
                         <?php if (!empty($mensaje)): ?>
                             <p style="color: #28a745;"><?php echo $mensaje; ?></p>
                         <?php endif; ?>
@@ -67,5 +83,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 </body>
+
+<footer>
+        <p>© 2024 - Incluus. Todos los derechos reservados.</p>
+    </footer>
 
 </html>

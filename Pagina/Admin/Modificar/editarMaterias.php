@@ -37,6 +37,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
+<?php include '../MenuPrincipal.html'; ?>
+
+<!-- Fondo de estrellas -->
+<div class="stars"></div>
+<div class="moving-stars"></div>
+<div class="stars"></div>   
+
+<div class="moving-stars"></div>
+<div class="stars-2"></div>
+<div class="moving-stars-2"></div>
+
+<div class="stars"></div>
+<div class="moving-stars"></div>
+<div class="stars"></div>
     <div class="contenedor">
         <header>
             <h1>ADMINISTRADOR (Modificar)</h1>
@@ -60,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="nuevo_nombre">Nuevo nombre:</label>
                         <input type="text" name="nuevo_nombre" required>
 
-                        <button type="submit">Modificar Materia</button>
+                        <button style="border-radius: 10px;" type="submit">Modificar Materia</button>
                         <?php if (!empty($mensaje)): ?>
                                 <p style="color: #28a745;"><?php echo $mensaje; ?></p>
                             <?php endif; ?>
@@ -72,5 +86,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 </body>
+
+<footer>
+        <p>© 2024 - Incluus. Todos los derechos reservados.</p>
+    </footer>
 </html>
 

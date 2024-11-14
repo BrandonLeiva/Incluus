@@ -218,7 +218,20 @@ body {
         left: calc(38% - 90px);
     }
 
+    .baner img{
+        width: 100%;
+    }
+
 }
+
+@media (max-width: 1100px) {
+    .baner img{
+        width: 100%;
+    }
+
+}
+
+
 
 
 
