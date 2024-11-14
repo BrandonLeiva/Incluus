@@ -16,7 +16,7 @@ html {
 }
 
 body {
-    background: radial-gradient(circle at bottom, #18202a,#01262f, #043733, #18202a);
+    background: radial-gradient(circle at bottom, #18202a,#01222b, #032724, #18202a);
     
 }
 
@@ -32,7 +32,7 @@ body {
     width: 100%;
     display: flex;  
     justify-content: center;
-    background: linear-gradient(#B873FF, transparent);
+
     margin-bottom: 1.25rem;
 }
 
@@ -67,7 +67,7 @@ body {
     height: 280px;
     align-items: center;
     justify-content: center;
-    border: 7px solid #FFFFFF;
+    border: 7px solid #0e7769;
     background-color: #DFE5F2;
     border-radius: 50%;
     box-shadow: 0 0 12px rgba(0, 0, 0, .2);
@@ -95,7 +95,8 @@ body {
     left: 10px;
     top: 4px;
     border: 0;
-    background-color: #fff;
+    background-color: #0e7769;
+    color: white;
     box-shadow: 0 0 12px rgba(0, 0, 0, .2);
     width: 60px;
     height: 60px;
@@ -138,14 +139,14 @@ body {
 .seccion-perfil-usuario .perfil-usuario-bio {
     margin-bottom: 1.25rem;
     text-align: center; 
-    background: linear-gradient(#2200ff84, #ff00dd);
+    background-color: #0e776949;
 
 
 }
 
 .botonPerfil button{
     margin-top: 10px;
-    background-color: #28a745; /* Color verde principal */
+    background-color: #0e7769; /* Color verde principal */
     color: white; /* Color del texto */
     border: none; /* Sin borde */
     padding: 10px 15px; /* Espaciado interno */
@@ -172,7 +173,7 @@ body {
     border-radius: 15px;
     width: 100%;
     margin-bottom: 30px;
-    background: radial-gradient(circle at bottom, #00fd65,#148cad, #ff00dd);
+    background: #0e776949;
 }
 
 .perfil-usuario-cursos{
@@ -198,7 +199,7 @@ body {
 }
 
 .boton button{
-    background-color: #28a745; /* Color verde principal */
+    background-color: #0e7769; /* Color verde principal */
     color: white; /* Color del texto */
     border: none; /* Sin borde */
     padding: 10px 15px; /* Espaciado interno */
@@ -245,14 +246,14 @@ footer {
 
 .button-container {
     display: flex;
-    background-color:#ff00dd;
+    background-color:#0e7769;
     width: 50px;
     height: 50px;
     align-items: center;
     justify-content: center;
     border-radius: 100px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px,
-          rgba(245, 73, 144, 0.5) 5px 10px 15px;
+    #05352e 5px 10px 15px;
   }
   
   .button {
