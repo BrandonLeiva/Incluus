@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Ejecutar la consulta y verificar el resultado
         if ($stmt->execute()) {
            // echo "Registro exitoso. ¡Bienvenido, $nombre!";
-            header("Location: home.php");
+            header("Location: ../perfil/perfil.php");
         } else {
             echo "Error al registrar.";
         }

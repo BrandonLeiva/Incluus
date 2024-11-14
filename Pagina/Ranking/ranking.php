@@ -119,6 +119,8 @@ $stmt->execute();
                     } else {
                         echo "<tr><td colspan='5' style='text-align: center; font-size: 1.2em; color: #555;'>No se han encontrado usuarios.</td></tr>";
                     }
+
+                    
                     ?>
 
                 </tbody>

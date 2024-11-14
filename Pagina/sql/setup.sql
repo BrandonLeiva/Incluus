@@ -113,7 +113,7 @@ SELECT nombre_materia FROM materia;
 
 UPDATE usuario SET puntos_totales = puntos_totales + 10 WHERE id_usuario = 1;
 
- 
+ SELECT * FROM usuario ORDER BY puntos_totales DESC
 -- Informe de Resumen de Oracle SQL Developer Data Modeler: 
 -- 
 -- CREATE TABLE                             8
