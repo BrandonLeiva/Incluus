@@ -1,78 +1,60 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background: linear-gradient(135deg, #f4f4f9, #d3d3f9);
     color: #333;
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #5a67d8;
+    background-color: #6c63ff;
     color: white;
     padding: 30px;
     text-align: center;
     box-shadow: 0 5px 9px rgba(32, 31, 31, 0.1);
 }
 
-
-/************************************MENU************************************/
-.bar{
+.bar {
     justify-content: center;
     font-family: sans-serif;
-    color: grey; 
+    color: grey;
     width: 70rem;
     border-bottom: 2px solid grey;
+}
 
-} /* Estilo general para las columnas */
 .bar div {
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
-  border-bottom: 5px solid transparent; 
-  cursor: pointer;
-  transition: color 0.1s ease, border-bottom-color 0.1s ease, transform 0.1s ease; /* Transiciones suaves */
-
-}
-
-/* Estilo cuando está en la sección activa (MISION) */
-.bar .mision.active {
-  color: #5a67d8;
-  border-bottom: 5px solid #5a67d8; /* Borde inferior rojo solo cuando está activo */
-  transition: color 0.3s ease, border-bottom-color 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
-  transform: scale(1.05);
-}
- /* Efecto hover: cambia color y borde */
- .bar div:hover {
-    color: #5a67d8; /* Cambia el color de las letras a rojo */
-    border-bottom: 5px solid #5a67d8; /* Cambia el borde inferior a rojo */
-     /* Agranda ligeramente el texto al hacer hover */
-
-}
-
-#nav{
-    text-decoration: none;
-    color: inherit;         /* Usa el color del texto del elemento padre */
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 5px solid transparent;
     cursor: pointer;
+    transition: color 0.1s ease, border-bottom-color 0.1s ease, transform 0.1s ease;
 }
-#nav:hover, #nav:active {
-    text-decoration: none; /* Mantén el estilo sin subrayado en hover o active */
-    color: inherit;        /* Evita que el color cambie al hacer hover o clic */
+
+.bar div:hover {
+    color: #5a67d8;
+    background-color: #ececff;
+    border-bottom: 5px solid #5a67d8;
+    transform: scale(1.05);
+}
+
+#nav {
+    text-decoration: none;
+    color: inherit;
 }
 
 h1 {
     margin: 0;
     font-size: 2.5rem;
+    background: linear-gradient(135deg, #6c63ff, #a983ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 section {
-    padding: 0px 20px;
+    padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
-}
-
-h2 {
-    color: #5a67d8;
-    font-size: 2rem;
 }
 
 .step-container {
@@ -82,53 +64,41 @@ h2 {
     margin-top: 15px;
 }
 
-/* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-border-radius: 10px;
-width: 30%;
-margin-bottom: 20px;
-padding: 20px;
-text-align: center;
-transition: transform 0.3s;
-*/
-
 .step {
-   padding: 40px;
-   background-color: white;
-   box-shadow: 0 5px 9px rgba(32, 31, 31, 0.1);
-   margin-bottom: 20px;
-   border-radius: 25px;
-   text-align: center;
-   transition: transform 0.3s;
+    width: 45%;
+    padding: 40px;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(32, 31, 31, 0.2);
+    margin-bottom: 20px;
+    border-radius: 25px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.step:hover {
+    transform: translateY(-10px);
+}
+
+.step h3 {
+    font-size: 1.5rem;
+    color: #6c63ff;
+    margin-bottom: 10px;
+}
+
+.step p {
+    font-size: 1rem;
+    color: #666;
+    margin: 0 30px;
 }
 
 .imgiz {
     top: 10px;
     width: 300px;
+    transition: transform 0.3s ease;
 }
 
-.row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-/*Efecto */
-.step:hover {
-    transform: translateY(-10px);
-}   
-
-.step h3 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 10px;
- 
-}
-
-.step p {
-    font-size: 1rem; /*16 pixeles*/
-    color: #666;
-    margin-left: 30px;
-    margin-right: 30px;
+.imgiz:hover {
+    transform: scale(1.05);
 }
 
 footer {
@@ -138,56 +108,15 @@ footer {
     padding: 10px 0;
 }
 
-@media screen and (max-width: 768px) {
-    .step {
-        width: 100%;
-    }
-}
-
-
-/* Estilos para pantallas más pequeñas */
 @media screen and (max-width: 1024px) {
-    .step {
-        width: 45%;
-    }
-
-    h1 {
-        font-size: 5vw;
-    }
-
-    header p {
-        font-size: 2vw;
-    }
-}
-
-/* Para móviles */
-@media screen and (max-width: 768px) {
-    .row {
-        flex-direction: column;
-        align-items: center;
-    }
-
     .step {
         width: 100%;
         margin-bottom: 20px;
     }
-
     h1 {
-        font-size: 6vw;
+        font-size: 5vw;
     }
-
-    header p {      
-        font-size: 2.5vw;
+    header p {
+        font-size: 2vw;
     }
 }
-
-/*
-position: absolute; Coloca la imagen fuera del flujo normal del documento 
-    left: 0;            /* Alinea la imagen a la izquierda 
-    top: 50px;          /* Ajusta la posición desde arriba 
-    width: 150px;       /* Controla el ancho de la imagen 
-    height: auto;       /* Mantiene la proporción de la imagen 
-    margin-left: 10px;  /* Ajusta el margen izquierdo 
-/*
-
-

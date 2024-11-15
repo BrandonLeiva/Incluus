@@ -1,160 +1,133 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+/* Importación de fuente */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 body {
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
+    margin: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 0;
+    ;
 }
 
-.bar{
-    color: grey; 
-    width: 70rem;
-    border-bottom: 2px solid grey;
-
-} /* Estilo general para las columnas */
-.bar div {
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
-  border-bottom: 5px solid transparent; 
-  cursor: pointer;
-  transition: color 0.1s ease, border-bottom-color 0.1s ease, transform 0.1s ease; /* Transiciones suaves */
-
-}
-
-/* Estilo cuando está en la sección activa (MISION) */
-.bar .mision.active {
-  color: #5a67d8;
-  border-bottom: 5px solid #5a67d8; /* Borde inferior rojo solo cuando está activo */
-  transition: color 0.3s ease, border-bottom-color 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
-  transform: scale(1.05);
-}
- /* Efecto hover: cambia color y borde */
- .bar div:hover {
-    color: #5a67d8; /* Cambia el color de las letras a rojo */
-    border-bottom: 5px solid #5a67d8; /* Cambia el borde inferior a rojo */
-     /* Agranda ligeramente el texto al hacer hover */
-
-}
-
-#nav{
-    text-decoration: none;
-    color: grey;
-}
-
-
-/* =============MENU============/ */
-
-#menu a {
-    font-size: 18px;
-    font-weight: bold;
-    color: #3f3f3f;
-
-}
-#menu button {
-    font-size: 18px;
-    font-weight: bold;
-    background-color: rgb(255, 174, 0);
-
-}
-
-/* /==========IMAGENES=========/ */
-.carousel-inner{
-    max-height: 39rem;
-
-}
-
-
-/* /MEDIA QUERIES PANTALLA  SM/ */
-
-@media (max-width: 768px){
-    #intro {
-        width: 90%;
-    }
-    .servicio-fila{
-        width: 100%;
-        text-align:center;
-
-    }
-}
-
-
-/* /pantallas super chicas/ */
-
-@media(max-width: 576){
-    .icono-wrap{
-        flex-wrap: wrap;
-        justify-content: center;
-
-    }
-
-}
-
+/* Cabecera */
 header {
-    background: linear-gradient(0deg,#A47CF3,#683FEA);
-    box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4),
-    inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2),
-    0px 0px 0px 4px rgba(255, 255, 255, 0.2),
-    0px 0px 180px 0px #9917FF;
+    background: linear-gradient(90deg, #6a5acd, #9b59b6);
     color: white;
-    padding: 30px;
+    padding: 50px;
     text-align: center;
-    /* box-shadow: 0 5px 9px rgba(32, 31, 31, 0.1); */
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 5px 9px rgba(32, 31, 31, 0.1);
 }
 
+
+/* Título principal */
+#h1 {
+    font-size: 2.5em;
+    margin: 10px 0;
+    animation: bounce 2s ease infinite alternate; /* Suave animación de rebote */
+}
+
+/* Barra de navegación */
+.bar {
+    background-color: #f4f6f9;
+    color: #6a5acd;
+    width: 80%;
+    border-radius: 15px;
+    margin-top: 20px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bar div {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 5px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.bar div:hover {
+    color: #5a67d8;
+    border-bottom: 5px solid #5a67d8;
+    transform: scale(1.05);
+}
+
+#nav {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Efecto fade-in */
 .fade-in {
     opacity: 0;
     animation: fadeIn 2s forwards;
 }
 
 @keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
+    to { opacity: 1; }
 }
 
-#intro {
-    padding: 40px;
-   background-color: white;
-   box-shadow: 0 30px 900px rgba(32, 31, 31, 0.1);
-   margin-bottom: 20px;
-   border-radius: 25px;
-   text-align: center;
-
-}
-
-/* Estilo del h1 con animación de rebote */
-#h1 {
-    display: inline-block;
-    animation: bounce 2s; /* La animación se repite infinitamente cada 2 segundos */
-}
-
-/* Keyframes para la animación de rebote */
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0); /* Posición inicial y final */
-    }
-    1% {
-        transform: translateY(-30px); /* Rebote hacia arriba */
-    }
-}
-
-.texto-final {
+/* Contenedor de secciones */
+#intro, .texto-final {
     padding: 40px;
     background-color: white;
-    box-shadow: 0 30px 900px rgba(32, 31, 31, 0.1);
-    margin-bottom: 20px;
-    border-radius: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    margin-bottom: 30px;
     text-align: center;
 }
 
-.texto-final h1, .texto-final h3 {
-    color: #000000; /* Color del texto */
+.texto-final img {
+    margin-top: 20px;
+    width: 150px;
+    transition: transform 0.3s ease;
+}
+
+.texto-final img:hover {
+    transform: scale(1.1);
+}
+
+/* Contenedores de servicio */
+.servicio-fila {
     text-align: center;
 }
 
-.texto-final p {
-    color: #000000; /* Color más suave para el texto */
-    text-align: center;
+.servicio-fila h3 {
+    color: #333;
+    font-weight: bold;
 }
 
+/* Ajuste de colores para texto */
+.texto-final h1, .texto-final p {
+    color: #5a5a5a;
+}
 
+.texto-final h1 {
+    font-size: 2em;
+}
+
+/* Keyframes para animación de rebote */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+    #intro, .texto-final {
+        width: 90%;
+        padding: 20px;
+    }
+    .servicio-fila {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .icono-wrap {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
