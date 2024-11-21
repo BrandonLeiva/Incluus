@@ -488,7 +488,7 @@ footer {
     transform: translate(-50%, -50%); /* Ajuste perfecto para centrar */
     width: 5em;
     height: 5em;
-    background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100%);
+    background: linear-gradient(-45deg, #00ff62 0%, #00dbde 100%);
     animation: spin 3s infinite;
     opacity: 1;
     transition: opacity 1s ease;
@@ -499,7 +499,7 @@ footer {
     z-index: -1;
     position: absolute;
     inset: 0;
-    background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100%);
+    background: linear-gradient(-45deg, #00ff62 0%, #00dbde 100%);
     transform: translate3d(0, 0, 0) scale(0.95);
     filter: blur(20px);
 }

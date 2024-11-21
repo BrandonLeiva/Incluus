@@ -5,7 +5,7 @@ session_start();  // Iniciar la sesión para obtener el estado del usuario
 // Verificar si el usuario está logueado
 if (!isset($_SESSION['user_id'])) {
     // Si no está logueado, redirigir al login
-    header("Location: ../home/login-register.html");
+    header("Location: ../home/login-register.php");
     exit;
 }
 
