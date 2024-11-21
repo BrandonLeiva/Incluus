@@ -362,8 +362,8 @@ button:hover{
 /* From Uiverse.io by gharsh11032000 */ 
 .loader {
     position: absolute;  /* Necesario para que se posicione respecto a su contenedor */
-    top: 50%;
-    left: 50%;
+    top: 48%;
+    left: 48%;
     transform: translate(-50%, -50%); /* Ajuste perfecto para centrar */
     width: 5em;
     height: 5em;
