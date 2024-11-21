@@ -8,54 +8,55 @@ body {
 
 /************************************HEADER************************************/
 header {
-    background-color: #5a67d8;
+    background: linear-gradient(90deg, #6a5acd, #9b59b6);
     color: white;
-    padding: 30px;
+    padding: 50px;
     text-align: center;
+    border-radius: 0 0 20px 20px;
     box-shadow: 0 5px 9px rgba(32, 31, 31, 0.1);
 }
 
 /************************************MENU************************************/
-.bar{
-    font-family: sans-serif;
-    color: grey; 
-    width: 70rem;
-    border-bottom: 2px solid grey;
-} /* Estilo general para las columnas */
+/* Barra de navegación */
+.bar {
+    background-color: #f4f6f9;
+    color: #6a5acd;
+    width: 80%;
+    border-radius: 15px;
+    margin-top: 20px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 .bar div {
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
-  border-bottom: 5px solid transparent; 
-  cursor: pointer;
-  transition: color 0.1s ease, border-bottom-color 0.1s ease, transform 0.1s ease; /* Transiciones suaves */
-
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 5px solid transparent;
+    transition: all 0.3s ease;
 }
 
-/* Estilo cuando está en la sección activa (MISION) */
-.bar .mision.active {
-  color: #5a67d8;
-  border-bottom: 5px solid #5a67d8; /* Borde inferior rojo solo cuando está activo */
-  transition: color 0.3s ease, border-bottom-color 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
-  transform: scale(1.05);
-}
- /* Efecto hover: cambia color y borde */
- .bar div:hover {
-    color: #5a67d8; /* Cambia el color de las letras a rojo */
-    border-bottom: 5px solid #5a67d8; /* Cambia el borde inferior a rojo */
-     /* Agranda ligeramente el texto al hacer hover */
-
+.bar div:hover {
+    color: #5a67d8;
+    border-bottom: 5px solid #5a67d8;
+    transform: scale(1.05);
 }
 
-#nav{
+#nav {
     text-decoration: none;
-    color: inherit;         /* Usa el color del texto del elemento padre */
-    cursor: pointer;
+    color: inherit;
 }
-#nav:hover, #nav:active {
-    text-decoration: none; /* Mantén el estilo sin subrayado en hover o active */
-    color: inherit;        /* Evita que el color cambie al hacer hover o clic */
+
+/* Efecto fade-in */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 2s forwards;
 }
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
 /************************************CONTENIDO************************************/
 
 
