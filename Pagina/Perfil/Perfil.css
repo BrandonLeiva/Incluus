@@ -18,6 +18,90 @@ html {
 body {
     background: radial-gradient(circle at bottom, #18202a,#01222b, #032724, #18202a);
     
+
+}
+
+/****************** MENU ******************/
+header {
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+
+.bar{
+    color: #ffffff; 
+    width: 70rem;
+    border-bottom: 2px solid grey;
+
+} 
+
+/* Estilo general para las columnas */
+.bar div {
+  flex-grow: 1;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 5px solid transparent; 
+  cursor: pointer;
+  transition: color 0.1s ease, border-bottom-color 0.1s ease, transform 0.1s ease; /* Transiciones suaves */
+
+}
+
+/* Estilo cuando está en la sección activa (MISION) */
+.bar .mision.active {
+    color: #5a67d8;
+    border-bottom: 5px solid #5a67d8; /* Borde inferior rojo solo cuando está activo */
+    transition: color 0.3s ease, border-bottom-color 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
+    transform: scale(1.05);
+  }
+   /* Efecto hover: cambia color y borde */
+   .bar div:hover {
+      color: #5a67d8; /* Cambia el color de las letras a rojo */
+      border-bottom: 5px solid #5a67d8; /* Cambia el borde inferior a rojo */
+       /* Agranda ligeramente el texto al hacer hover */
+  
+  }
+
+
+#nav{
+    text-decoration: none;
+    color: #ffffff93;
+}
+
+h1 {
+    font-size: 2em;
+    color: #e0e0e0;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+}
+
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* Estilo del h1 con animación de rebote */
+#h1 {
+    display: inline-block;
+    animation: bounce 2s; /* La animación se repite infinitamente cada 2 segundos */
+}
+
+/* Keyframes para la animación de rebote */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0); /* Posición inicial y final */
+    }
+    1% {
+        transform: translateY(-30px); /* Rebote hacia arriba */
+    }
 }
 
 .seccion-perfil-usuario .perfil-usuario-body,

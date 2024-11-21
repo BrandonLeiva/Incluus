@@ -50,7 +50,6 @@
     <div class=" d-flex justify-content-center ">
         <div class="row bar ">
             <div class="col-2 mision "><a id="nav" href="../Perfil/Perfil.php">PERFIL</a></div>
-            <div class="col-2 mision"><a id="nav" href="../Ranking/ranking.php">RANKING</a></div>
             <div class="col-2 mision"><a id="nav" href="../Equipo/equipo.html">EQUIPO</a></div>
             <div class="col-2 mision"><a id="nav" href="../Mision/mision.html">QUIENES SOMOS</a></div>
             <div class="col-2 mision"><a id="nav" href="../Mision/mision.html">MISION</a></div>

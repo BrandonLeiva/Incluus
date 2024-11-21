@@ -1,4 +1,7 @@
 <?php
+
+require "../PermisoAdmin.php";
+
 // Conexión a la base de datos
 $conn = new PDO("mysql:host=localhost;dbname=incluus_app", "root", "");
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

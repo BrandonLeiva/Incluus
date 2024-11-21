@@ -13,7 +13,7 @@ if (!isset($_SESSION['user_id'])) {
 
 try {
     // Preparar la consulta SQL para obtener más información del usuario
-    $stmt = $conn->prepare("SELECT correo, nombre, edad, rut, apellido, foto_perfil FROM usuario WHERE id_usuario = :id");
+    $stmt = $conn->prepare("SELECT correo, nombre, edad, rut, apellido, foto_perfil, rol FROM usuario WHERE id_usuario = :id");
     $stmt->bindParam(':id', $_SESSION['user_id']);
     $stmt->execute();
 
@@ -25,6 +25,10 @@ try {
         echo "No se encontraron los datos del usuario.";
         exit;
     }
+
+    // Guardar el rol en la sesión
+    $_SESSION['user_rol'] = $user['rol'];
+
     // Consulta para obtener los cursos (ajusta la tabla y campos según tu estructura)
     $stmtCursos = $conn->prepare("SELECT nombre_materia FROM materia"); // Ajusta 'cursos' y 'nombre_curso' según tu base de datos
     $stmtCursos->execute();
@@ -56,9 +60,26 @@ $conn = null;
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<div id="contenido" >
+<header>
+        <h1 id="h1"><strong>Perfil</strong></h1>
+        <p></p>
+        <p id="h1">Perfil de usuario</p>
+    </header>
+
+    <div class="d-flex justify-content-center ">
+    <div class="row bar ">
+        <div class="col-3 mision "><a id="nav" href="../Home/home.php">HOME</a></div>
+        <div class="col-3 mision"><a id="nav" href="../Ranking/ranking.php">RANKING</a></div>
+        <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 0): ?>
+            <div class="col-3 mision"><a id="nav" href="../Admin/Agregar/agregarCurso.php">ADMIN</a></div>
+        <?php endif; ?>
+        <div class="col-3 mision"><a id="nav" onclick="window.location.href='../Home/logout.php'">CERRAR SESIÓN</a></div>
+    </div>
+</div>
+
 
 <body>
-<div id="contenido" >
     <section class="seccion-perfil-usuario ">
         <div class="perfil-usuario-header">
             <div class="perfil-usuario-portada modal-shadow">
@@ -68,8 +89,6 @@ $conn = null;
                         <i class="far fa-image"></i>
                     </button>
                 </div>
-                <button type="button" class="boton-portada" onclick="window.location.href='../Home/logout.php'"></i> Cerrar Sesión
-                </button>
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

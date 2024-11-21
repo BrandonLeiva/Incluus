@@ -1,4 +1,7 @@
 <?php
+
+require "../PermisoAdmin.php";
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre_materia = $_POST['nombre_materia'];
 
