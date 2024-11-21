@@ -42,14 +42,15 @@ try {
 
 ?>
 <?php
-function actualizarPuntosUsuario($conn, $userId, $idLeccion) {
+function actualizarPuntosUsuario($conn, $userId, $idLeccion)
+{
     try {
         // Obtener puntos de la lección
         $stmt = $conn->prepare("SELECT puntos_leccion FROM leccion WHERE id_leccion = 1");
         $stmt->bindParam(':id_leccion', $idLeccion, PDO::PARAM_INT);
         $stmt->execute();
         $leccion = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+
         if ($leccion) {
             // Sumar puntos de la lección a los puntos totales del usuario
             $stmt = $conn->prepare("UPDATE usuario SET puntos_totales = puntos_totales + :puntos_leccion WHERE id_usuario = :id_usuario");
@@ -159,38 +160,46 @@ function actualizarPuntosUsuario($conn, $userId, $idLeccion) {
         }
 
         function siguienteEjercicio() {
-    if (!respuestaCorrectaSeleccionada) return;
+            if (!respuestaCorrectaSeleccionada) return;
 
-    document.getElementById(`pregunta-${ejercicioActual}`).style.display = "none";
-    ejercicioActual++;
+            document.getElementById(`pregunta-${ejercicioActual}`).style.display = "none";
+            ejercicioActual++;
 
-    if (ejercicioActual < totalEjercicios) {
-        document.getElementById(`pregunta-${ejercicioActual}`).style.display = "block";
-        barraProgreso.value = (ejercicioActual / totalEjercicios) * 100;
-        document.getElementById("boton-saltar").disabled = true;
-    } else {
-        barraProgreso.value = 100;
-        document.querySelector(".container").innerHTML = "<h1 style='color: #28a745;'>¡Lección completada!</h1>";
-        document.getElementById("boton-comprobar").style.display = "none";
-        document.getElementById("boton-saltar").style.display = "none";
+            if (ejercicioActual < totalEjercicios) {
+                document.getElementById(`pregunta-${ejercicioActual}`).style.display = "block";
+                barraProgreso.value = (ejercicioActual / totalEjercicios) * 100;
+                document.getElementById("boton-saltar").disabled = true;
+            } else {
+                barraProgreso.value = 100;
 
-        // Solicitud AJAX para actualizar puntos en la base de datos
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "actualizarPuntos.php", true);  // Ruta relativa aquí
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                console.log("Respuesta del servidor:", xhr.responseText);
-            } else if (xhr.readyState === 4) {
-                console.error("Error en la solicitud AJAX:", xhr.status, xhr.statusText);
+                // Cambiar el contenido para mostrar la lección completada
+                document.querySelector(".container").innerHTML = `
+            <h1 style='color: #28a745;'>¡Lección completada!</h1>
+            <button id="boton-continuar" onclick="history.back()">Continuar con las lecciones</button>`;
+
+                // Reproducir el sonido al completar la lección
+                const sonidoLeccionCompletada = new Audio('sonidos/completado.mp3');
+                sonidoLeccionCompletada.play();
+
+                // Ocultar los botones que ya no son necesarios
+                document.getElementById("boton-comprobar").style.display = "none";
+                document.getElementById("boton-saltar").style.display = "none";
+
+                // Actualizar los puntos en la base de datos con AJAX
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", "actualizarPuntos.php", true); // Ruta relativa aquí
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        console.log("Respuesta del servidor:", xhr.responseText);
+                    } else if (xhr.readyState === 4) {
+                        console.error("Error en la solicitud AJAX:", xhr.status, xhr.statusText);
+                    }
+                };
+
+                xhr.send(`id_leccion=${<?= $id_leccion ?>}&id_usuario=${<?= $_SESSION['user_id'] ?>}`);
             }
-        };
-
-        // Enviar los datos necesarios (id_leccion y id_usuario)
-        xhr.send(`id_leccion=${<?= $id_leccion ?>}&id_usuario=${<?= $_SESSION['user_id'] ?>}`);
-    }
-}
-
+        }
 
     </script>
 </body>

@@ -185,6 +185,23 @@ body, html {
     transition: width 0.5s ease-in-out; /* Transición suave en el valor */
 }
 
+#boton-continuar{
+    font-size: 1.2rem;
+    color: #fafafa;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #fafafa;
+    background:#212121;
+    box-shadow: 3px 3px #fafafa;
+    cursor: pointer;
+    margin: 35px 0;
+}
+
+#boton-continuar button:active {
+    box-shadow: none;
+    transform: translate(3px, 3px);
+}
 
 /* Animación de desvanecimiento */
 @keyframes fadeIn {

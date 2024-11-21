@@ -32,7 +32,7 @@ $stmt->execute();
             <div class="col-3 mision "><a id="nav" href="../Perfil/Perfil.php">PERFIL</a></div>
             <div class="col-3 mision"><a id="nav" href="../Ranking/ranking.php">RANKING</a></div>
             <div class="col-3 mision"><a id="nav" href="../Admin/Agregar/agregarCurso.php">ADMIN</a></div>
-            <div class="col-3 mision"><a id="nav" href="../Home/login-register.html">INICIAR SESIÓN</a></div>
+            <div class="col-3 mision"><a id="nav" onclick="window.location.href='../Home/logout.php'">CERRAR SESIÓN</a></div>
         </div>
     </div>
 
