@@ -7,7 +7,7 @@ function validarRUT(rut) {
     const partes = rut.split('-');
     const numeros = partes[0].split('').reverse();
     const dv = partes[1].toUpperCase();
-    
+
     let suma = 0;
     let multiplicador = 2;
 
@@ -30,7 +30,7 @@ function validarPassword(password) {
 }
 
 // Añadir eventos al formulario
-document.getElementById('registrationForm').addEventListener('submit', function(event) {
+document.getElementById('registrationForm').addEventListener('submit', function (event) {
     const rut = document.getElementById('rut').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -53,3 +53,26 @@ document.getElementById('registrationForm').addEventListener('submit', function(
         return;
     }
 });
+
+
+window.addEventListener("load", () => {
+    const preloader = document.getElementById("preloader");
+    const contenido = document.getElementById("contenido");
+
+    // Asegurarse de que el preloader dure al menos 3 segundos
+    setTimeout(() => {
+        // Fade out del preloader
+        preloader.style.opacity = "0";
+
+        // Mostrar el contenido con fade in
+        contenido.style.opacity = "1";
+        contenido.style.visibility = "visible"; // Asegurar que sea visible
+
+        // Eliminar el preloader después del fade out
+        setTimeout(() => {
+            preloader.style.display = "none";
+        }, 1000); // Tiempo suficiente para el fade out (1s)
+    }, 3000); // 3 segundos de espera
+});
+
+  

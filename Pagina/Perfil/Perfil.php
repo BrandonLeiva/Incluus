@@ -58,6 +58,7 @@ $conn = null;
 </head>
 
 <body>
+<div id="contenido" >
     <section class="seccion-perfil-usuario ">
         <div class="perfil-usuario-header">
             <div class="perfil-usuario-portada modal-shadow">
@@ -170,10 +171,12 @@ $conn = null;
     <footer>
         <p>© 2024 - Incluus. Todos los derechos reservados.</p>
     </footer>
-
+    </div>
     <!-- Bootstrap JS y Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+    <div class="loader" id="preloader"></div>
 </body>
 
 </html>
