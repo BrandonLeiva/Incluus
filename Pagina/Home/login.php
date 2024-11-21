@@ -34,7 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: ../perfil/perfil.php");
             exit();
         } else {
-            echo "Email o contraseña incorrectos.";
+            $_SESSION['error_message'] = "Email o contraseña incorrectos.";
+            header("Location: login-register.php");
+            exit();
         }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
@@ -43,4 +45,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Cerrar la conexión
     $conn = null;
 }
-?>

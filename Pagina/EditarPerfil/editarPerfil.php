@@ -89,5 +89,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
     </div>
     </div>
+    <!-- Fondo de estrellas -->
+		<div class=""></div>
+		<div class="moving-stars"></div>
+		<div class="stars"></div>
+
+		<div class="moving-stars"></div>
+		<div class="stars-2"></div>
+		<div class="moving-stars-2"></div>
+
+		<div class="stars"></div>
+		<div class="moving-stars"></div>
+		<div class="stars"></div>
 </body>
 </html>
