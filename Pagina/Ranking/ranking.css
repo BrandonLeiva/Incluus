@@ -29,6 +29,7 @@ header {
 
 /* Estilo general para las columnas */
 .bar div {
+  flex-grow: 1;
   padding: 10px;
   text-align: center;
   font-weight: bold;
