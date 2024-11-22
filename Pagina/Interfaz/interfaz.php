@@ -34,13 +34,13 @@ try {
 
     // Consulta para obtener las lecciones
     $stmt_lecciones = $conn->prepare("
-    SELECT leccion.id_leccion, curso.nivel, materia.nombre_materia, leccion.puntos_minimos
+    SELECT leccion.id_leccion, curso.nivel, materia.nombre_materia, leccion.puntos_minimo
     FROM leccion
     JOIN curso ON leccion.id_curso = curso.id_curso
     JOIN materia ON curso.id_materia = materia.id_materia
     WHERE materia.nombre_materia = :filtro 
       AND curso.nivel = :filtroc 
-      AND leccion.puntos_minimos <= (
+      AND leccion.puntos_minimo <= (
           SELECT puntos_totales 
           FROM usuario 
           WHERE id_usuario = :id_usuario
@@ -114,7 +114,7 @@ try {
                 // Itera sobre los resultados y genera un círculo para cada lección
                 if (count($lecciones) > 0) {
                     foreach ($lecciones as $leccion) {
-                        $desbloqueado = $leccion['puntos_minimos'] <= $user['puntos_totales'];
+                        $desbloqueado = $leccion['puntos_minimo'] <= $user['puntos_totales'];
                         ?>
                         <div class="row" style="margin-left: <?= $offset ?>px;">
                             <div class="col">
