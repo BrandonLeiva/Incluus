@@ -96,7 +96,7 @@ try {
         <div class="row justify-content-center">
 
         <div class="card glass">
-                <div class="stage">Etapa 3</div>
+                <div class="stage">Nivel <?php echo isset($lecciones[0]['nivel']) ? $lecciones[0]['nivel'] : 'Sin nivel'; ?> </div>
                 <div class="section">Sección A</div>
         </div> 
 
