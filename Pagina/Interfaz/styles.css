@@ -54,6 +54,17 @@ body{
     margin-left: 40px; /* Tercer círculo aún más a la izquierda */
 }
 
+/* LECCIONES BLOQUEADAS */ 
+.blocked {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.blocked .lesson-title {
+  text-decoration: line-through;
+}
+
 
 /* From Uiverse.io by AlimurtuzaCodes */ 
 .btn {

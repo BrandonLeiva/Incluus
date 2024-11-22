@@ -36,7 +36,7 @@ CREATE TABLE leccion (
     id_leccion      INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     numero_leccion  INTEGER NOT NULL,
     puntos_leccion  INTEGER NOT NULL,
-    progreso        INTEGER NOT NULL,
+    puntos_minimo        INTEGER NOT NULL,
     estado          CHAR(1) NOT NULL,
     id_curso  INTEGER NOT NULL
 );
@@ -114,6 +114,8 @@ SELECT nombre_materia FROM materia;
 UPDATE usuario SET puntos_totales = puntos_totales + 10 WHERE id_usuario = 1;
 
  SELECT * FROM usuario ORDER BY puntos_totales DESC
+
+ 
 -- Informe de Resumen de Oracle SQL Developer Data Modeler: 
 -- 
 -- CREATE TABLE                             8

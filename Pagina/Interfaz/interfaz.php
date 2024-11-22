@@ -21,7 +21,7 @@ try {
     }
 
     // Consulta para obtener los datos del usuario
-    $stmt = $conn->prepare("SELECT correo, nombre, edad, rut, apellido, foto_perfil FROM usuario WHERE id_usuario = :id");
+    $stmt = $conn->prepare("SELECT correo, nombre, edad, rut, apellido, foto_perfil, puntos_totales FROM usuario WHERE id_usuario = :id");
     $stmt->bindParam(':id', $_SESSION['user_id'], PDO::PARAM_INT);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -33,18 +33,24 @@ try {
     }
 
     // Consulta para obtener las lecciones
-    $stmt_lecciones = $conn->prepare("SELECT leccion.id_leccion, curso.nivel, materia.nombre_materia
-                                      FROM leccion
-                                      JOIN curso ON leccion.id_curso = curso.id_curso
-                                      JOIN materia ON curso.id_materia = materia.id_materia
-                                      WHERE materia.nombre_materia = :filtro and curso.nivel= :filtroc ");
+    $stmt_lecciones = $conn->prepare("
+    SELECT leccion.id_leccion, curso.nivel, materia.nombre_materia, leccion.puntos_minimos
+    FROM leccion
+    JOIN curso ON leccion.id_curso = curso.id_curso
+    JOIN materia ON curso.id_materia = materia.id_materia
+    WHERE materia.nombre_materia = :filtro 
+      AND curso.nivel = :filtroc 
+      AND leccion.puntos_minimos <= (
+          SELECT puntos_totales 
+          FROM usuario 
+          WHERE id_usuario = :id_usuario
+      )
+");
     $stmt_lecciones->bindParam(':filtro', $filtro, PDO::PARAM_STR);
     $stmt_lecciones->bindParam(':filtroc', $filtroc, PDO::PARAM_STR);
+    $stmt_lecciones->bindParam(':id_usuario', $_SESSION['user_id'], PDO::PARAM_INT);
     $stmt_lecciones->execute();
     $lecciones = $stmt_lecciones->fetchAll(PDO::FETCH_ASSOC);
-
-   
-
 } catch (PDOException $e) {
     error_log("Database error: " . $e->getMessage()); // Registrar el error en un log
     echo "Error en la base de datos. Por favor, inténtelo más tarde.";
@@ -65,31 +71,31 @@ try {
 </head>
 
 <body class=" d-flex justify-content-center align-items-center vh-100">
-    
 
-<div class="sidebar glass">
-  <a href="../perfil/perfil.php" class="sidebar-item ">
-    <i class="icon">🏠</i>
-    <span>Inicio</span>
-  </a>
-  <a href="#" class="sidebar-item active">
-    <i class="icon">📘</i>
-    <span>Lecciones</span>
-  </a>
-  <a href="metas.html" class="sidebar-item">
-    <i class="icon">📚</i>
-    <span>Niveles</span>
-  </a>
-  <a href="perfil.html" class="sidebar-item">
-    <i class="icon">👤</i>
-    <span>Perfil</span>
-  </a>
-  <a href="configuracion.html" class="sidebar-item">
-    <i class="icon">⚙️</i>
-    <span>Configuración</span>
-  </a>
- 
-</div>
+
+    <div class="sidebar glass">
+        <a href="../perfil/perfil.php" class="sidebar-item ">
+            <i class="icon">🏠</i>
+            <span>Inicio</span>
+        </a>
+        <a href="#" class="sidebar-item active">
+            <i class="icon">📘</i>
+            <span>Lecciones</span>
+        </a>
+        <a href="metas.html" class="sidebar-item">
+            <i class="icon">📚</i>
+            <span>Niveles</span>
+        </a>
+        <a href="perfil.html" class="sidebar-item">
+            <i class="icon">👤</i>
+            <span>Perfil</span>
+        </a>
+        <a href="configuracion.html" class="sidebar-item">
+            <i class="icon">⚙️</i>
+            <span>Configuración</span>
+        </a>
+
+    </div>
 
 
     <div class="container">
@@ -98,7 +104,7 @@ try {
         <div class="card glass">
                 <div class="stage">Nivel <?php echo isset($lecciones[0]['nivel']) ? $lecciones[0]['nivel'] : 'Sin nivel'; ?> </div>
                 <div class="section">Sección A</div>
-        </div> 
+            </div>
 
         </div>
         <div class="row justify-content-center">
@@ -108,17 +114,21 @@ try {
                 // Itera sobre los resultados y genera un círculo para cada lección
                 if (count($lecciones) > 0) {
                     foreach ($lecciones as $leccion) {
+                        $desbloqueado = $leccion['puntos_minimos'] <= $user['puntos_totales'];
                         ?>
                         <div class="row" style="margin-left: <?= $offset ?>px;">
                             <div class="col">
-                                <div class="lesson-circle btn" onclick="startLesson(<?= $leccion['id_leccion'] ?>)">
+                                <div class="lesson-circle <?= $desbloqueado ? 'btn' : 'blocked' ?>" 
+                                     <?= $desbloqueado ? "onclick=\"startLesson({$leccion['id_leccion']})\"" : '' ?>>
                                     <span class="lesson-number text"><?= $leccion['id_leccion'] ?></span>
-                                    <span class="lesson-title text ">Lección <?= $leccion['id_leccion'] ?></span>
+                                    <span class="lesson-title text">
+                                        <?= $desbloqueado ? "Lección {$leccion['id_leccion']}" : "Bloqueada" ?>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                         <?php
-                        $offset += 20; // Incrementa el margen izquierdo para cada fila
+                        $offset += 20;
                     }
                 } else {
                     echo "<p>No hay lecciones disponibles.</p>";
@@ -127,7 +137,7 @@ try {
             </div>
         </div>
     </div>
-   
+
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
