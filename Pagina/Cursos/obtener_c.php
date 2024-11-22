@@ -61,7 +61,7 @@ try {
 <body class="d-flex justify-content-center align-items-center vh-100">
 
 <div class="sidebar glass">
-  <a href="../perfil/perfil.php" class="sidebar-item ">
+  <a href="#" class="sidebar-item ">
     <i class="icon">🏠</i>
     <span>Inicio</span>
   </a>
@@ -69,15 +69,15 @@ try {
     <i class="icon">📘</i>
     <span>Lecciones</span>
   </a>
-  <a href="metas.html" class="sidebar-item active">
+  <a href="#" class="sidebar-item active">
     <i class="icon">📚</i>
     <span>Niveles</span>
   </a>
-  <a href="perfil.html" class="sidebar-item">
+  <a href="#" class="sidebar-item">
     <i class="icon">👤</i>
     <span>Perfil</span>
   </a>
-  <a href="configuracion.html" class="sidebar-item">
+  <a href="#" class="sidebar-item">
     <i class="icon">⚙️</i>
     <span>Configuración</span>
   </a>

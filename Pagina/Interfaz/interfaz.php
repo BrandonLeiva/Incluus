@@ -82,11 +82,11 @@ try {
             <i class="icon">📘</i>
             <span>Lecciones</span>
         </a>
-        <a href="metas.html" class="sidebar-item">
+        <a href="#" class="sidebar-item">
             <i class="icon">📚</i>
             <span>Niveles</span>
         </a>
-        <a href="perfil.html" class="sidebar-item">
+        <a href="#" class="sidebar-item">
             <i class="icon">👤</i>
             <span>Perfil</span>
         </a>
