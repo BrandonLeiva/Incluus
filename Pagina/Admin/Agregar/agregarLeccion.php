@@ -15,14 +15,16 @@ $cursos = $conn->query("SELECT * FROM curso")->fetchAll(PDO::FETCH_ASSOC);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $numero_leccion = $_POST['numero_leccion'];
     $puntos_leccion = $_POST['puntos_leccion'];
+    $puntos_minimo = $_POST['puntos_minimo'];
     $id_curso = $_POST['id_curso'];
 
     // Insertar la lección
-    $sql = "INSERT INTO leccion (numero_leccion, puntos_leccion, id_curso) VALUES (:numero_leccion, :puntos_leccion, :id_curso)";
+    $sql = "INSERT INTO leccion (numero_leccion, puntos_leccion, id_curso, puntos_minimo) VALUES (:numero_leccion, :puntos_leccion, :id_curso, :puntos_minimo)";
     $stmt = $conn->prepare($sql);
     $stmt->execute([
         'numero_leccion' => $numero_leccion,
         'puntos_leccion' => $puntos_leccion,
+        'puntos_minimo' => $puntos_minimo,
         'id_curso' => $id_curso
     ]);
 
@@ -94,6 +96,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <!-- Otros campos -->
                         <label for="numero_leccion">Número de la lección:</label>
                         <input type="number" name="numero_leccion" required>
+                        <label for="puntos_minimo">Puntos minimos de la lección:</label>
+                        <input type="number" name="puntos_minimo" required>
                         <label for="puntos_leccion">Puntos de la lección:</label>
                         <input type="number" name="puntos_leccion" required>
 

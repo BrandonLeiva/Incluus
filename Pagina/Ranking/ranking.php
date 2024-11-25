@@ -1,10 +1,13 @@
 <?php
 require "../database.php";
-session_start(); 
+session_start();
+
 // Consulta para obtener los usuarios
-$sql = "SELECT * FROM usuario ORDER BY puntos_totales DESC"; 
+$sql = "SELECT * FROM usuario ORDER BY puntos_totales DESC";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
+
+$logged_in_user_id = $_SESSION['user_id']; // Asume que el ID del usuario logueado se almacena en $_SESSION['user_id']
 ?>
 
 <!DOCTYPE html>
@@ -32,8 +35,8 @@ $stmt->execute();
             <div class="col-3 mision "><a id="nav" href="../Perfil/Perfil.php">PERFIL</a></div>
             <div class="col-3 mision"><a id="nav" href="../Ranking/ranking.php">RANKING</a></div>
             <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 0): ?>
-            <div class="col-3 mision"><a id="nav" href="../Admin/Agregar/agregarCurso.php">ADMIN</a></div>
-        <?php endif; ?>
+                <div class="col-3 mision"><a id="nav" href="../Admin/Agregar/agregarCurso.php">ADMIN</a></div>
+            <?php endif; ?>
             <div class="col-3 mision"><a id="nav" onclick="window.location.href='../Home/logout.php'">CERRAR SESIÓN</a></div>
         </div>
     </div>
@@ -47,19 +50,19 @@ $stmt->execute();
         </section>
     </div>
 
-    <BR></BR>   
-        <!-- Fondo de estrellas -->
+    <BR></BR>
+    <!-- Fondo de estrellas -->
     <div class="stars"></div>
     <div class="moving-stars"></div>
-    <div class="stars"></div>   
+    <div class="stars"></div>
 
     <div class="moving-stars"></div>
     <div class="stars-2"></div>
     <div class="moving-stars-2"></div>
-  
+
     <div class="stars"></div>
     <div class="moving-stars"></div>
-    <div class="stars"></div>   
+    <div class="stars"></div>
 
     <!--=========================================-->
     <!--CONTENIDO-->
@@ -87,11 +90,13 @@ $stmt->execute();
                     </tr>
                 </thead>
                 <tbody>
-                <?php
+                    <?php
                     if ($stmt->rowCount() > 0) {
                         $position = 1;
                         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                            echo "<tr>";
+                            // Agrega la clase "highlight" si el usuario actual está logueado
+                            $highlight_class = ($row['id_usuario'] == $logged_in_user_id) ? 'usuario-logeado' : '';
+                            echo "<tr class='$highlight_class'>";
                             echo "<td class='lugar'>";
                             // Agregar íconos para los tres primeros lugares
                             if ($position == 1) {
@@ -116,14 +121,14 @@ $stmt->execute();
                         echo "<tr><td colspan='5' style='text-align: center; font-size: 1.2em; color: #555;'>No se han encontrado usuarios.</td></tr>";
                     }
 
-                    
+
                     ?>
 
                 </tbody>
             </table>
         </div>
 
-        
+
 
         <div id="lenguaje" class="content" style="display: none">
             <table>

@@ -211,6 +211,12 @@ footer {
     text-align: center;
     font-size: 0.9em;
 }
+
+.usuario-logeado {
+    background: radial-gradient(circle at center, #323280, #212121);
+    font-weight: bold;
+
+}
   
 /************************************ EFECTOS ******************************/
 

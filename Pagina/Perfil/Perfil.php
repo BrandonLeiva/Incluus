@@ -150,8 +150,6 @@ $conn = null;
             </div>
             <br>
             <h2 id="gb">Continua con tu progreso</h2>
-            <a href="">Más cursos</a>
-
             <br>
             <?php foreach ($cursos as $curso): ?>
                 <div class="perfil-usuario-cursos">
