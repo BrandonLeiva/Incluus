@@ -85,6 +85,14 @@ ALTER TABLE progreso
     ADD CONSTRAINT progreso_leccion_fk FOREIGN KEY ( id_leccion )
         REFERENCES leccion ( id_leccion );
 
+ALTER TABLE ejercicio
+ADD COLUMN tipo_ejercicio VARCHAR(50) NOT NULL,
+ADD COLUMN imagen_a VARCHAR(255) NULL,
+ADD COLUMN imagen_b VARCHAR(255) NULL,
+ADD COLUMN imagen_c VARCHAR(255) NULL,
+ADD COLUMN imagen_d VARCHAR(255) NULL;
+
+
 ----------------------------------------------------------------------------------------------------------------------
 
 -- CONSULTAS SQL --

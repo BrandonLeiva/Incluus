@@ -13,7 +13,7 @@ body, html {
 }
 
 
-.container {
+.container .respuestas{
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -23,8 +23,15 @@ body, html {
     padding-bottom: 80px;
 }
 
+.container .opcion-imagen{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 
 .pregunta h2 {
+    text-align: center;
     font-size: 2rem;
     margin-bottom: 55px;
     color: #fafafa;
@@ -70,7 +77,64 @@ body, html {
     transform: translateY(-2px);
 }
 
+/* RESPUESTAS DE IMAGENES */
 
+
+.opcion-imagen {
+    margin-bottom: 180px;
+    height: 100%;
+    display: flex; /* Aplica flex a la opción */
+    flex-direction: row; /* Asegúrate de que los elementos hijos estén en fila */
+    display: inline-block;
+    padding: 5px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background-color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.opcion-imagen img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.opcion-imagen:focus {
+    border-color: #683FEA; /* Cambia el borde a verde */
+    background-color: #222;
+    transform: scale(1.1);
+}
+
+.opcion-imagen:hover {
+    border-color: #888; /* Borde en hover */
+}
+
+/* RESPUESTAS DE ORDENAR ELEMENTOS */
+
+.ordenar-container{
+    margin-bottom: 110px;
+}
+
+.opcion{
+    list-style-type: none;
+    text-align: center;
+    width: 500px;
+    height: 39px;
+    margin: 8px;
+    font-size: 1rem;
+    color: #fafafa;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #fafafa;
+    background: #212121;
+    box-shadow: 0.5px 1px #fafafa;
+    cursor: pointer;
+}
+
+/* FOOTER */
 
 .footer {
     position: fixed;
@@ -153,7 +217,9 @@ body, html {
 /* BARRA DE PROGRESO */
 
 .barra-progreso {
-    padding-top: 40px;
+    margin-top: 10px;
+    position: fixed; /* Hace que la barra quede fija en la pantalla */
+    top: 0; /* La coloca en la parte superior */
     text-align: center;
     font-size: 16px;
 }

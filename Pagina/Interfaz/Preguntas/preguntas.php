@@ -28,7 +28,7 @@ try {
     }
 
     // Consulta para obtener los ejercicios de la lección específica
-    $stmt_ejercicios = $conn->prepare("SELECT ejercicio.id_juego, ejercicio.nombre_juego, ejercicio.respuesta_a, ejercicio.respuesta_b, ejercicio.respuesta_c, ejercicio.respuesta_d, ejercicio.correcta
+    $stmt_ejercicios = $conn->prepare("SELECT ejercicio.id_juego, ejercicio.nombre_juego, ejercicio.respuesta_a, ejercicio.respuesta_b, ejercicio.respuesta_c, ejercicio.respuesta_d, ejercicio.correcta, ejercicio.imagen_a, ejercicio.imagen_b, ejercicio.imagen_c, ejercicio.imagen_d, tipo_ejercicio
                                       FROM ejercicio 
                                       WHERE ejercicio.id_leccion = :id_leccion");
     $stmt_ejercicios->bindParam(':id_leccion', $id_leccion, PDO::PARAM_INT);
@@ -64,6 +64,9 @@ function actualizarPuntosUsuario($conn, $userId, $idLeccion)
 }
 ?>
 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,6 +75,9 @@ function actualizarPuntosUsuario($conn, $userId, $idLeccion)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicios de la Lección</title>
     <link rel="stylesheet" href="preguntas.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 </head>
 
 <body>
@@ -85,12 +91,46 @@ function actualizarPuntosUsuario($conn, $userId, $idLeccion)
                 <div class="pregunta" id="pregunta-<?= $index ?>" style="<?= $index === 0 ? '' : 'display: none;' ?>" data-correcta="<?= htmlspecialchars($ejercicio['correcta']) ?>">
                     <h2><?= htmlspecialchars($ejercicio['nombre_juego']) ?></h2>
                     <div class="container">
-                        <div class="respuestas">
-                            <button onclick="seleccionarRespuesta('A')">A. <?= htmlspecialchars($ejercicio['respuesta_a']) ?></button>
-                            <button onclick="seleccionarRespuesta('B')">B. <?= htmlspecialchars($ejercicio['respuesta_b']) ?></button>
-                            <button onclick="seleccionarRespuesta('C')">C. <?= htmlspecialchars($ejercicio['respuesta_c']) ?></button>
-                            <button onclick="seleccionarRespuesta('D')">D. <?= htmlspecialchars($ejercicio['respuesta_d']) ?></button>
-                        </div>
+                        <?php if ($ejercicio['tipo_ejercicio'] === 'imagen'): ?>
+                            <div class="imagenes">
+                                <button class="opcion-imagen" onclick="seleccionarRespuesta('A')"><?= htmlspecialchars($ejercicio['respuesta_a']) ?>
+                                    <?php if (!empty($ejercicio['imagen_a'])): ?>
+                                        <img src="../../admin/uploads/<?= htmlspecialchars($ejercicio['imagen_a']) ?>" alt="Imagen A">
+                                    <?php endif; ?>
+                                </button>
+                                <button class="opcion-imagen" onclick="seleccionarRespuesta('B')"><?= htmlspecialchars($ejercicio['respuesta_b']) ?>
+                                    <?php if (!empty($ejercicio['imagen_b'])): ?>
+                                        <img src="../../admin/uploads/<?= htmlspecialchars($ejercicio['imagen_b']) ?>" alt="Imagen B">
+                                    <?php endif; ?>
+                                </button>
+                                <button class="opcion-imagen" onclick="seleccionarRespuesta('C')"><?= htmlspecialchars($ejercicio['respuesta_c']) ?>
+                                    <?php if (!empty($ejercicio['imagen_c'])): ?>
+                                        <img src="../../admin/uploads/<?= htmlspecialchars($ejercicio['imagen_c']) ?>" alt="Imagen C">
+                                    <?php endif; ?>
+                                </button>
+                                <button class="opcion-imagen" onclick="seleccionarRespuesta('D')"><?= htmlspecialchars($ejercicio['respuesta_d']) ?>
+                                    <?php if (!empty($ejercicio['imagen_d'])): ?>
+                                        <img src="../../admin/uploads/<?= htmlspecialchars($ejercicio['imagen_d']) ?>" alt="Imagen D">
+                                    <?php endif; ?>
+                                </button>
+                            </div>
+                        <?php elseif ($ejercicio['tipo_ejercicio'] === 'ordenar'): ?>
+                            <div class="ordenar-container">
+                                <ul id="opciones-<?= $index ?>" class="sortable">
+                                    <li class="opcion">D. <?= htmlspecialchars($ejercicio['respuesta_d']) ?></li>
+                                    <li class="opcion">B. <?= htmlspecialchars($ejercicio['respuesta_b']) ?></li>
+                                    <li class="opcion">A. <?= htmlspecialchars($ejercicio['respuesta_a']) ?></li>
+                                    <li class="opcion">C. <?= htmlspecialchars($ejercicio['respuesta_c']) ?></li>
+                                </ul>
+                            </div>
+                        <?php else: ?>
+                            <div class="respuestas">
+                                <button onclick="seleccionarRespuesta('A')">A. <?= htmlspecialchars($ejercicio['respuesta_a']) ?></button>
+                                <button onclick="seleccionarRespuesta('B')">B. <?= htmlspecialchars($ejercicio['respuesta_b']) ?></button>
+                                <button onclick="seleccionarRespuesta('C')">C. <?= htmlspecialchars($ejercicio['respuesta_c']) ?></button>
+                                <button onclick="seleccionarRespuesta('D')">D. <?= htmlspecialchars($ejercicio['respuesta_d']) ?></button>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -127,37 +167,63 @@ function actualizarPuntosUsuario($conn, $userId, $idLeccion)
             const sonidoCorrecto = new Audio('sonidos/correcto.mp3');
             const sonidoIncorrecto = new Audio('sonidos/incorrecto.mp3');
 
-            if (respuestaSeleccionada === null) {
-                mensajeContenedor.textContent = "Por favor, selecciona una respuesta antes de comprobar.";
-                return;
-            }
-
             const preguntaActual = document.getElementById(`pregunta-${ejercicioActual}`);
-            const respuestaCorrecta = preguntaActual.getAttribute("data-correcta");
+            const tipoEjercicio = preguntaActual.querySelector(".ordenar-container, .imagenes, .respuestas");
 
-            if (respuestaSeleccionada === respuestaCorrecta) {
-                mensajeContenedor.style.color = "#28a745"; // Verde para correcto
-                mensajeContenedor.textContent = "¡Respuesta correcta!";
+            if (tipoEjercicio.classList.contains("ordenar-container")) {
+                // Validar el orden en el tipo ordenar
+                const opciones = $(`#opciones-${ejercicioActual} .opcion`).map(function() {
+                    return $(this).text().trim().charAt(0); // Extrae solo la letra inicial
+                }).get().join('');
 
-                sonidoCorrecto.play();
+                const correcta = preguntaActual.getAttribute("data-correcta");
 
-                // Habilitar el botón "Saltar" y restaurar su color verdadero
-                respuestaCorrectaSeleccionada = true;
-                botonSaltar.disabled = false;
-                botonSaltar.style.backgroundColor = "#28a745"; // Color verdadero al habilitar
-                botonSaltar.style.color = "white"; // Color de texto verdadero al habilitar
+                if (opciones === correcta) {
+                    mensajeContenedor.style.color = "#28a745";
+                    mensajeContenedor.textContent = "¡Orden correcto!";
+                    sonidoCorrecto.play();
+
+                    respuestaCorrectaSeleccionada = true;
+                    botonSaltar.disabled = false;
+                    botonSaltar.style.backgroundColor = "#28a745";
+                    botonSaltar.style.color = "white";
+                } else {
+                    mensajeContenedor.style.color = "#f00";
+                    mensajeContenedor.textContent = "Orden incorrecto. Inténtalo nuevamente.";
+                    sonidoIncorrecto.play();
+                    setTimeout(() => {
+                        mensajeContenedor.textContent = "";
+                    }, 3000);
+                }
             } else {
-                mensajeContenedor.style.color = "#f00"; // Rojo para incorrecto
-                mensajeContenedor.textContent = "Respuesta incorrecta. Inténtalo de nuevo.";
+                // Validar para otros tipos de ejercicios
+                if (respuestaSeleccionada === null) {
+                    mensajeContenedor.textContent = "Por favor, selecciona una respuesta antes de comprobar.";
+                    return;
+                }
 
-                sonidoIncorrecto.play();
+                const respuestaCorrecta = preguntaActual.getAttribute("data-correcta");
 
-                // Limpiar el mensaje después de un tiempo solo si la respuesta es incorrecta
-                setTimeout(() => {
-                    mensajeContenedor.textContent = ""; // Limpia el mensaje después de 3 segundos
-                }, 3000);
+                if (respuestaSeleccionada === respuestaCorrecta) {
+                    mensajeContenedor.style.color = "#28a745";
+                    mensajeContenedor.textContent = "¡Respuesta correcta!";
+                    sonidoCorrecto.play();
+
+                    respuestaCorrectaSeleccionada = true;
+                    botonSaltar.disabled = false;
+                    botonSaltar.style.backgroundColor = "#28a745";
+                    botonSaltar.style.color = "white";
+                } else {
+                    mensajeContenedor.style.color = "#f00";
+                    mensajeContenedor.textContent = "Respuesta incorrecta. Inténtalo de nuevo.";
+                    sonidoIncorrecto.play();
+                    setTimeout(() => {
+                        mensajeContenedor.textContent = "";
+                    }, 3000);
+                }
             }
         }
+
 
         function siguienteEjercicio() {
             if (!respuestaCorrectaSeleccionada) return;
@@ -201,6 +267,24 @@ function actualizarPuntosUsuario($conn, $userId, $idLeccion)
             }
         }
 
+        $(function() {
+            $(".sortable").sortable();
+            $(".sortable").disableSelection();
+        });
+
+        function comprobarOrden(index) {
+            const opciones = $(`#opciones-${index} .opcion`).map(function() {
+                return $(this).text().trim().charAt(0);
+            }).get().join('');
+
+            const correcta = "<?= htmlspecialchars($ejercicio['correcta']) ?>";
+
+            if (opciones === correcta) {
+                alert("¡Orden correcto!");
+            } else {
+                alert("Orden incorrecto. Inténtalo nuevamente.");
+            }
+        }
     </script>
 </body>
 

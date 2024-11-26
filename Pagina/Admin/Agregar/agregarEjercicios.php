@@ -16,34 +16,103 @@ $cursos = $conn->query("SELECT * FROM curso")->fetchAll(PDO::FETCH_ASSOC);
 $lecciones = $conn->query("SELECT * FROM leccion")->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nombre_juego = $_POST['nombre_juego'];
-    $dificultad = $_POST['dificultad'];
-    $categoria = $_POST['categoria'];
-    $id_leccion = $_POST['id_leccion'];
-    $respuesta_a = $_POST['respuesta_a'];
-    $respuesta_b = $_POST['respuesta_b'];
-    $respuesta_c = $_POST['respuesta_c'];
-    $respuesta_d = $_POST['respuesta_d'];
-    $correcta = $_POST['correcta'];
+    // Datos comunes a todos los tipos de ejercicio
+    $nombre_juego = $_POST['nombre_juego'] ?? null;
+    $dificultad = $_POST['dificultad'] ?? null;
+    $categoria = $_POST['categoria'] ?? null;
+    $tipo_ejercicio = $_POST['tipo_ejercicio'] ?? null;
+    $id_leccion = $_POST['id_leccion'] ?? null;
+    $correcta = $_POST['correcta'] ?? null;
 
-    // Insertar el ejercicio en la base de datos
-    $sql = "INSERT INTO ejercicio (nombre_juego, dificultad, categoria, id_leccion, respuesta_a, respuesta_b, respuesta_c, respuesta_d, correcta) VALUES (:nombre_juego, :dificultad, :categoria, :id_leccion, :respuesta_a, :respuesta_b, :respuesta_c, :respuesta_d, :correcta)";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([
-        'nombre_juego' => $nombre_juego,
-        'dificultad' => $dificultad,
-        'categoria' => $categoria,
-        'id_leccion' => $id_leccion,
-        'respuesta_a' => $respuesta_a,
-        'respuesta_b' => $respuesta_b,
-        'respuesta_c' => $respuesta_c,
-        'respuesta_d' => $respuesta_d,
-        'correcta' => $correcta,
-    ]);
+    // Variables para tipos específicos de ejercicio
+    $respuesta_a = $_POST['respuesta_a'] ?? null;
+    $respuesta_b = $_POST['respuesta_b'] ?? null;
+    $respuesta_c = $_POST['respuesta_c'] ?? null;
+    $respuesta_d = $_POST['respuesta_d'] ?? null;
 
-    $mensaje = "Ejercicio creado correctamente.";
+    $imagen_a = $_FILES['imagen_a']['name'] ?? null;
+    $imagen_b = $_FILES['imagen_b']['name'] ?? null;
+    $imagen_c = $_FILES['imagen_c']['name'] ?? null;
+    $imagen_d = $_FILES['imagen_d']['name'] ?? null;
+
+    // Validación del tipo de ejercicio
+    if ($tipo_ejercicio === "pregunta_respuesta") {
+        if (!$respuesta_a || !$respuesta_b || !$respuesta_c || !$respuesta_d || !$correcta) {
+            die("Faltan datos para el tipo de ejercicio 'Pregunta y Respuesta'.");
+        }
+
+        $sql = "INSERT INTO ejercicio (nombre_juego, dificultad, categoria, tipo_ejercicio, id_leccion, respuesta_a, respuesta_b, respuesta_c, 
+        respuesta_d, correcta) VALUES (:nombre_juego, :dificultad, :categoria, :tipo_ejercicio, :id_leccion, :respuesta_a, :respuesta_b, :respuesta_c, 
+        :respuesta_d, :correcta)";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+            'nombre_juego' => $nombre_juego,
+            'dificultad' => $dificultad,
+            'categoria' => $categoria,
+            'tipo_ejercicio' => $tipo_ejercicio,
+            'id_leccion' => $id_leccion,
+            'respuesta_a' => $respuesta_a,
+            'respuesta_b' => $respuesta_b,
+            'respuesta_c' => $respuesta_c,
+            'respuesta_d' => $respuesta_d,
+            'correcta' => $correcta,
+        ]);
+
+    } elseif ($tipo_ejercicio === "imagen") {
+        if (!$imagen_a || !$imagen_b || !$imagen_c || !$imagen_d || !$correcta) {
+            die("Faltan datos para el tipo de ejercicio 'Imagen'.");
+        }
+
+        // Subir imágenes
+        move_uploaded_file($_FILES['imagen_a']['tmp_name'], "../uploads/" . $imagen_a);
+        move_uploaded_file($_FILES['imagen_b']['tmp_name'], "../uploads/" . $imagen_b);
+        move_uploaded_file($_FILES['imagen_c']['tmp_name'], "../uploads/" . $imagen_c);
+        move_uploaded_file($_FILES['imagen_d']['tmp_name'], "../uploads/" . $imagen_d);
+
+        $sql = "INSERT INTO ejercicio (nombre_juego, dificultad, categoria, tipo_ejercicio, id_leccion, imagen_a, imagen_b, imagen_c, 
+        imagen_d, correcta) VALUES (:nombre_juego, :dificultad, :categoria, :tipo_ejercicio, :id_leccion, :imagen_a, :imagen_b, :imagen_c, 
+        :imagen_d, :correcta)";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+            'nombre_juego' => $nombre_juego,
+            'dificultad' => $dificultad,
+            'categoria' => $categoria,
+            'tipo_ejercicio' => $tipo_ejercicio,
+            'id_leccion' => $id_leccion,
+            'imagen_a' => $imagen_a,
+            'imagen_b' => $imagen_b,
+            'imagen_c' => $imagen_c,
+            'imagen_d' => $imagen_d,
+            'correcta' => $correcta,
+        ]);
+    } elseif ($tipo_ejercicio === "ordenar") {
+        // Validar que las respuestas no estén vacías
+        if (!$respuesta_a || !$respuesta_b || !$respuesta_c || !$respuesta_d) {
+            die("Faltan datos para el tipo de ejercicio 'Ordenar Elementos'.");
+        }
+    
+        // Insertar en la base de datos
+        $sql = "INSERT INTO ejercicio (nombre_juego, dificultad, categoria, tipo_ejercicio, id_leccion, respuesta_a, respuesta_b, respuesta_c, respuesta_d, correcta) 
+                VALUES (:nombre_juego, :dificultad, :categoria, :tipo_ejercicio, :id_leccion, :respuesta_a, :respuesta_b, :respuesta_c, :respuesta_d, :correcta)";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+            'nombre_juego' => $nombre_juego,
+            'dificultad' => $dificultad,
+            'categoria' => $categoria,
+            'tipo_ejercicio' => $tipo_ejercicio,
+            'id_leccion' => $id_leccion,
+            'respuesta_a' => $respuesta_a,
+            'respuesta_b' => $respuesta_b,
+            'respuesta_c' => $respuesta_c,
+            'respuesta_d' => $respuesta_d,
+            'correcta' => $correcta,
+        ]);
+    } else {
+        die("Tipo de ejercicio no reconocido.");
+    } $mensaje = "Ejercicio creado correctamente.";
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -95,24 +164,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Habilitar el select de lecciones
             document.getElementById("id_leccion").disabled = false;
         }
+
+        function mostrarFormulario() {
+            const tipo = document.getElementById("tipo_ejercicio").value;
+            const formularios = document.querySelectorAll(".formulario");
+
+            formularios.forEach(formulario => {
+                if (formulario.id === "formulario_" + tipo) {
+                    // Mostrar y habilitar el formulario seleccionado
+                    formulario.style.display = "block";
+                    formulario.querySelectorAll("input, select, textarea").forEach(campo => {
+                        campo.disabled = false;
+                    });
+                } else {
+                    // Ocultar y deshabilitar los demás formularios
+                    formulario.style.display = "none";
+                    formulario.querySelectorAll("input, select, textarea").forEach(campo => {
+                        campo.disabled = true;
+                    });
+                }
+            });
+        }
     </script>
 </head>
 
 <body>
-<?php include '../MenuPrincipal.html'; ?>
+    <?php include '../MenuPrincipal.html'; ?>
     <!-- Fondo de estrellas -->
     <div class="stars"></div>
     <div class="moving-stars"></div>
-    <div class="stars"></div>   
+    <div class="stars"></div>
 
     <div class="moving-stars"></div>
     <div class="stars-2"></div>
     <div class="moving-stars-2"></div>
-  
+
     <div class="stars"></div>
     <div class="moving-stars"></div>
-    <div class="stars"></div> 
-    
+    <div class="stars"></div>
+
     <div class="contenedor">
         <header>
             <h1>ADMINISTRADOR</h1>
@@ -123,7 +213,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h2>INGRESE LA PREGUNTA</h2>
                 <hr>
                 <div id="dashboard">
-                    <form action="" method="POST">
+                    <form action="" method="POST" enctype="multipart/form-data">
                         <!-- Selección de Materia -->
                         <label for="id_materia">Seleccione una materia:</label>
                         <select name="id_materia" id="id_materia" onchange="filtrarCursos()" required>
@@ -157,9 +247,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <?php endforeach; ?>
                         </select>
 
-                        <!-- Otros campos -->
+                        <br><br>
 
                         <h1>Ejercicio</h1>
+
+                        <br>
+
+                        <!-- Tipo de ejercicio -->
+                        <label for="tipo_ejercicio">Seleccione el tipo de ejercicio:</label>
+                        <select id="tipo_ejercicio" name="tipo_ejercicio" onchange="mostrarFormulario()" required>
+                            <option value="">-- Seleccione un tipo --</option>
+                            <option value="pregunta_respuesta">Pregunta y Respuesta</option>
+                            <option value="imagen">Tipo Imagen</option>
+                            <option value="ordenar">Ordenar Elementos</option>
+                        </select>
+
+                        <!-- Otros campos -->
 
                         <label for="nombre_juego">Pregunta:</label>
                         <br>
@@ -171,27 +274,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="categoria">Categoría:</label>
                         <input type="text" name="categoria" required>
 
-                        <h1>Respuestas</h1>
+                        <!-- Formularios -->
+                        <div id="formulario_pregunta_respuesta" class="formulario" style="display: none;">
 
-                        <label for="Respuesta A">Respuesta A:</label>
-                        <input type="text" name="respuesta_a" required>
+                            <label>Opciones:</label>
+                            <input type="text" name="respuesta_a" placeholder="Opción A" required>
+                            <input type="text" name="respuesta_b" placeholder="Opción B" required>
+                            <input type="text" name="respuesta_c" placeholder="Opción C" required>
+                            <input type="text" name="respuesta_d" placeholder="Opción D" required>
 
-                        <label for="Respuesta B">Respuesta B:</label>
-                        <input type="text" name="respuesta_b" required>
+                            <label>Respuesta Correcta:</label>
+                            <select name="correcta" required>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select>
+                        </div>
 
-                        <label for="Respuesta C">Respuesta C:</label>
-                        <input type="text" name="respuesta_c" required>
+                        <div id="formulario_imagen" class="formulario" style="display: none;">
+                            <label>Subir Imágenes:</label>
+                            <br>
+                            <input type="file" name="imagen_a" accept="image/*" required>
+                            <input type="file" name="imagen_b" accept="image/*" required>
+                            <input type="file" name="imagen_c" accept="image/*" required>
+                            <input type="file" name="imagen_d" accept="image/*" required>
 
-                        <label for="Respuesta D">Respuesta D:</label>
-                        <input type="text" name="respuesta_d" required>
+                            <br>
 
-                        <label for="correcta">Seleccione la respuesta correcta:</label>
-                        <select style="width: 50px;" name="correcta" id="correcta" required>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="D">D</option>
-                        </select>
+                            <label>Respuesta Correcta:</label>
+                            <select name="correcta" required>
+                                <option value="A">Imagen A</option>
+                                <option value="B">Imagen B</option>
+                                <option value="C">Imagen C</option>
+                                <option value="D">Imagen D</option>
+                            </select>
+                        </div>
+
+                        <div id="formulario_ordenar" class="formulario" style="display: none;">
+                            <label>Elementos a ordenar:</label>
+                            <div id="ordenar_elementos">
+                                <input type="text" name="respuesta_a" placeholder="1°">
+                                <input type="text" name="respuesta_b" placeholder="2°">
+                                <input type="text" name="respuesta_c" placeholder="3°">
+                                <input type="text" name="respuesta_d" placeholder="4°">
+                                <input type="text" name="correcta" placeholder="ABCD" value="ABCD" hidden>
+                            </div>
+                        </div>
                         <br>
                         <button style="border-radius: 10px;" type="submit">Crear Ejercicio</button>
                         <?php if (!empty($mensaje)): ?>
@@ -205,7 +334,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </body>
 
 <footer>
-        <p>© 2024 - Incluus. Todos los derechos reservados.</p>
-    </footer>
+    <p>© 2024 - Incluus. Todos los derechos reservados.</p>
+</footer>
 
 </html>
