@@ -92,6 +92,7 @@ ADD COLUMN imagen_b VARCHAR(255) NULL,
 ADD COLUMN imagen_c VARCHAR(255) NULL,
 ADD COLUMN imagen_d VARCHAR(255) NULL;
 
+ALTER TABLE `curso` ADD COLUMN `descripcion` VARCHAR(255)
 
 ----------------------------------------------------------------------------------------------------------------------
 

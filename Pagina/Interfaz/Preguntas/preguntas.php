@@ -117,10 +117,10 @@ function actualizarPuntosUsuario($conn, $userId, $idLeccion)
                         <?php elseif ($ejercicio['tipo_ejercicio'] === 'ordenar'): ?>
                             <div class="ordenar-container">
                                 <ul id="opciones-<?= $index ?>" class="sortable">
-                                    <li class="opcion">D. <?= htmlspecialchars($ejercicio['respuesta_d']) ?></li>
-                                    <li class="opcion">B. <?= htmlspecialchars($ejercicio['respuesta_b']) ?></li>
-                                    <li class="opcion">A. <?= htmlspecialchars($ejercicio['respuesta_a']) ?></li>
-                                    <li class="opcion">C. <?= htmlspecialchars($ejercicio['respuesta_c']) ?></li>
+                                    <li class="opcion"><span style="display: none;">D.</span><?= htmlspecialchars($ejercicio['respuesta_d']) ?></li>
+                                    <li class="opcion"><span style="display: none;">B.</span><?= htmlspecialchars($ejercicio['respuesta_b']) ?></li>
+                                    <li class="opcion"><span style="display: none;">A.</span><?= htmlspecialchars($ejercicio['respuesta_a']) ?></li>
+                                    <li class="opcion"><span style="display: none;">C.</span><?= htmlspecialchars($ejercicio['respuesta_c']) ?></li>
                                 </ul>
                             </div>
                         <?php else: ?>
@@ -142,7 +142,7 @@ function actualizarPuntosUsuario($conn, $userId, $idLeccion)
     <div class="footer">
         <button id="boton-comprobar" onclick="comprobarRespuesta()">Comprobar</button>
         <div id="mensaje-respuesta" style="color: #f00; font-weight: bold;"></div> <!-- Contenedor para el mensaje -->
-        <button id="boton-saltar" disabled onclick="siguienteEjercicio()">Siguiente</button>
+        <button style="background-color: #212121; color:#666;" id="boton-saltar" disabled onclick="siguienteEjercicio()">Siguiente</button>
     </div>
 
     <script>
@@ -185,7 +185,7 @@ function actualizarPuntosUsuario($conn, $userId, $idLeccion)
 
                     respuestaCorrectaSeleccionada = true;
                     botonSaltar.disabled = false;
-                    botonSaltar.style.backgroundColor = "#28a745";
+                    botonSaltar.style.backgroundColor = "#28a745"; // Cambio de color a verde
                     botonSaltar.style.color = "white";
                 } else {
                     mensajeContenedor.style.color = "#f00";
@@ -211,7 +211,7 @@ function actualizarPuntosUsuario($conn, $userId, $idLeccion)
 
                     respuestaCorrectaSeleccionada = true;
                     botonSaltar.disabled = false;
-                    botonSaltar.style.backgroundColor = "#28a745";
+                    botonSaltar.style.backgroundColor = "#28a745"; // Cambio de color a verde
                     botonSaltar.style.color = "white";
                 } else {
                     mensajeContenedor.style.color = "#f00";
@@ -224,53 +224,61 @@ function actualizarPuntosUsuario($conn, $userId, $idLeccion)
             }
         }
 
-
         function siguienteEjercicio() {
-            if (!respuestaCorrectaSeleccionada) return;
+    if (!respuestaCorrectaSeleccionada) return;
 
-            document.getElementById(`pregunta-${ejercicioActual}`).style.display = "none";
-            ejercicioActual++;
+    // Ocultar la pregunta actual
+    document.getElementById(`pregunta-${ejercicioActual}`).style.display = "none";
+    ejercicioActual++;
 
-            if (ejercicioActual < totalEjercicios) {
-                document.getElementById(`pregunta-${ejercicioActual}`).style.display = "block";
-                barraProgreso.value = (ejercicioActual / totalEjercicios) * 100;
-                document.getElementById("boton-saltar").disabled = true;
-            } else {
-                barraProgreso.value = 100;
+    // Mostrar la siguiente pregunta, si existe
+    if (ejercicioActual < totalEjercicios) {
+        document.getElementById(`pregunta-${ejercicioActual}`).style.display = "block";
+        barraProgreso.value = (ejercicioActual / totalEjercicios) * 100;
+        
+        // Restablecer el botón "Siguiente" a su color original
+        const botonSaltar = document.getElementById("boton-saltar");
+        botonSaltar.disabled = true;
+        botonSaltar.style.backgroundColor = "#212121";
+        botonSaltar.style.color = "#666"; // Coloca el color #666 para el texto
 
-                // Cambiar el contenido para mostrar la lección completada
-                document.querySelector(".container").innerHTML = `
+    } else {
+        barraProgreso.value = 100;
+
+        // Cambiar el contenido para mostrar la lección completada
+        document.querySelector(".container").innerHTML = `
             <h1 style='color: #28a745;'>¡Lección completada!</h1>
             <button id="boton-continuar" onclick="history.back()">Continuar con las lecciones</button>`;
 
-                // Reproducir el sonido al completar la lección
-                const sonidoLeccionCompletada = new Audio('sonidos/completado.mp3');
-                sonidoLeccionCompletada.play();
+        // Reproducir el sonido al completar la lección
+        const sonidoLeccionCompletada = new Audio('sonidos/completado.mp3');
+        sonidoLeccionCompletada.play();
 
-                // Ocultar los botones que ya no son necesarios
-                document.getElementById("boton-comprobar").style.display = "none";
-                document.getElementById("boton-saltar").style.display = "none";
+        // Ocultar los botones que ya no son necesarios
+        document.getElementById("boton-comprobar").style.display = "none";
+        document.getElementById("boton-saltar").style.display = "none";
 
-                // Actualizar los puntos en la base de datos con AJAX
-                const xhr = new XMLHttpRequest();
-                xhr.open("POST", "actualizarPuntos.php", true); // Ruta relativa aquí
-                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        console.log("Respuesta del servidor:", xhr.responseText);
-                    } else if (xhr.readyState === 4) {
-                        console.error("Error en la solicitud AJAX:", xhr.status, xhr.statusText);
-                    }
-                };
-
-                xhr.send(`id_leccion=${<?= $id_leccion ?>}&id_usuario=${<?= $_SESSION['user_id'] ?>}`);
+        // Actualizar los puntos en la base de datos con AJAX
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "actualizarPuntos.php", true); // Ruta relativa aquí
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log("Respuesta del servidor:", xhr.responseText);
+            } else if (xhr.readyState === 4) {
+                console.error("Error en la solicitud AJAX:", xhr.status, xhr.statusText);
             }
-        }
+        };
+
+        xhr.send(`id_leccion=${<?= $id_leccion ?>}&id_usuario=${<?= $_SESSION['user_id'] ?>}`);
+    }
+}
 
         $(function() {
             $(".sortable").sortable();
             $(".sortable").disableSelection();
         });
+
 
         function comprobarOrden(index) {
             const opciones = $(`#opciones-${index} .opcion`).map(function() {

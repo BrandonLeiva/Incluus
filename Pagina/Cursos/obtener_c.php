@@ -32,7 +32,7 @@ try {
     }
 
     // Consulta para obtener los cursos según la materia seleccionada
-    $stmtCursos = $conn->prepare("SELECT curso.id_curso, curso.nivel, materia.nombre_materia
+    $stmtCursos = $conn->prepare("SELECT curso.id_curso, curso.nivel, curso.descripcion, materia.nombre_materia
                                   FROM curso
                                   JOIN materia ON curso.id_materia = materia.id_materia
                                   WHERE materia.nombre_materia = :filtro");
@@ -41,7 +41,6 @@ try {
 
     // Obtener todos los cursos
     $cursos = $stmtCursos->fetchAll(PDO::FETCH_ASSOC);
-
 } catch (PDOException $e) {
     error_log("Database error: " . $e->getMessage()); // Registrar el error en un log
     echo "Error en la base de datos. Por favor, inténtelo más tarde.";
@@ -51,6 +50,7 @@ try {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,81 +58,95 @@ try {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="cursos.css">
 </head>
+
 <body class="d-flex justify-content-center align-items-center vh-100">
 
-<div class="sidebar glass">
-  <a href="#" class="sidebar-item ">
-    <i class="icon">🏠</i>
-    <span>Inicio</span>
-  </a>
-  <a href="#" class="sidebar-item ">
-    <i class="icon">📘</i>
-    <span>Lecciones</span>
-  </a>
-  <a href="#" class="sidebar-item active">
-    <i class="icon">📚</i>
-    <span>Niveles</span>
-  </a>
-  <a href="#" class="sidebar-item">
-    <i class="icon">👤</i>
-    <span>Perfil</span>
-  </a>
-  <a href="#" class="sidebar-item">
-    <i class="icon">⚙️</i>
-    <span>Configuración</span>
-  </a>
- 
-</div>
+    <div class="sidebar glass">
+        <a href="#" class="sidebar-item ">
+            <i class="icon">🏠</i>
+            <span>Inicio</span>
+        </a>
+        <a href="#" class="sidebar-item ">
+            <i class="icon">📘</i>
+            <span>Lecciones</span>
+        </a>
+        <a href="#" class="sidebar-item active">
+            <i class="icon">📚</i>
+            <span>Niveles</span>
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="icon">👤</i>
+            <span>Perfil</span>
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="icon">⚙️</i>
+            <span>Configuración</span>
+        </a>
+
+    </div>
 
 
 
-        <!-- Fondo de estrellas -->
-        <div class="stars"></div>
+    <!-- Fondo de estrellas -->
+    <div class="stars"></div>
     <div class="moving-stars"></div>
-    <div class="stars"></div>   
+    <div class="stars"></div>
 
     <div class="moving-stars"></div>
     <div class="stars-2"></div>
     <div class="moving-stars-2"></div>
-  
+
     <div class="stars"></div>
     <div class="moving-stars"></div>
-    <div class="stars"></div>  
+    <div class="stars"></div>
 
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col" style="max-width: 30rem;">
-                <?php
-                $offset = 0;
-                // Itera sobre los resultados y genera un círculo para cada curso
-                if (count($cursos) > 0) {
-                    foreach ($cursos as $curso) {
-                        ?>
-                        <div class="row" style="margin-left: <?= $offset ?>px;">
-                            <div class="col">
-                            <form action="../interfaz/interfaz.php" method="GET">
-                            <input type="hidden" name="materia" value="<?php echo htmlspecialchars($curso['nombre_materia']); ?>">
-                            <input type="hidden" name="nivel" value="<?php echo htmlspecialchars($curso['nivel']); ?>">
-                                <button class="course-circle btn" onclick="startCourse(<?= $curso['id_curso'] ?>)">
-                    
-                                    <span class="course-title text">Curso Nivel <?= $curso['nivel'] ?></span>
-                                </button>
-                
-                            </form>
+    <div class="row justify-content-center">
+        <div class="item-hints">
+            <?php
+            $offset = 0;
+            // Itera sobre los resultados y genera un círculo para cada curso
+            if (count($cursos) > 0) {
+                foreach ($cursos as $curso) {
+            ?>
+                    <div class="hint" data-position="4">
+                        <span class="hint-radius"></span>
+                        <div class="col" style="max-width: 30rem;">
+                            <div class="row" style="margin-left: <?= $offset ?>px;">
+                                <div class="col">
+                                    <form action="../interfaz/interfaz.php" method="GET">
+                                        <input type="hidden" name="materia" value="<?php echo htmlspecialchars($curso['nombre_materia']); ?>">
+                                        <input type="hidden" name="nivel" value="<?php echo htmlspecialchars($curso['nivel']); ?>">
+                                        <button class="course-circle btn" onclick="startCourse(<?= $curso['id_curso'] ?>)">
+                                            <span class="course-title text">Curso Nivel <?= $curso['nivel'] ?></span>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                        <?php
-                        $offset += 20; // Incrementa el margen izquierdo para cada fila
-                    }
-                } else {
-                    echo "<p>No hay cursos disponibles para esta materia.</p>";
+                        <div class="hint-content do--split-children" >
+                            <p>
+                                <?php
+                                // Descripción personalizada para cada curso
+                                echo htmlspecialchars($curso['descripcion'] ?? 'Descripción no disponible para este curso.');
+                                ?>
+                            </p>
+                        </div>
+                    </div>
+            <?php
+                    $offset += 20; // Incrementa el margen izquierdo para cada fila
                 }
-                ?>
-            </div>
+            } else {
+                echo "<p>No hay cursos disponibles para esta materia.</p>";
+            }
+            ?>
         </div>
     </div>
+</div>
+
 
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

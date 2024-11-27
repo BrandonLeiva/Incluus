@@ -60,11 +60,76 @@ body {
 
 p {
     font-size: 18px;
-    color: #444;
-    padding: 20px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+
+/************************************ DESCRIPCIÓN DEL CURSO ******************************/
+.item-hints .hint {
+    margin: 22px auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .item-hints .hint-content {
+    width: 470px;
+    position: absolute;
+    z-index: 5;
+    padding: 35px 0;
+    opacity: 0;
+    transition: opacity 0.7s ease, visibility 0.7s ease;
+    color: #fff;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .item-hints .hint:hover .hint-content {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .item-hints .hint-content::before {
+    width: 0px;
+    bottom: 29px;
+    left: 0;
+    content: "";
+    background-color: #fff;
+    height: 1px;
+    position: absolute;
+    transition: width 0.4s;
+  }
+
+  .item-hints .hint:hover .hint-content::before {
+    width: 470px;
+    transition: width 0.4s;
+  }
+
+  .item-hints .hint-content::after {
+    transform-origin: 0 50%;
+    transform: rotate(-225deg);
+    bottom: 29px;
+    left: 0;
+    width: 40px;
+    content: "";
+    background-color: #fff;
+    height: 1px;
+    position: absolute;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+  }
+
+  .item-hints .hint:hover .hint-content::after {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .item-hints .hint[data-position="4"] .hint-content {
+    bottom: 155px;
+    left: 50%;
+    margin-left: 33px;
+  }
 
 /************************************ EFECTOS ******************************/
 

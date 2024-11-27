@@ -84,6 +84,10 @@ $materias = $conn->query("SELECT * FROM materia")->fetchAll(PDO::FETCH_ASSOC);
                             <label for="nuevo_nivel">Nuevo curso:</label>
                             <input type="number" name="nuevo_nivel" required>
 
+                            <label for="nueva_descripcion">Nueva descripción:</label>
+                            <br>
+                            <textarea name="nueva_descripcion" rows="3" required></textarea>
+                            <br>
                             <button style="border-radius: 10px;" type="submit">Modificar Curso</button>
                         </form>
 
@@ -92,11 +96,13 @@ $materias = $conn->query("SELECT * FROM materia")->fetchAll(PDO::FETCH_ASSOC);
                     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_curso'])) {
                         $id_curso = $_POST['id_curso'];
                         $nuevo_nivel = $_POST['nuevo_nivel'];
+                        $nueva_descripcion = $_POST['nueva_descripcion'];
 
-                        $sql = "UPDATE curso SET nivel = :nuevo_nivel WHERE id_curso = :id_curso";
+                        $sql = "UPDATE curso SET nivel = :nuevo_nivel, descripcion = :nueva_descripcion WHERE id_curso = :id_curso";
                         $stmt = $conn->prepare($sql);
                         $stmt->execute([
                             'nuevo_nivel' => $nuevo_nivel,
+                            'nueva_descripcion' => $nueva_descripcion,
                             'id_curso' => $id_curso
                         ]);
 

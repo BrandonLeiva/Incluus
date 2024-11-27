@@ -10,12 +10,13 @@ $materias = $conn->query("SELECT * FROM materia")->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nivel = $_POST['nivel'];
-    $id_materia = $_POST['id_materia']; // Asegurarse de que este valor sea el correcto
+    $id_materia = $_POST['id_materia']; 
+    $descripcion = $_POST['descripcion'];
 
     // Insertar el curso en la base de datos
-    $sql = "INSERT INTO curso (nivel, id_materia) VALUES (:nivel, :id_materia)";
+    $sql = "INSERT INTO curso (nivel, id_materia, descripcion) VALUES (:nivel, :id_materia, :descripcion)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute(['nivel' => $nivel, 'id_materia' => $id_materia]);
+    $stmt->execute(['nivel' => $nivel, 'id_materia' => $id_materia, 'descripcion' => $descripcion]);
 
     $mensaje = "Curso creado correctamente.";
 }
@@ -74,6 +75,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                         <label for="nivel">Nivel del curso:</label>
                         <input type="number" name="nivel" required>
+
+                        <label for="descripcion">Descripción del curso:</label>
+                        <textarea name="descripcion" id="" cols="30" rows="10"></textarea>
+
+                        <br><br>
 
                         <button style="border-radius: 10px;" type="submit">Crear Curso</button>
                         <?php if (!empty($mensaje)): ?>
