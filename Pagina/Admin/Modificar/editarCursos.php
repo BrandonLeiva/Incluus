@@ -39,8 +39,9 @@ $materias = $conn->query("SELECT * FROM materia")->fetchAll(PDO::FETCH_ASSOC);
 <div class="stars"></div>
     <div class="contenedor">
         <header>
-            <h1>ADMINISTRADOR (Modificar)</h1>
+            <h1>ADMINISTRADOR</h1>
         </header>
+        <?php include("../submenu.html") ?>
         <div class="contenedor-info">
             <?php include("menu2.php") ?>
             <div class="panel">

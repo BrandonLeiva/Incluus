@@ -64,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <header>
             <h1>ADMINISTRADOR</h1>
         </header>
+        <?php include("../submenu.html") ?>
         <div class="contenedor-info">
             <?php include("menu.php") ?>
             <div class="panel">

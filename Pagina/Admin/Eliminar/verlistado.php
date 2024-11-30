@@ -41,6 +41,7 @@ $materias = $conn->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         <header>
             <h1>ADMINISTRADOR</h1>
         </header>
+        <?php include("../submenu.html") ?>
         <div class="contenedor-info">
             <?php include("menu.php") ?>
             <div class="panel">
@@ -61,7 +62,7 @@ $materias = $conn->query($sql)->fetchAll(PDO::FETCH_ASSOC);
                                     <td>
                                         <form action="../eliminar/eliminarmateria.php" method="POST" style="display:inline;" onsubmit="return confirmarEliminar(event)">
                                             <input type="hidden" name="eliminar_id" value="<?php echo $materia['id_materia']; ?>">
-                                            <button type="submit">Eliminar</button>
+                                            <button style="border-radius: 15px; padding: 10px;" type="submit">Eliminar</button>
                                         </form>
                                     </td>
                                 </tr>
