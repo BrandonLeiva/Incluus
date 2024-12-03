@@ -94,11 +94,9 @@ $logged_in_user_id = $_SESSION['user_id']; // Asume que el ID del usuario loguea
                     if ($stmt->rowCount() > 0) {
                         $position = 1;
                         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                            // Agrega la clase "highlight" si el usuario actual está logueado
                             $highlight_class = ($row['id_usuario'] == $logged_in_user_id) ? 'usuario-logeado' : '';
                             echo "<tr class='$highlight_class'>";
-                            echo "<td class='lugar'>";
-                            // Agregar íconos para los tres primeros lugares
+                            echo "<td class='lugar' data-label='Posición'>";
                             if ($position == 1) {
                                 echo "<i class='fa-solid fa-crown gold-icon'></i>";
                             } elseif ($position == 2) {
@@ -109,21 +107,17 @@ $logged_in_user_id = $_SESSION['user_id']; // Asume que el ID del usuario loguea
                                 echo $position . "°";
                             }
                             echo "</td>";
-
-                            echo "<td>" . htmlspecialchars($row['nombre']) . " " . htmlspecialchars($row['apellido']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['correo']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['edad']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['puntos_totales']) . "</td>";
+                            echo "<td data-label='Estudiante'>" . htmlspecialchars($row['nombre']) . " " . htmlspecialchars($row['apellido']) . "</td>";
+                            echo "<td data-label='Correo'>" . htmlspecialchars($row['correo']) . "</td>";
+                            echo "<td data-label='Edad'>" . htmlspecialchars($row['edad']) . "</td>";
+                            echo "<td data-label='Puntos'>" . htmlspecialchars($row['puntos_totales']) . "</td>";
                             echo "</tr>";
                             $position++;
                         }
                     } else {
                         echo "<tr><td colspan='5' style='text-align: center; font-size: 1.2em; color: #555;'>No se han encontrado usuarios.</td></tr>";
                     }
-
-
                     ?>
-
                 </tbody>
             </table>
         </div>

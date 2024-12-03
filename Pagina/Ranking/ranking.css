@@ -217,6 +217,40 @@ footer {
     font-weight: bold;
 
 }
+
+
+@media (max-width: 750px) {
+    table {
+        width: 100%;
+        overflow-x: auto; 
+    }
+
+    thead {
+        display: none; 
+    }
+
+    tbody tr {
+        display: block; 
+        margin-bottom: 10px; /
+    }
+
+    tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    tbody td::before {
+        content: attr(data-label); 
+        font-weight: bold;
+        color: #683FEA;
+    }
+
+    .w-50.w-50 {
+        width: 100% !important;
+    }
+}
+
   
 /************************************ EFECTOS ******************************/
 

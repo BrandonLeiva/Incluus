@@ -73,6 +73,10 @@ h1 {
         text-align:center;
 
     }
+
+    .w-50.w-50 {
+        width: 100% !important;
+    }
 }
 
 
@@ -253,7 +257,7 @@ label {
     font-weight: 500; /* Negrita */
 }
 
-select, input[type="number"], input[type="text"] {
+select, input[type="number"], input[type="text"], input[type="file"], input[type="url"] {
     color:#f1f2f8 ;
     background-color: transparent;
     width: 100%; /* Ancho completo */

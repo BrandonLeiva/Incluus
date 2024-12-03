@@ -300,7 +300,7 @@ h1 {
     }
 
     .seccion-perfil-usuario .perfil-usuario-avatar {
-        left: calc(38% - 65px);
+        left: calc(32% - 65px);
     }
 
     .baner img{
@@ -313,6 +313,8 @@ h1 {
     .baner img{
         width: 100%;
     }
+
+
 
 }
 

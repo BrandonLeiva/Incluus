@@ -94,6 +94,17 @@ ADD COLUMN imagen_d VARCHAR(255) NULL;
 
 ALTER TABLE `curso` ADD COLUMN `descripcion` VARCHAR(255)
 
+CREATE TABLE contenido (
+    id_contenido INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_curso INTEGER NOT NULL,
+    numero_contenido INT NOT NULL,
+    puntos_minimo INT NOT NULL,
+    titulo VARCHAR(100) NOT NULL,
+    texto TEXT NOT NULL,
+    url_youtube VARCHAR(255) NOT NULL,
+    FOREIGN KEY (id_curso) REFERENCES curso(id_curso)
+);
+
 ----------------------------------------------------------------------------------------------------------------------
 
 -- CONSULTAS SQL --

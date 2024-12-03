@@ -87,7 +87,7 @@ $materias = $conn->query("SELECT * FROM materia")->fetchAll(PDO::FETCH_ASSOC);
 
                             <label for="nueva_descripcion">Nueva descripción:</label>
                             <br>
-                            <textarea name="nueva_descripcion" rows="3" required></textarea>
+                            <textarea name="nueva_descripcion" cols="30" rows="10" required></textarea>
                             <br>
                             <button style="border-radius: 10px;" type="submit">Modificar Curso</button>
                         </form>
