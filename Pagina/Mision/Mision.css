@@ -16,6 +16,12 @@ header {
     box-shadow: 0 5px 9px rgba(32, 31, 31, 0.1);
 }
 
+
+#h1{
+    font-size: 2.5em;
+    margin: 10px 0;
+    animation: bounce 2s ease infinite alternate; /* Suave animación de rebote */
+}
 /************************************MENU************************************/
 /* Barra de navegación */
 .bar {
@@ -63,6 +69,7 @@ header {
 h1 {
     margin: 0;
     font-size: 2.5rem;
+    
 }
 
 section {
@@ -130,4 +137,32 @@ footer {
     color: white;
     text-align: center;
     padding: 10px 0;
+}
+
+/* Menú normal (visible solo en pantallas mayores a 750px) */
+.menu-normal {
+    display: flex !important;
+  }
+  
+  .menu-movil {
+    display: none !important;
+  }
+  
+  /* Menú móvil (visible solo en pantallas menores o iguales a 750px) */
+  @media (max-width: 750px) {
+    .menu-normal {
+        display: none !important;
+    }
+  
+    .menu-movil {
+        display: block !important;
+        
+    }
+  }
+
+
+  /* Keyframes para animación de rebote */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
 }

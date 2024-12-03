@@ -124,11 +124,43 @@ header {
     .servicio-fila {
         width: 100%;
     }
+
+    .w-50.w-50 {
+        width: 100% !important;
+    }
+
 }
 
 @media (max-width: 576px) {
     .icono-wrap {
         flex-wrap: wrap;
         justify-content: center;
+    }
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+  } 
+
+/* Menú normal (visible solo en pantallas mayores a 750px) */
+.menu-normal {
+    display: flex !important;
+}
+
+.menu-movil {
+    display: none !important;
+}
+
+/* Menú móvil (visible solo en pantallas menores o iguales a 750px) */
+@media (max-width: 750px) {
+    .menu-normal {
+        display: none !important;
+    }
+
+    .menu-movil {
+        display: block !important;
     }
 }

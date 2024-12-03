@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <title>Home</title>
 </head>
 
@@ -41,21 +41,52 @@
     <!--INTRO-->
     <!--=========================================-->
     <header>
-        <h1 id="h1"><strong>Inicio</strong></h1>
+        <h1 id="h1"><strong>INCLUUS</strong></h1>
         <p></p>
-        <p id="h1">Equipo de colaboradores que hacen posible este proyecto</p>
+        <p id="h1">Bienvenido a la mejor plataforma educativa</p>
 
     </header>
 
-    <div class=" d-flex justify-content-center ">
-    <div class="row bar ">
-        <div class="col-2 mision "><a id="nav" href="../Perfil/Perfil.php">PORTAL</a></div>
-        <div class="col-2 mision"><a id="nav" href="../Home/home.php">HOME</a></div>
-        <div class="col-2 mision"><a id="nav" href="../Equipo/equipo.html">EQUIPO</a></div>
-        <div class="col-2 mision"><a id="nav" href="../Mision/mision.html">MISION</a></div>
-        <div class="col-2 mision"><a id="nav" href="../Metodologia2/metoxd.html">METODOLOGIA</a></div>
+    <!-- Menú Normal -->
+    <div class="menu-normal d-flex justify-content-center">
+        <div class="row bar">
+            <div class="col-2 mision"><a id="nav" href="../Perfil/Perfil.php">PORTAL</a></div>
+            <div class="col-2 mision"><a id="nav" href="../Home/home.php">HOME</a></div>
+            <div class="col-2 mision"><a id="nav" href="../Equipo/equipo.html">EQUIPO</a></div>
+            <div class="col-2 mision"><a id="nav" href="../Mision/mision.html">MISION</a></div>
+            <div class="col-2 mision"><a id="nav" href="../Metodologia2/metoxd.html">METODOLOGIA</a></div>
+        </div>
     </div>
-    </div>
+
+    <!-- Menú Móvil -->
+    <nav class="menu-movil navbar navbar-expand-lg navbar-light" style="background-color: #f4f6f9;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color: #6a5acd; font-weight: bold;">Inicio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Perfil/Perfil.php" style="color: #6a5acd;">Portal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Home/home.php" style="color: #6a5acd;">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Equipo/equipo.html" style="color: #6a5acd;">Equipo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Mision/mision.html" style="color: #6a5acd;">Misión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Metodologia2/metoxd.html" style="color: #6a5acd;">Metodología</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
 
     <div class="fade-in">
         <section class="w-50 mx-auto text-center pt-5">
@@ -65,6 +96,7 @@
             </p>
         </section>
     </div>
+
 
     <!--=========================================-->
     <!--DESTACADO-->
@@ -127,6 +159,10 @@
                 </div>
 
         </section>
+
+        <footer>
+    <p>© 2024 - Incluus. Todos los derechos reservados.</p>
+</footer>
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
