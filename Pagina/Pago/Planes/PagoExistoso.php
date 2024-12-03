@@ -13,24 +13,28 @@ if (!isset($_SESSION['user_id'])) {
 // Si se envía la solicitud de cambio de rol
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userId = (int) $_SESSION['user_id'];  // Asegurarse de que el ID sea un número entero
-    $newRole = '0';  // Establecer el nuevo rol como una cadena '0'
+    $newRole = 0;  // Establecer el nuevo rol como 0 (numérico)
 
-    // Actualizar el campo 'rol' en la base de datos
-    $stmt = $conn->prepare("UPDATE usuario SET rol = 0 WHERE id_usuario = ?");
-    $stmt->execute([
-        'rol' => $rol
-    ]);
+    try {
+        // Preparar la consulta de actualización
+        $stmt = $conn->prepare("UPDATE usuario SET rol = :rol WHERE id_usuario = :id");
+        $stmt->bindParam(':rol', $newRole, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
 
-    if ($stmt->execute()) {
-        echo "Rol actualizado con éxito.";
-        // Redirigir a una página de éxito o dashboard
-        header("Location: ../home/dashboard.php");
-        exit;
-    } else {
-        echo "Error al actualizar el rol.";
+        // Ejecutar la consulta
+        if ($stmt->execute()) {
+            echo "Rol actualizado con éxito.";
+            // Redirigir a una página de éxito o dashboard
+            header("Location: ../../perfil/perfil.php");
+            exit;
+        } else {
+            echo "Error al actualizar el rol.";
+        }
+    } catch (PDOException $e) {
+        // Manejo de errores
+        echo "Error: " . $e->getMessage();
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -38,10 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pago exitoso</title>
 </head>
 <body>
     <h1>Pago exitoso</h1>
-    <button type="submit">Continuar</button>
+
+    <!-- Formulario para enviar la solicitud de cambio de rol -->
+    <form method="POST" action="">
+        <button type="submit">Continuar</button>
+    </form>
 </body>
 </html>
