@@ -3,7 +3,7 @@
 <html>
 
 <head>
-	<title>Iniciar</title>
+	<title>Portal</title>
 	<link rel="stylesheet" type="text/css" href="style2.css">
 	<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
 </head>
