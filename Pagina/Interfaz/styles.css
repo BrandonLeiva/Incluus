@@ -101,6 +101,16 @@ body{
     transform: translateY(-2px);
   }
   
+  /* Estilo específico para el botón cuando el tipo sea 'contenido' */
+.btn-contenido:hover {
+  background: linear-gradient(0deg, #FFD700, #DAA520); /* Dorado */
+  box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4),
+              inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2),
+              0px 0px 0px 4px rgba(255, 255, 255, 0.2),
+              0px 0px 180px 0px #FFD700; /* Dorado */
+  transform: translateY(-2px);
+}
+
   .btn:hover .text {
     color: white;
   }

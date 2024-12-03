@@ -25,11 +25,19 @@
             </a>
         </li>
         <li>
+            <a href="agregarContenido.php">
+                <div class="icono" id="3">
+                <i class="fa-solid fa-book"></i>
+                </div>
+                Nuevo Contenido
+            </a>
+        </li>
+        <li>
             <a href="agregarEjercicios.php">
                 <div class="icono" id="3">
                     <i class="fa-solid fa-list"></i>
                 </div>
-                Agregar Ejercicio
+                Nuevo Ejercicio
             </a>
         </li>
     </ul>

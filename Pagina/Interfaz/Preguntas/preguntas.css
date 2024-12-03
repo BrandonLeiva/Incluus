@@ -77,14 +77,25 @@ body, html {
     transform: translateY(-2px);
 }
 
-/* RESPUESTAS DE IMAGENES */
+@media (max-width: 750px) {
+    .respuestas button{
+        width: 310px;
+    }
+}
 
+/***************************** RESPUESTAS DE IMAGENES *********************************/
+.imagenes {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las opciones se acomoden en varias filas si el espacio es limitado */
+    justify-content: center;
+    gap: 20px; /* Espaciado uniforme entre las opciones */
+}
 
 .opcion-imagen {
     margin-bottom: 180px;
     height: 100%;
-    display: flex; /* Aplica flex a la opción */
-    flex-direction: row; /* Asegúrate de que los elementos hijos estén en fila */
+    display: flex; 
+    flex-direction: row; 
     display: inline-block;
     padding: 5px;
     border: 2px solid transparent;
@@ -102,16 +113,51 @@ body, html {
 }
 
 .opcion-imagen:focus {
-    border-color: #683FEA; /* Cambia el borde a verde */
+    border-color: #683FEA; 
     background-color: #222;
     transform: scale(1.1);
 }
 
 .opcion-imagen:hover {
-    border-color: #888; /* Borde en hover */
+    border-color: #888; 
 }
 
-/* RESPUESTAS DE ORDENAR ELEMENTOS */
+@media screen and (max-width: 750px) {
+    .opcion-imagen {
+        width: 190px; /* Ocupa todo el ancho disponible en pantallas pequeñas */
+        max-width: none; /* Permite que se extienda si es necesario */
+        margin-bottom: 10px;
+        
+    }
+
+    .opcion-imagen img {
+        width: 100%; /* Asegura que la imagen se ajuste al nuevo ancho del botón */
+        height: 150px;
+    }
+
+    
+}
+
+@media screen and (max-width: 420px) {
+    .imagenes {
+        gap: 10px;
+    }
+
+    .opcion-imagen {
+        width: 150px; 
+        margin-bottom: 10px;
+        padding: 10px; 
+        border-radius: 8px; 
+    }
+
+    .opcion-imagen img {
+        width: 100%; 
+        height: 120px;
+    }
+
+}
+
+/*************************RESPUESTAS DE ORDENAR ELEMENTOS ****************************/
 
 .ordenar-container{
     margin-bottom: 110px;
@@ -133,6 +179,14 @@ body, html {
     box-shadow: 0.5px 1px #fafafa;
     cursor: pointer;
 }
+
+@media (max-width: 750px) {
+    .opcion{
+        width: 260px;
+    }
+
+}
+
 
 /* FOOTER */
 
@@ -287,4 +341,12 @@ body, html {
 
 .pregunta.show {
     opacity: 1;  /* Cuando se muestra la clase 'show', la opacidad pasa a 1 */
+}
+
+
+
+@media screen and (max-width: 800px) {
+    #progress-bar {
+        width: 300px;
+    }
 }
