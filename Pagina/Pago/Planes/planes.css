@@ -13,7 +13,7 @@ body {
   
   .container {
     display: flex;
-    justify-content: center; /* Centra horizontalmente */
+    justify-content: space-around; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
     height: 100vh; /* Asegúrate de que el contenedor ocupe toda la altura de la ventana */
     text-align: center; /* Esto es útil si el contenido es texto */
