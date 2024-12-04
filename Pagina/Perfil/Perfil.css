@@ -368,10 +368,10 @@ footer {
 
 .container-card {
     display: flex;
-    justify-content: space-around; /* Centra horizontalmente */
+    justify-content: space-evenly; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
-    height: 100vh; /* Asegúrate de que el contenedor ocupe toda la altura de la ventana */
     text-align: center; /* Esto es útil si el contenido es texto */
+    margin-top: 50px;
 }
 
 .card {
@@ -387,7 +387,13 @@ footer {
     padding: 1.5rem;
   }
 
-.title {
+  .header-card {
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+.title-card {
     font-size: 1.5rem;
     line-height: 2rem;
     font-weight: 700;
@@ -395,7 +401,7 @@ footer {
   }
   
   .price {
-    font-size: 3.75rem;
+    font-size: 2.75rem;
     line-height: 1;
     font-weight: 700;
     color: #fff
@@ -443,6 +449,10 @@ footer {
     letter-spacing: 0.05em;
     color: rgba(17, 24, 39, 1);
   }
+
+  ol, ul {
+    padding-left: 0rem !important;
+}
 
   
 /************************************ EFECTOS ******************************/
