@@ -38,18 +38,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pago exitoso</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pago Exitoso</title>
+  <link rel="stylesheet" href="PagoExistoso.css">
 </head>
 <body>
-    <h1>Pago exitoso</h1>
+    <!-- Fondo de estrellas -->
+    <div class="stars"></div>
+    <div class="moving-stars"></div>
+    <div class="stars"></div>
 
-    <!-- Formulario para enviar la solicitud de cambio de rol -->
+    <div class="moving-stars"></div>
+    <div class="stars-2"></div>
+    <div class="moving-stars-2"></div>
+
+    <div class="stars"></div>
+    <div class="moving-stars"></div>
+    <div class="stars"></div>
+    
+  <div class="success-container">
+  <h1 class="main-title">¡Gracias por apoyar Incluus!</h1>
+    <div class="icon">
+      ✔
+    </div>
+    <h1>Pago Exitoso</h1>
+    <p>¡Gracias por tu compra! Tu pago se ha realizado correctamente.</p>
     <form method="POST" action="">
         <button type="submit">Continuar</button>
     </form>
+  </div>
 </body>
 </html>

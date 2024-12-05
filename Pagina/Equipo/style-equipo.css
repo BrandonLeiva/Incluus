@@ -1,5 +1,8 @@
+/* Importación de fuente */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   background-color: #f4f4f9;
   color: #333;
   margin: 0;
@@ -157,6 +160,7 @@ footer {
 
   .developers-section {
       padding: 10px;
+      margin: 10px;
   }
 
   .step-container {
