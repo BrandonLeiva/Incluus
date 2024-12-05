@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Home/style.css">
     <title>Home</title>
 </head>
 
@@ -23,7 +23,7 @@
     <div class="menu-normal d-flex justify-content-center">
         <div class="row bar">
             <div class="col-2 mision"><a id="nav" href="../Perfil/Perfil.php">PORTAL</a></div>
-            <div class="col-2 mision"><a id="nav" href="../Home/home.php">HOME</a></div>
+            <div class="col-2 mision"><a id="nav" href="index.php">HOME</a></div>
             <div class="col-2 mision"><a id="nav" href="../Equipo/equipo.html">EQUIPO</a></div>
             <div class="col-2 mision"><a id="nav" href="../Mision/mision.html">MISION</a></div>
             <div class="col-2 mision"><a id="nav" href="../Metodologia2/metoxd.html">METODOLOGIA</a></div>
@@ -79,7 +79,7 @@
 
             <div class="row w-100 mx-auto servicio-fila">
                 <div class="col-lg-6 col-md-12 col-sm-12 my-5 d-flex justify-content-start icono-wrap">
-                    <img src="img/fast.png" alt="car" width="50%">
+                    <img src="Home/img/fast.png" alt="car" width="50%">
                     <div>
                         <h3 class="fs-5 mt-4 px-4 pb-1">Lecciones rápidas y dinámicas</h3>
                         <p class="px-4">Avanza con sesiones de 5 a 10 minutos al día. Aprende conceptos clave de forma rápida y efectiva,
@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="col-lg-6 col-md-12 col-sm-12 my-5 d-flex justify-content-start icono-wrap">
-                    <img src="img/creatividad.png" alt="location" width="50%">
+                    <img src="Home/img/creatividad.png" alt="location" width="50%">
                     <div>
                         <h3 class="fs-5 mt-4 px-4 pb-1">Método interactivo</h3>
                         <p class="px-4">Aprende de forma divertida participando con juegos, quizzes y actividades prácticas diseñadas para poner
@@ -99,7 +99,7 @@
 
                 <div class="row w-100 mx-auto servicio-fila" id="intro">
                     <div class="col-lg-6 col-md-12 col-sm-12 my-5 d-flex justify-content-start icono-wrap">
-                        <img src="img/certificado.png" alt="padlock" width="50%">
+                        <img src="Home/img/certificado.png" alt="padlock" width="50%">
                         <div>
                             <h3 class="fs-5 mt-4 px-4 pb-1">Certificación al completar cursos</h3>
                             <p class="px-4">Acredita tus logros con certificados reconocidos. Cada vez que termines un curso, recibiras un certificado
@@ -109,7 +109,7 @@
                     </div>
 
                     <div class="col-lg-6 col-md-12 col-sm-12 my-5 d-flex justify-content-start icono-wrap">
-                        <img src="img/progreso.png" alt="money" width="50%">
+                        <img src="Home/img/progreso.png" alt="money" width="50%">
                         <div>
                             <h3 class="fs-5 mt-4 px-4 pb-1">Seguimiento de progreso</h3>
                             <p class="px-4">¡Mira todo lo que has avanzado! Con nuestro sistema de seguimiento, puedes ver cuántas lecciones has completado
@@ -126,7 +126,7 @@
                             Aprender es una aventura emocionante, ¡y estamos aquí para acompañarte en cada paso del camino!
                             Recuerda que lo más importante es divertirte mientras aprendes.
                         </p>
-                        <img src="img/motivacion.png" alt="money" width="50%">
+                        <img src="Home/img/motivacion.png" alt="money" width="50%">
                     </section>
                 </div>
 
