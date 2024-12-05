@@ -221,6 +221,10 @@ $conn = null;
                         </svg>
                         <span>Cursos ilimitados</span>
                     </li>
+                    <li class="list">
+                       
+                        <span> <a href="../pago/terminos.html" Target="_blank">AL COMPRAR ACEPTAS ESTOS TERMINOS </a></span>
+                    </li>
                 </ul>
                 <button type="button" class="action"><a href="https://www.mercadopago.cl/subscriptions/checkout?preapproval_plan_id=2c93808493809e5d01938ed97d1f0761" name="MP-payButton" class='blue-ar-l-rn-none'>Suscribirme</a></button>
             </div>
