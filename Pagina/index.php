@@ -79,7 +79,11 @@
 
             <div class="row w-100 mx-auto servicio-fila">
                 <div class="col-lg-6 col-md-12 col-sm-12 my-5 d-flex justify-content-start icono-wrap">
+<<<<<<< HEAD:Pagina/index.php
                     <img src="Home/img/fast.png" alt="car" width="50%">
+=======
+                    <img id="imagen" src="img/fast.png" alt="car" width="50%">
+>>>>>>> 11cef8733fa85750af27ca804754185136ab41b5:Pagina/Home/home.php
                     <div>
                         <h3 class="fs-5 mt-4 px-4 pb-1">Lecciones rápidas y dinámicas</h3>
                         <p class="px-4">Avanza con sesiones de 5 a 10 minutos al día. Aprende conceptos clave de forma rápida y efectiva,
@@ -88,7 +92,11 @@
                 </div>
 
                 <div class="col-lg-6 col-md-12 col-sm-12 my-5 d-flex justify-content-start icono-wrap">
+<<<<<<< HEAD:Pagina/index.php
                     <img src="Home/img/creatividad.png" alt="location" width="50%">
+=======
+                    <img id="imagen" src="img/creatividad.png" alt="location" width="50%">
+>>>>>>> 11cef8733fa85750af27ca804754185136ab41b5:Pagina/Home/home.php
                     <div>
                         <h3 class="fs-5 mt-4 px-4 pb-1">Método interactivo</h3>
                         <p class="px-4">Aprende de forma divertida participando con juegos, quizzes y actividades prácticas diseñadas para poner
@@ -99,7 +107,11 @@
 
                 <div class="row w-100 mx-auto servicio-fila" id="intro">
                     <div class="col-lg-6 col-md-12 col-sm-12 my-5 d-flex justify-content-start icono-wrap">
+<<<<<<< HEAD:Pagina/index.php
                         <img src="Home/img/certificado.png" alt="padlock" width="50%">
+=======
+                        <img id="imagen" src="img/certificado.png" alt="padlock" width="50%">
+>>>>>>> 11cef8733fa85750af27ca804754185136ab41b5:Pagina/Home/home.php
                         <div>
                             <h3 class="fs-5 mt-4 px-4 pb-1">Certificación al completar cursos</h3>
                             <p class="px-4">Acredita tus logros con certificados reconocidos. Cada vez que termines un curso, recibiras un certificado
@@ -109,7 +121,11 @@
                     </div>
 
                     <div class="col-lg-6 col-md-12 col-sm-12 my-5 d-flex justify-content-start icono-wrap">
+<<<<<<< HEAD:Pagina/index.php
                         <img src="Home/img/progreso.png" alt="money" width="50%">
+=======
+                        <img  id="imagen" src="img/progreso.png" alt="money" width="50%">
+>>>>>>> 11cef8733fa85750af27ca804754185136ab41b5:Pagina/Home/home.php
                         <div>
                             <h3 class="fs-5 mt-4 px-4 pb-1">Seguimiento de progreso</h3>
                             <p class="px-4">¡Mira todo lo que has avanzado! Con nuestro sistema de seguimiento, puedes ver cuántas lecciones has completado

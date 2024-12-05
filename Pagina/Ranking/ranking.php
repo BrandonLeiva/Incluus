@@ -84,7 +84,7 @@ $logged_in_user_id = $_SESSION['user_id']; // Asume que el ID del usuario loguea
                     <tr>
                         <th style="width: 120px;">Posición</th>
                         <th>Estudiante</th>
-                        <th>Correo</th>
+                        <th>Rol</th>
                         <th>Edad</th>
                         <th>Puntos</th>
                     </tr>
@@ -106,16 +106,18 @@ $logged_in_user_id = $_SESSION['user_id']; // Asume que el ID del usuario loguea
                             } else {
                                 echo $position . "°";
                             }
+
+                            $rol =($row['rol'] == 0) ? "Profesor" : "Estudiante";
                             echo "</td>";
                             echo "<td data-label='Estudiante'>" . htmlspecialchars($row['nombre']) . " " . htmlspecialchars($row['apellido']) . "</td>";
-                            echo "<td data-label='Correo'>" . htmlspecialchars($row['correo']) . "</td>";
+                            echo "<td data-label='Rol'>" . htmlspecialchars($rol) . "</td>";
                             echo "<td data-label='Edad'>" . htmlspecialchars($row['edad']) . "</td>";
                             echo "<td data-label='Puntos'>" . htmlspecialchars($row['puntos_totales']) . "</td>";
                             echo "</tr>";
                             $position++;
                         }
                     } else {
-                        echo "<tr><td colspan='5' style='text-align: center; font-size: 1.2em; color: #555;'>No se han encontrado usuarios.</td></tr>";
+                        echo "<tr><td colspan='5' style='text-align: center; font-size: 1.2em;'>No se han encontrado usuarios.</td></tr>";
                     }
                     ?>
                 </tbody>
@@ -130,7 +132,7 @@ $logged_in_user_id = $_SESSION['user_id']; // Asume que el ID del usuario loguea
                     <tr>
                         <th style="width: 120px;">Posición</th>
                         <th>Estudiante</th>
-                        <th>Correo</th>
+                        <th>Rol</th>
                         <th>Edad</th>
                         <th>Puntos</th>
                     </tr>
@@ -151,7 +153,7 @@ $logged_in_user_id = $_SESSION['user_id']; // Asume que el ID del usuario loguea
                     <tr>
                         <th style="width: 120px;">Posición</th>
                         <th>Estudiante</th>
-                        <th>Correo</th>
+                        <th>Rol</th>
                         <th>Edad</th>
                         <th>Puntos</th>
                     </tr>

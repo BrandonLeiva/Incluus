@@ -215,7 +215,10 @@ footer {
 .usuario-logeado {
     background: radial-gradient(circle at center, #323280, #212121);
     font-weight: bold;
+}
 
+.Puntos{
+    border-bottom: solid #fff;
 }
 
 
@@ -249,6 +252,11 @@ footer {
     .w-50.w-50 {
         width: 100% !important;
     }
+
+    td[data-label="Puntos"]{
+        border-bottom: solid #fff;
+    }
+    
 }
 
   

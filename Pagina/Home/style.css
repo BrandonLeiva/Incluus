@@ -118,7 +118,7 @@ header {
 /* Estilos responsive */
 @media (max-width: 768px) {
     #intro, .texto-final {
-        width: 90%;
+        width: 100%;
         padding: 20px;
     }
     .servicio-fila {
@@ -135,6 +135,10 @@ header {
     .icono-wrap {
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    #imagen {
+        width: 100%;
     }
 }
 
