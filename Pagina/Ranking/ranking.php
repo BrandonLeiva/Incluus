@@ -7,6 +7,7 @@ $sql = "SELECT * FROM usuario ORDER BY puntos_totales DESC";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 
+
 $logged_in_user_id = $_SESSION['user_id']; // Asume que el ID del usuario logueado se almacena en $_SESSION['user_id']
 ?>
 
@@ -34,7 +35,7 @@ $logged_in_user_id = $_SESSION['user_id']; // Asume que el ID del usuario loguea
         <div class="row bar ">
             <div class="col-3 mision "><a id="nav" href="../Perfil/Perfil.php">PERFIL</a></div>
             <div class="col-3 mision"><a id="nav" href="../Ranking/ranking.php">RANKING</a></div>
-            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 0): ?>
+            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 0 || $_SESSION['user_rol'] == 2): ?>
                 <div class="col-3 mision"><a id="nav" href="../Admin/Agregar/agregarCurso.php">ADMIN</a></div>
             <?php endif; ?>
             <div class="col-3 mision"><a id="nav" onclick="window.location.href='../Home/logout.php'">CERRAR SESIÓN</a></div>

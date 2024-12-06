@@ -292,6 +292,15 @@ h1 {
     border-radius: 8px; /* Bordes redondeados */
 }
 
+.informacion-profesor{
+    display: flex;
+    justify-content: space-between;
+}
+
+.informacion-profesor h5{
+    margin-left: 10px;
+    margin-top: 10px;
+}
 /* adactacion a dispositivos */
 @media (max-width: 750px) {
     .seccion-perfil-usuario .perfil-usuario-portada,

@@ -105,6 +105,7 @@ CREATE TABLE contenido (
     FOREIGN KEY (id_curso) REFERENCES curso(id_curso)
 );
 
+ALTER TABLE materia ADD COLUMN id_usuario INTEGER NOT NULL;
 ----------------------------------------------------------------------------------------------------------------------
 
 -- CONSULTAS SQL --

@@ -1,17 +1,28 @@
 <?php
-
 require "../PermisoAdmin.php";
+
+// Verificar si el usuario está logueado y tiene rol de administrador
+if (!isset($_SESSION['user_id']) || $_SESSION['user_rol'] != 0) {
+    // Redirigir al inicio de sesión si no está autorizado
+    header("Location: ../../home/home.php");
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre_materia = $_POST['nombre_materia'];
+    $id_usuario = $_SESSION['user_id']; // Obtener el ID del usuario desde la sesión
 
     try {
         $conn = new PDO("mysql:host=localhost;dbname=incluus_app", "root", "");
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "INSERT INTO materia (nombre_materia) VALUES (:nombre_materia)";
+        // Modificar la consulta para incluir el ID del usuario
+        $sql = "INSERT INTO materia (nombre_materia, id_usuario) VALUES (:nombre_materia, :id_usuario)";
         $stmt = $conn->prepare($sql);
-        $stmt->execute(['nombre_materia' => $nombre_materia]);
+        $stmt->execute([
+            'nombre_materia' => $nombre_materia,
+            'id_usuario' => $id_usuario // Pasar el ID del usuario
+        ]);
 
         $mensaje = "Materia creada correctamente.";
     } catch (PDOException $e) {
@@ -19,8 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="es">

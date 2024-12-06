@@ -9,12 +9,14 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-
-
 try {
     // Preparar la consulta SQL para obtener más información del usuario
-    $stmt = $conn->prepare("SELECT correo, nombre, edad, rut, apellido, foto_perfil, rol FROM usuario WHERE id_usuario = :id");
-    $stmt->bindParam(':id', $_SESSION['user_id']);
+    $stmt = $conn->prepare("
+        SELECT correo, nombre, edad, rut, apellido, foto_perfil, rol 
+        FROM usuario 
+        WHERE id_usuario = :id
+    ");
+    $stmt->bindParam(':id', $_SESSION['user_id'], PDO::PARAM_INT);
     $stmt->execute();
 
     // Obtener los datos del usuario
@@ -29,22 +31,23 @@ try {
     // Guardar el rol en la sesión
     $_SESSION['user_rol'] = $user['rol'];
 
-    // Consulta para obtener los cursos (ajusta la tabla y campos según tu estructura)
-    $stmtCursos = $conn->prepare("SELECT nombre_materia FROM materia"); // Ajusta 'cursos' y 'nombre_curso' según tu base de datos
-    $stmtCursos->execute();
-
     // Obtener todos los cursos
+    $stmtCursos = $conn->prepare("
+        SELECT materia.nombre_materia, usuario.rol, usuario.apellido AS apellido_profesor, usuario.nombre AS nombre_profesor
+        FROM materia
+        INNER JOIN usuario ON materia.id_usuario = usuario.id_usuario
+    ");
+    $stmtCursos->execute();
     $cursos = $stmtCursos->fetchAll(PDO::FETCH_ASSOC);
 
     // Verifica si 'foto_perfil' es NULL o está vacía
     $fotoPerfil = !empty($user['foto_perfil']) ? $user['foto_perfil'] : 'img/1053244.png';
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
+    exit;
 }
-
-// Cerrar la conexión
-$conn = null;
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +74,7 @@ $conn = null;
         <div class="row bar ">
             <div class="col-3 mision "><a id="nav" href="../Home/home.php">HOME</a></div>
             <div class="col-3 mision"><a id="nav" href="../Ranking/ranking.php">RANKING</a></div>
-            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 0): ?>
+            <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 0 || $_SESSION['user_rol'] == 2): ?>
                 <div class="col-3 mision"><a id="nav" href="../Admin/Agregar/agregarCurso.php">ADMIN</a></div>
             <?php endif; ?>
             <div class="col-3 mision"><a id="nav" onclick="window.location.href='../Home/logout.php'">CERRAR SESIÓN</a></div>
@@ -151,22 +154,75 @@ $conn = null;
                 <br>
                 <h2 id="gb">Continua con tu progreso</h2>
                 <br>
-                <?php foreach ($cursos as $curso): ?>
-                    <div class="perfil-usuario-cursos">
-                        <div class="encabezado">
-                            <h1 class="ramo"><?php echo htmlspecialchars($curso['nombre_materia']); ?></h1>
-                        </div>
-                        <div class="baner">
-                            <img class="banner" src="img/matematicas.png" alt="">
-                        </div>
-                        <form action="../cursos/obtener_c.php" method="GET">
-                            <div class="boton">
-                                <input type="hidden" name="materia" value="<?php echo htmlspecialchars($curso['nombre_materia']); ?>">
-                                <button type="submit" onclick="obtener_c('<?php echo htmlspecialchars($curso['nombre_materia']); ?>')">Continuar</button>
+
+                <?php if (!empty($cursos)): ?>
+                    <?php foreach ($cursos as $curso): ?>
+                        <div class="perfil-usuario-cursos">
+                            <div class="encabezado">
+                                <!-- Mostrar el nombre del curso -->
+                                <h1 class="ramo"><?php echo htmlspecialchars($curso['nombre_materia'], ENT_QUOTES, 'UTF-8'); ?></h1>
                             </div>
-                        </form>
-                    </div>
-                <?php endforeach; ?>
+                            <div class="baner">
+                                <!-- Verificar si el curso tiene una imagen específica o usar una predeterminada -->
+                                <img
+                                    class="banner"
+                                    src="<?php echo !empty($curso['banner']) ? htmlspecialchars($curso['banner'], ENT_QUOTES, 'UTF-8') : 'img/matematicas.png'; ?>"
+                                    alt="Imagen del curso <?php echo htmlspecialchars($curso['nombre_materia'], ENT_QUOTES, 'UTF-8'); ?>">
+                            </div>
+                            <div class="informacion-profesor">
+                                <?php if ($curso['rol'] == 0): ?>
+                                    <!-- Si el rol del creador es profesor, mostrar su nombre -->
+                                    <h5>Profesor: <?php echo htmlspecialchars($curso['nombre_profesor'], ENT_QUOTES, 'UTF-8') . " " . htmlspecialchars($curso['apellido_profesor'], ENT_QUOTES, 'UTF-8'); ?></h5>
+                                <?php else: ?>
+                                    <!-- Si el rol es diferente (ej. administrador), mostrar 'Incluus' -->
+                                    <h5>Creado por: Incluus</h5>
+                                <?php endif; ?>
+
+                                <form action="../cursos/obtener_c.php" method="GET">
+                                    <div class="boton">
+                                        <!-- Enviar el nombre de la materia como valor -->
+                                        <input type="hidden" name="materia" value="<?php echo htmlspecialchars($curso['nombre_materia'], ENT_QUOTES, 'UTF-8'); ?>">
+                                        <button type="submit" onclick="obtener_c('<?php echo htmlspecialchars($curso['nombre_materia'], ENT_QUOTES, 'UTF-8'); ?>')">Continuar</button>
+                                    </div>
+                            </div>
+                            </form>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No hay cursos disponibles en este momento.</p>
+                <?php endif; ?>
+
+                <div class="perfil-usuario-cursos">
+                            <div class="encabezado">
+                                <!-- Mostrar el nombre del curso -->
+                                <h1 class="ramo"><?php echo htmlspecialchars($curso['nombre_materia'], ENT_QUOTES, 'UTF-8'); ?></h1>
+                            </div>
+                            <div class="baner">
+                                <!-- Verificar si el curso tiene una imagen específica o usar una predeterminada -->
+                                <img
+                                    class="banner"
+                                    src="<?php echo !empty($curso['banner']) ? htmlspecialchars($curso['banner'], ENT_QUOTES, 'UTF-8') : 'img/matematicas.png'; ?>"
+                                    alt="Imagen del curso <?php echo htmlspecialchars($curso['nombre_materia'], ENT_QUOTES, 'UTF-8'); ?>">
+                            </div>
+                            <div class="informacion-profesor">
+                                <?php if ($curso['rol'] == 0): ?>
+                                    <!-- Si el rol del creador es profesor, mostrar su nombre -->
+                                    <h5>Profesor: <?php echo htmlspecialchars($curso['nombre_profesor'], ENT_QUOTES, 'UTF-8') . " " . htmlspecialchars($curso['apellido_profesor'], ENT_QUOTES, 'UTF-8'); ?></h5>
+                                <?php else: ?>
+                                    <!-- Si el rol es diferente (ej. administrador), mostrar 'Incluus' -->
+                                    <h5>Creado por: Incluus</h5>
+                                <?php endif; ?>
+
+                                <form action="../cursos/obtener_c.php" method="GET">
+                                    <div class="boton">
+                                        <!-- Enviar el nombre de la materia como valor -->
+                                        <input type="hidden" name="materia" value="<?php echo htmlspecialchars($curso['nombre_materia'], ENT_QUOTES, 'UTF-8'); ?>">
+                                        <button type="submit" onclick="obtener_c('<?php echo htmlspecialchars($curso['nombre_materia'], ENT_QUOTES, 'UTF-8'); ?>')"><a style="text-decoration: none; color:#fff" href="cursosIncluus.php">Continuar</a></button>
+                                    </div>
+                            </div>
+                            </form>
+                        </div>
+
             </div>
 
 
@@ -187,7 +243,9 @@ $conn = null;
 
         </section>
 
-        <center><h1 style="margin-top: 100px; color:#fff;">Elige tu Plan</h1></center>
+        <center>
+            <h1 style="margin-top: 100px; color:#fff;">Elige tu Plan</h1>
+        </center>
 
         <div class="container-card">
             <div style="background-color: rgba(17, 24, 39, 1);" class="card">
@@ -222,16 +280,16 @@ $conn = null;
                         <span>Cursos ilimitados</span>
                     </li>
                     <li class="list">
-                       
+
                         <span> <a href="../pago/terminos.html" Target="_blank">AL COMPRAR ACEPTAS ESTOS TERMINOS </a></span>
                     </li>
                 </ul>
                 <button type="button" class="action"><a href="https://www.mercadopago.cl/subscriptions/checkout?preapproval_plan_id=2c93808493809e5d01938ed97d1f0761" name="MP-payButton" class='blue-ar-l-rn-none'>Suscribirme</a></button>
             </div>
-            
+
         </div>
-        
-        
+
+
         <br><br><br><br><br>
         <footer>
             <p>© 2024 - Incluus. Todos los derechos reservados.</p>
